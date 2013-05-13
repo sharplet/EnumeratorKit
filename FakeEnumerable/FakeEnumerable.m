@@ -41,7 +41,13 @@
 
 - (id)filter:(BOOL (^)(id))block
 {
-    return nil;
+    NSMutableArray * result = [NSMutableArray array];
+    [self each:^(id obj) {
+        if (block(obj)) {
+            [result addObject:obj];
+        }
+    }];
+    return result;
 }
 
 - (id)reduceWithSelector:(SEL)binaryOperation
