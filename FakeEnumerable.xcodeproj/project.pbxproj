@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A733BEAA90E4B51B7027B14 /* libPods-FakeEnumerableTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8477AE494846319FC9870B /* libPods-FakeEnumerableTests.a */; };
 		4AB6FA961740C5AE00DDBAD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */; };
 		4AB6FA981740C5AE00DDBAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AB6FA9A1740C5AE00DDBAD4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA991740C5AE00DDBAD4 /* CoreGraphics.framework */; };
@@ -20,7 +21,7 @@
 		4AB6FAB51740C5AE00DDBAD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */; };
 		4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AB6FABE1740C5AE00DDBAD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AB6FABC1740C5AE00DDBAD4 /* InfoPlist.strings */; };
-		4AB6FAC11740C5AE00DDBAD4 /* FakeEnumerableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAC01740C5AE00DDBAD4 /* FakeEnumerableTests.m */; };
+		4AB6FACB1740C73F00DDBAD4 /* HelloSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FACA1740C73F00DDBAD4 /* HelloSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4369A65CC79345AF9AB080F3 /* Pods-FakeEnumerableTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FakeEnumerableTests.xcconfig"; path = "Pods/Pods-FakeEnumerableTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		4AB6FA921740C5AE00DDBAD4 /* FakeEnumerable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeEnumerable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -51,8 +53,8 @@
 		4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AB6FABB1740C5AE00DDBAD4 /* FakeEnumerableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FakeEnumerableTests-Info.plist"; sourceTree = "<group>"; };
 		4AB6FABD1740C5AE00DDBAD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4AB6FABF1740C5AE00DDBAD4 /* FakeEnumerableTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeEnumerableTests.h; sourceTree = "<group>"; };
-		4AB6FAC01740C5AE00DDBAD4 /* FakeEnumerableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerableTests.m; sourceTree = "<group>"; };
+		4AB6FACA1740C73F00DDBAD4 /* HelloSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloSpec.m; sourceTree = "<group>"; };
+		5C8477AE494846319FC9870B /* libPods-FakeEnumerableTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FakeEnumerableTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				4AB6FAB41740C5AE00DDBAD4 /* SenTestingKit.framework in Frameworks */,
 				4AB6FAB51740C5AE00DDBAD4 /* UIKit.framework in Frameworks */,
 				4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */,
+				2A733BEAA90E4B51B7027B14 /* libPods-FakeEnumerableTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +89,7 @@
 				4AB6FAB91740C5AE00DDBAD4 /* FakeEnumerableTests */,
 				4AB6FA941740C5AE00DDBAD4 /* Frameworks */,
 				4AB6FA931740C5AE00DDBAD4 /* Products */,
+				4369A65CC79345AF9AB080F3 /* Pods-FakeEnumerableTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +109,7 @@
 				4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */,
 				4AB6FA991740C5AE00DDBAD4 /* CoreGraphics.framework */,
 				4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */,
+				5C8477AE494846319FC9870B /* libPods-FakeEnumerableTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,9 +141,8 @@
 		4AB6FAB91740C5AE00DDBAD4 /* FakeEnumerableTests */ = {
 			isa = PBXGroup;
 			children = (
-				4AB6FABF1740C5AE00DDBAD4 /* FakeEnumerableTests.h */,
-				4AB6FAC01740C5AE00DDBAD4 /* FakeEnumerableTests.m */,
 				4AB6FABA1740C5AE00DDBAD4 /* Supporting Files */,
+				4AB6FACA1740C73F00DDBAD4 /* HelloSpec.m */,
 			);
 			path = FakeEnumerableTests;
 			sourceTree = "<group>";
@@ -176,10 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AB6FAC71740C5AE00DDBAD4 /* Build configuration list for PBXNativeTarget "FakeEnumerableTests" */;
 			buildPhases = (
+				121EB3D7F9144B2BA3C1D9E1 /* Check Pods Manifest.lock */,
 				4AB6FAAD1740C5AE00DDBAD4 /* Sources */,
 				4AB6FAAE1740C5AE00DDBAD4 /* Frameworks */,
 				4AB6FAAF1740C5AE00DDBAD4 /* Resources */,
 				4AB6FAB01740C5AE00DDBAD4 /* ShellScript */,
+				50DA50AF7CEA4D68BAB8C2DC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -241,6 +247,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		121EB3D7F9144B2BA3C1D9E1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
 		4AB6FAB01740C5AE00DDBAD4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +273,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		50DA50AF7CEA4D68BAB8C2DC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-FakeEnumerableTests-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -270,7 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AB6FAC11740C5AE00DDBAD4 /* FakeEnumerableTests.m in Sources */,
+				4AB6FACB1740C73F00DDBAD4 /* HelloSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,12 +418,10 @@
 		};
 		4AB6FAC81740C5AE00DDBAD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4369A65CC79345AF9AB080F3 /* Pods-FakeEnumerableTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FakeEnumerable.app/FakeEnumerable";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FakeEnumerable/FakeEnumerable-Prefix.pch";
 				INFOPLIST_FILE = "FakeEnumerableTests/FakeEnumerableTests-Info.plist";
@@ -401,12 +433,10 @@
 		};
 		4AB6FAC91740C5AE00DDBAD4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4369A65CC79345AF9AB080F3 /* Pods-FakeEnumerableTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FakeEnumerable.app/FakeEnumerable";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FakeEnumerable/FakeEnumerable-Prefix.pch";
 				INFOPLIST_FILE = "FakeEnumerableTests/FakeEnumerableTests-Info.plist";
@@ -435,6 +465,7 @@
 				4AB6FAC61740C5AE00DDBAD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AB6FAC71740C5AE00DDBAD4 /* Build configuration list for PBXNativeTarget "FakeEnumerableTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +474,7 @@
 				4AB6FAC91740C5AE00DDBAD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
