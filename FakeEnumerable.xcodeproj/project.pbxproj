@@ -21,7 +21,13 @@
 		4AB6FAB51740C5AE00DDBAD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */; };
 		4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AB6FABE1740C5AE00DDBAD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AB6FABC1740C5AE00DDBAD4 /* InfoPlist.strings */; };
-		4AB6FACB1740C73F00DDBAD4 /* HelloSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FACA1740C73F00DDBAD4 /* HelloSpec.m */; };
+		4AB6FACE1740D28800DDBAD4 /* SortedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FACD1740D28800DDBAD4 /* SortedList.m */; };
+		4AB6FAD11740D56E00DDBAD4 /* FakeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */; };
+		4AB6FAD41740D61400DDBAD4 /* NSArray+FakeEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD31740D61400DDBAD4 /* NSArray+FakeEnumerable.m */; };
+		4AB6FAD71740D97100DDBAD4 /* FakeEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */; };
+		4AB6FAD91740D9E500DDBAD4 /* FakeEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD81740D9E500DDBAD4 /* FakeEnumerableSpec.m */; };
+		4AB6FADC1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FADB1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m */; };
+		4AB6FADE1740E06800DDBAD4 /* FakeEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +59,18 @@
 		4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AB6FABB1740C5AE00DDBAD4 /* FakeEnumerableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FakeEnumerableTests-Info.plist"; sourceTree = "<group>"; };
 		4AB6FABD1740C5AE00DDBAD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4AB6FACA1740C73F00DDBAD4 /* HelloSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloSpec.m; sourceTree = "<group>"; };
+		4AB6FACC1740D28800DDBAD4 /* SortedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedList.h; sourceTree = "<group>"; };
+		4AB6FACD1740D28800DDBAD4 /* SortedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedList.m; sourceTree = "<group>"; };
+		4AB6FACF1740D56E00DDBAD4 /* FakeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeEnumerator.h; sourceTree = "<group>"; };
+		4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerator.m; sourceTree = "<group>"; };
+		4AB6FAD21740D61400DDBAD4 /* NSArray+FakeEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FakeEnumerable.h"; sourceTree = "<group>"; };
+		4AB6FAD31740D61400DDBAD4 /* NSArray+FakeEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FakeEnumerable.m"; sourceTree = "<group>"; };
+		4AB6FAD51740D97100DDBAD4 /* FakeEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeEnumerable.h; sourceTree = "<group>"; };
+		4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerable.m; sourceTree = "<group>"; };
+		4AB6FAD81740D9E500DDBAD4 /* FakeEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerableSpec.m; sourceTree = "<group>"; };
+		4AB6FADA1740DDD400DDBAD4 /* NSNumber+BinaryOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BinaryOperations.h"; sourceTree = "<group>"; };
+		4AB6FADB1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BinaryOperations.m"; sourceTree = "<group>"; };
+		4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumeratorSpec.m; sourceTree = "<group>"; };
 		5C8477AE494846319FC9870B /* libPods-FakeEnumerableTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FakeEnumerableTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +136,16 @@
 			children = (
 				4AB6FAA41740C5AE00DDBAD4 /* AppDelegate.h */,
 				4AB6FAA51740C5AE00DDBAD4 /* AppDelegate.m */,
+				4AB6FAD51740D97100DDBAD4 /* FakeEnumerable.h */,
+				4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */,
+				4AB6FACF1740D56E00DDBAD4 /* FakeEnumerator.h */,
+				4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */,
+				4AB6FAD21740D61400DDBAD4 /* NSArray+FakeEnumerable.h */,
+				4AB6FAD31740D61400DDBAD4 /* NSArray+FakeEnumerable.m */,
+				4AB6FADA1740DDD400DDBAD4 /* NSNumber+BinaryOperations.h */,
+				4AB6FADB1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m */,
+				4AB6FACC1740D28800DDBAD4 /* SortedList.h */,
+				4AB6FACD1740D28800DDBAD4 /* SortedList.m */,
 				4AB6FA9C1740C5AE00DDBAD4 /* Supporting Files */,
 			);
 			path = FakeEnumerable;
@@ -142,7 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				4AB6FABA1740C5AE00DDBAD4 /* Supporting Files */,
-				4AB6FACA1740C73F00DDBAD4 /* HelloSpec.m */,
+				4AB6FAD81740D9E500DDBAD4 /* FakeEnumerableSpec.m */,
+				4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */,
 			);
 			path = FakeEnumerableTests;
 			sourceTree = "<group>";
@@ -297,6 +325,11 @@
 			files = (
 				4AB6FAA21740C5AE00DDBAD4 /* main.m in Sources */,
 				4AB6FAA61740C5AE00DDBAD4 /* AppDelegate.m in Sources */,
+				4AB6FACE1740D28800DDBAD4 /* SortedList.m in Sources */,
+				4AB6FAD11740D56E00DDBAD4 /* FakeEnumerator.m in Sources */,
+				4AB6FAD41740D61400DDBAD4 /* NSArray+FakeEnumerable.m in Sources */,
+				4AB6FAD71740D97100DDBAD4 /* FakeEnumerable.m in Sources */,
+				4AB6FADC1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +337,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AB6FACB1740C73F00DDBAD4 /* HelloSpec.m in Sources */,
+				4AB6FAD91740D9E500DDBAD4 /* FakeEnumerableSpec.m in Sources */,
+				4AB6FADE1740E06800DDBAD4 /* FakeEnumeratorSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
