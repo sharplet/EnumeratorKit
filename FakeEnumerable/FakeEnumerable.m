@@ -27,7 +27,11 @@
 }
 - (id)map:(id (^)(id))block
 {
-    return nil;
+    NSMutableArray * result = [NSMutableArray array];
+    [self each:^(id obj) {
+        [result addObject:block(obj)];
+    }];
+    return result;
 }
 
 - (id)sortBy:(id (^)(id))block
