@@ -32,8 +32,8 @@ describe(@"FakeEnumerable", ^{
         }] should] equal:@[ @4, @42 ]];
     });
 
-    it(@"supports reduce", ^{
-        [[[list reduceWithSelector:@selector(add:)] should] equal:@69];
+    it(@"supports inject/reduce", ^{
+        [[[list inject:@selector(add:)] should] equal:@69];
         [[[list reduce:^id(id memo, id obj) {
             return [memo add:obj];
         }] should] equal:@69];

@@ -8,6 +8,14 @@
 
 #import "FakeEnumerable.h"
 
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+            do { \
+                _Pragma("clang diagnostic push") \
+                _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+                    Stuff; \
+                _Pragma("clang diagnostic pop") \
+            } while (0)
+
 @implementation FakeEnumerable
 
 - (id)each
@@ -50,14 +58,25 @@
     return result;
 }
 
-- (id)reduceWithSelector:(SEL)binaryOperation
+- (id)inject:(SEL)binaryOperation
 {
-    return nil;
+    return [self reduce:^id(id memo, id obj) {
+        SuppressPerformSelectorLeakWarning(
+            return [memo performSelector:binaryOperation withObject:obj];
+        );
+    }];
 }
 
 - (id)reduce:(id (^)(id, id))block
 {
-    return nil;
+    __block id memo;
+    [self each:^(id obj) {
+        if (!memo)
+            memo = obj;
+        else
+            memo = block(memo, obj);
+    }];
+    return memo;
 }
 
 @end

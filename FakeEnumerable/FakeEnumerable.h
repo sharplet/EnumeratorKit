@@ -19,7 +19,8 @@
 - (id)map:(id (^)(id obj))block;
 - (id)sortBy:(id (^)(id obj))block;
 - (id)filter:(BOOL (^)(id obj))block;
-- (id)reduceWithSelector:(SEL)binaryOperation;
+
+- (id)inject:(SEL)binaryOperation;
 - (id)reduce:(id (^)(id memo, id obj))block;
 
 @end
