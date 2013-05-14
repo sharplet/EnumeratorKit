@@ -71,6 +71,7 @@
 		4AB6FADA1740DDD400DDBAD4 /* NSNumber+BinaryOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BinaryOperations.h"; sourceTree = "<group>"; };
 		4AB6FADB1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BinaryOperations.m"; sourceTree = "<group>"; };
 		4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumeratorSpec.m; sourceTree = "<group>"; };
+		4AB6FAE217419DD500DDBAD4 /* SuppressPerformSelectorMemoryWarnings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuppressPerformSelectorMemoryWarnings.h; sourceTree = "<group>"; };
 		5C8477AE494846319FC9870B /* libPods-FakeEnumerableTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FakeEnumerableTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -147,6 +148,7 @@
 				4AB6FACC1740D28800DDBAD4 /* SortedList.h */,
 				4AB6FACD1740D28800DDBAD4 /* SortedList.m */,
 				4AB6FA9C1740C5AE00DDBAD4 /* Supporting Files */,
+				4AB6FAE217419DD500DDBAD4 /* SuppressPerformSelectorMemoryWarnings.h */,
 			);
 			path = FakeEnumerable;
 			sourceTree = "<group>";
