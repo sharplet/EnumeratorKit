@@ -57,7 +57,8 @@
 
 - (id)rewind
 {
-    return nil;
+    self.fiber = nil;
+    return self;
 }
 
 - (id)withIndex:(id (^)(id, id))block
