@@ -1,4 +1,4 @@
-platform :ios, '6.1'
+platform :ios, '5.0'
 
 target :FakeEnumerableTests, :exclusive => true do
   pod 'Kiwi', '~> 2.0.6'

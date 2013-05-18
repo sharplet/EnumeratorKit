@@ -23,7 +23,7 @@ describe(@"FakeEnumerable", ^{
         [[e.next should] equal:@13];
         [[e.next should] equal:@42];
 
-        [[theBlock(^{ (void)e.next; }) should] raiseWithName:@"StopIteration"];
+        [e.next shouldBeNil];
     });
 
     it(@"supports rewind", ^{

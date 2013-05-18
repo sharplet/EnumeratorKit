@@ -12,6 +12,9 @@
 
 - (id)initWithTarget:(id)target selector:(SEL)selector;
 
+- (id)each;
+- (id)each:(void (^)(id obj))block;
+
 - (id)next;
 - (id)rewind;
 - (id)withIndex:(id (^)(id obj, id index))block;
