@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:FakeEnumerable/Fiber.h">
-   </FileRef>
-   <FileRef
-      location = "group:FakeEnumerable/Fiber.m">
-   </FileRef>
-   <FileRef
       location = "group:FakeEnumerable.xcodeproj">
    </FileRef>
    <FileRef

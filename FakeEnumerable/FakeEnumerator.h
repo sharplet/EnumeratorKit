@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol Yielder <NSObject>
+- (void)yield:(id)obj;
+@end
+
 @interface FakeEnumerator : NSObject
 
-- (id)initWithTarget:(id)target selector:(SEL)selector;
++ (instancetype)enumeratorWithBlock:(void (^)(id<Yielder> y))block;
+- (id)initWithBlock:(void (^)(id<Yielder> y))block;
 
 - (id)each;
 - (id)each:(void (^)(id obj))block;

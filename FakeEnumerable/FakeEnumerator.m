@@ -7,25 +7,25 @@
 //
 
 #import "FakeEnumerator.h"
-#import "SuppressPerformSelectorMemoryWarnings.h"
 #import "Fiber.h"
 
 @interface FakeEnumerator ()
 
-@property (nonatomic, strong) id target;
-@property (nonatomic) SEL selector;
-
+@property (nonatomic, copy) void (^block)(id);
 @property (nonatomic) Fiber *fiber;
 
 @end
 
 @implementation FakeEnumerator
 
-- (id)initWithTarget:(id)target selector:(SEL)selector
++ (instancetype)enumeratorWithBlock:(void (^)(id<Yielder> y))block
+{
+    return [[self alloc] initWithBlock:block];
+}
+- (id)initWithBlock:(void (^)(id<Yielder> y))block
 {
     if (self = [super init]) {
-        _target = target;
-        _selector = selector;
+        _block = [block copy];
     }
     return self;
 }
@@ -36,18 +36,19 @@
 }
 - (id)each:(void (^)(id))block
 {
-    SuppressPerformSelectorLeakWarning(
-        return [self.target performSelector:self.selector withObject:block];
-    );
+    id obj;
+    while ((obj = self.next)) {
+        block(obj);
+    }
+    return self.rewind;
 }
 
 - (id)next
 {
     if (!self.fiber) {
+        __weak FakeEnumerator *weakSelf = self;
         self.fiber = [Fiber fiberWithBlock:^id{
-            [self each:^(id obj) {
-                [Fiber yield:obj];
-            }];
+            weakSelf.block([Fiber class]);
             return nil;
         }];
     }

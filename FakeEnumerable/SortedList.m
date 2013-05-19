@@ -35,7 +35,11 @@
 
 - (id)each
 {
-    return [[FakeEnumerator alloc] initWithTarget:self selector:@selector(each:)];
+    return [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
+        [self each:^(id obj) {
+            [y yield:obj];
+        }];
+    }];
 }
 
 - (id)each:(void (^)(id))block
