@@ -41,14 +41,14 @@ describe(@"FakeEnumerable", ^{
         [[e.next should] equal:@7];
     });
 
-    it(@"supports withIndex", ^{
-        FakeEnumerator * e = list.map;
-        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];
-
-        [[[e withIndex:^id(id obj, id index) {
-            return [NSString stringWithFormat:@"%@. %@", obj, index];
-        }] should] equal:expected];
-    });
+//    it(@"supports withIndex", ^{
+//        FakeEnumerator * e = list.map;
+//        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];
+//
+//        [[[e withIndex:^id(id obj, id index) {
+//            return [NSString stringWithFormat:@"%@. %@", obj, index];
+//        }] should] equal:expected];
+//    });
 
 });
 
