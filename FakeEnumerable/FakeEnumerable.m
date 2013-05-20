@@ -6,27 +6,33 @@
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
+#import <objc/runtime.h>
 #import "FakeEnumerable.h"
+#import "FakeEnumerator.h"
+#import "NSArray+FakeEnumerable.h"
 #import "SuppressPerformSelectorMemoryWarnings.h"
 
 @implementation FakeEnumerable
 
-- (id)each
+- (id<FakeEnumerable>)each
 {
-    NSAssert(NO, @"-each must be overridden by subclass");
-    return nil;
+    return [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
+        [self each:^(id obj) {
+            [y yield:obj];
+        }];
+    }];
 }
-- (id)each:(void (^)(id))block
+- (id<FakeEnumerable>)each:(void (^)(id obj))block
 {
-    NSAssert(NO, @"-each: must be overridden by subclass");
+    NSAssert(NO, @"expected -each: to be implemented");
     return nil;
 }
 
-- (id)map
+- (id<FakeEnumerable>)map
 {
     return nil;
 }
-- (id)map:(id (^)(id))block
+- (id<FakeEnumerable>)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -35,12 +41,12 @@
     return result;
 }
 
-- (id)sortBy:(id (^)(id))block
+- (id<FakeEnumerable>)sortBy:(id (^)(id))block
 {
     return nil;
 }
 
-- (id)filter:(BOOL (^)(id))block
+- (id<FakeEnumerable>)filter:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -51,7 +57,7 @@
     return result;
 }
 
-- (id)inject:(SEL)binaryOperation
+- (id<FakeEnumerable>)inject:(SEL)binaryOperation
 {
     return [self reduce:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
@@ -60,7 +66,7 @@
     }];
 }
 
-- (id)reduce:(id (^)(id, id))block
+- (id<FakeEnumerable>)reduce:(id (^)(id, id))block
 {
     __block id memo;
     [self each:^(id obj) {
@@ -70,6 +76,26 @@
             memo = block(memo, obj);
     }];
     return memo;
+}
+
+@end
+
+@implementation NSObject (IncludeFakeEnumerable)
+
++ (void)includeEnumerable
+{
+    unsigned int methodCount;
+    Method *methods = class_copyMethodList([FakeEnumerable class], &methodCount);
+
+    for (int i = 0; i < methodCount; i++) {
+        SEL name = method_getName(methods[i]);
+        IMP imp = method_getImplementation(methods[i]);
+        const char *types = method_getTypeEncoding(methods[i]);
+
+        class_addMethod([self class], name, imp, types);
+    }
+
+    free(methods);
 }
 
 @end

@@ -16,6 +16,11 @@
 
 @implementation SortedList
 
++ (void)load
+{
+    [self includeEnumerable];
+}
+
 - (id)init
 {
     if (self = [super init]) {
@@ -31,15 +36,6 @@
         return [obj1 compare:obj2];
     }];
     return self;
-}
-
-- (id)each
-{
-    return [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
-        [self each:^(id obj) {
-            [y yield:obj];
-        }];
-    }];
 }
 
 - (id)each:(void (^)(id))block

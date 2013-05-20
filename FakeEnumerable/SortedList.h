@@ -10,7 +10,7 @@
 #import "FakeEnumerable.h"
 #import "NSNumber+BinaryOperations.h"
 
-@interface SortedList : FakeEnumerable
+@interface SortedList : NSObject <FakeEnumerable>
 
 - (instancetype)insert:(NSNumber *)object;
 

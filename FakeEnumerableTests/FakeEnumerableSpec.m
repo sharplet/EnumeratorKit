@@ -14,9 +14,10 @@ describe(@"FakeEnumerable", ^{
     });
 
     it(@"supports map", ^{
-        [[[list map:^id(id obj) {
+        id mapped = [list map:^id(id obj) {
             return @([obj integerValue] + 1);
-        }] should] equal:@[ @4, @5, @8, @14, @43 ]];
+        }];
+        [[mapped should] equal:@[ @4, @5, @8, @14, @43 ]];
     });
 
 //    it(@"supports sortBy", ^{
@@ -27,16 +28,19 @@ describe(@"FakeEnumerable", ^{
 //    });
 
     it(@"supports filter", ^{
-        [[[list filter:^BOOL(id obj) {
+        id filtered = [list filter:^BOOL(id obj) {
             return [obj integerValue] % 2 == 0;
-        }] should] equal:@[ @4, @42 ]];
+        }];
+        [[filtered should] equal:@[ @4, @42 ]];
     });
 
     it(@"supports inject/reduce", ^{
-        [[[list inject:@selector(add:)] should] equal:@69];
-        [[[list reduce:^id(id memo, id obj) {
+        [[ (id)[list inject:@selector(add:)] should] equal:@69];
+
+        id reduced = [list reduce:^id(id memo, id obj) {
             return [memo add:obj];
-        }] should] equal:@69];
+        }];
+        [[reduced should] equal:@69];
     });
 
 });

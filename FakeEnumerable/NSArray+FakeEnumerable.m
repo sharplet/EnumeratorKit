@@ -11,13 +11,9 @@
 
 @implementation NSArray (FakeEnumerable)
 
-- (id)each
++ (void)load
 {
-    return [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
-        [self each:^(id obj) {
-            [y yield:obj];
-        }];
-    }];
+    [self includeEnumerable];
 }
 
 - (id)each:(void (^)(id))block

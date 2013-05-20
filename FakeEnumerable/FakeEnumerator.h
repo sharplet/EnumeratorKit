@@ -7,18 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FakeEnumerable.h"
 
 @protocol Yielder <NSObject>
 - (void)yield:(id)obj;
 @end
 
-@interface FakeEnumerator : NSObject
+@interface FakeEnumerator : NSObject <FakeEnumerable>
 
 + (instancetype)enumeratorWithBlock:(void (^)(id<Yielder> y))block;
 - (id)initWithBlock:(void (^)(id<Yielder> y))block;
-
-- (id)each;
-- (id)each:(void (^)(id obj))block;
 
 - (id)next;
 - (id)peek;

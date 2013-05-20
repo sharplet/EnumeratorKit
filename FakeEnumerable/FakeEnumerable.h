@@ -8,19 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FakeEnumerable : NSObject
+@protocol FakeEnumerable <NSObject>
 
-// abstract methods
-- (id)each;
-- (id)each:(void (^)(id obj))block;
+@required
+- (id<FakeEnumerable>)each:(void (^)(id obj))block;
 
-// collection methods
-- (id)map;
-- (id)map:(id (^)(id obj))block;
-- (id)sortBy:(id (^)(id obj))block;
-- (id)filter:(BOOL (^)(id obj))block;
+@optional
+- (id<FakeEnumerable>)each;
 
-- (id)inject:(SEL)binaryOperation;
-- (id)reduce:(id (^)(id memo, id obj))block;
+- (id<FakeEnumerable>)map;
+- (id<FakeEnumerable>)map:(id (^)(id obj))block;
+- (id<FakeEnumerable>)sortBy:(id (^)(id obj))block;
+- (id<FakeEnumerable>)filter:(BOOL (^)(id obj))block;
 
+- (id<FakeEnumerable>)inject:(SEL)binaryOperation;
+- (id<FakeEnumerable>)reduce:(id (^)(id memo, id obj))block;
+
+@end
+
+@interface FakeEnumerable : NSObject <FakeEnumerable>
+
+@end
+
+@interface NSObject (IncludeFakeEnumerable)
++ (void)includeEnumerable;
 @end

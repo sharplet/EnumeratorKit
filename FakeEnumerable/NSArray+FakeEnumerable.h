@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FakeEnumerable.h"
 
-@interface NSArray (FakeEnumerable)
-
-- (id)each;
-- (id)each:(void (^)(id obj))block;
+@interface NSArray (FakeEnumerable) <FakeEnumerable>
 
 @end
