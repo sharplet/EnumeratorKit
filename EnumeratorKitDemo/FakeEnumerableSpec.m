@@ -1,5 +1,6 @@
 #import <Kiwi.h>
 #import "SortedList.h"
+#import "NSNumber+BinaryOperations.h"
 
 SPEC_BEGIN(FakeEnumerableSpec)
 
