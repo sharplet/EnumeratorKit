@@ -14,7 +14,6 @@
 @property (nonatomic, copy) void (^block)(id);
 @property (nonatomic, strong) Fiber *fiber;
 
-// peeking at the next value
 - (id)next:(BOOL)peek;
 @property (nonatomic, strong) id lastPeek;
 
@@ -96,6 +95,8 @@
 
 - (id)rewind
 {
+    // delete the fiber -- the iteration will be restarted next
+    // time -next is called
     self.fiber = nil;
     return self;
 }
