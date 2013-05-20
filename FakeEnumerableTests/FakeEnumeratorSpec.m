@@ -4,7 +4,7 @@
 
 SPEC_BEGIN(FakeEnumeratorSpec)
 
-describe(@"FakeEnumerable", ^{
+describe(@"FakeEnumerator", ^{
 
     __block SortedList * list;
     beforeAll(^{
@@ -65,6 +65,30 @@ describe(@"FakeEnumerable", ^{
 //            return [NSString stringWithFormat:@"%@. %@", obj, index];
 //        }] should] equal:expected];
 //    });
+
+    describe(@"infinite enumeration", ^{
+
+        it(@"iterates over the fibonacci sequence", ^{
+            // describe the fibonacci sequence with an enumerator
+            FakeEnumerator * fib = [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
+                id a = @1, b = @1;
+                while (1) {
+                    [y yield:a];
+                    id next = [a add:b];
+                    a = b; b = next;
+                }
+            }];
+
+            // get the first 10 elements
+            NSMutableArray *result = [NSMutableArray new];
+            for (int i = 0; i < 10; i++) {
+                [result addObject:fib.next];
+            }
+
+            [[result should] equal:@[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]];
+        });
+
+    });
 
 });
 
