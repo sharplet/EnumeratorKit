@@ -41,6 +41,22 @@ describe(@"FakeEnumerable", ^{
         [[e.next should] equal:@7];
     });
 
+    it(@"supports peek", ^{
+        FakeEnumerator * e = list.each;
+
+        [[e.peek should] equal:@3];
+        [[e.next should] equal:@3];
+        [[e.peek should] equal:@4];
+        [[e.peek should] equal:@4];
+        [[e.next should] equal:@4];
+        [[e.next should] equal:@7];
+
+        [[e.next should] equal:@13];
+        [[e.next should] equal:@42];
+
+        [e.peek shouldBeNil];
+    });
+
 //    it(@"supports withIndex", ^{
 //        FakeEnumerator * e = list.map;
 //        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];

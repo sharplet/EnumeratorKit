@@ -21,6 +21,7 @@
 - (id)each:(void (^)(id obj))block;
 
 - (id)next;
+- (id)peek;
 - (id)rewind;
 - (id)withIndex:(id (^)(id obj, id index))block;
 
