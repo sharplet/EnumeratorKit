@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		2A7D1B3ADA18411D9AD3D4D1 /* libPods-EnumeratorKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */; };
 		4AB6FAB41740C5AE00DDBAD4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */; };
-		4AB6FAB51740C5AE00DDBAD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */; };
 		4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073BB174AC561005FA8E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073C9174AC561005FA8E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */; };
-		4AC073CA174AC561005FA8E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */; };
 		4AC073CB174AC561005FA8E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073CE174AC561005FA8E5 /* libEnumeratorKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC073BA174AC561005FA8E5 /* libEnumeratorKit.a */; };
 		4AC073D4174AC561005FA8E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AC073D2174AC561005FA8E5 /* InfoPlist.strings */; };
@@ -62,9 +60,7 @@
 
 /* Begin PBXFileReference section */
 		226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4AB6FA991740C5AE00DDBAD4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4AB6FAB21740C5AE00DDBAD4 /* EnumeratorKitDemo.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnumeratorKitDemo.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AB6FACF1740D56E00DDBAD4 /* FakeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeEnumerator.h; sourceTree = "<group>"; };
@@ -102,7 +98,6 @@
 			files = (
 				4AC07400174ACE3B005FA8E5 /* libEnumeratorKit.a in Frameworks */,
 				4AB6FAB41740C5AE00DDBAD4 /* SenTestingKit.framework in Frameworks */,
-				4AB6FAB51740C5AE00DDBAD4 /* UIKit.framework in Frameworks */,
 				4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */,
 				2A7D1B3ADA18411D9AD3D4D1 /* libPods-EnumeratorKitDemo.a in Frameworks */,
 			);
@@ -121,7 +116,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC073C9174AC561005FA8E5 /* SenTestingKit.framework in Frameworks */,
-				4AC073CA174AC561005FA8E5 /* UIKit.framework in Frameworks */,
 				4AC073CB174AC561005FA8E5 /* Foundation.framework in Frameworks */,
 				4AC073CE174AC561005FA8E5 /* libEnumeratorKit.a in Frameworks */,
 				FAEE85CCB014462F9B7D988F /* libPods-EnumeratorKitTests.a in Frameworks */,
@@ -157,9 +151,7 @@
 		4AB6FA941740C5AE00DDBAD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4AB6FA951740C5AE00DDBAD4 /* UIKit.framework */,
 				4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */,
-				4AB6FA991740C5AE00DDBAD4 /* CoreGraphics.framework */,
 				4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */,
 				7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */,
 				226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */,
