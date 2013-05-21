@@ -1,12 +1,12 @@
 //
-//  Fiber.m
-//  FakeEnumerable
+//  RFFiber.m
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 17/05/13.
 //
 //
 
-#import "Fiber.h"
+#import "RFFiber.h"
 
 
 
@@ -42,10 +42,10 @@
 
 
 
-@interface Fiber ()
+@interface RFFiber ()
 
-+ (NSString *)register:(Fiber *)fiber;
-+ (void)removeFiber:(Fiber *)fiber;
++ (NSString *)register:(RFFiber *)fiber;
++ (void)removeFiber:(RFFiber *)fiber;
 
 - (void)executeBlock;
 
@@ -61,12 +61,12 @@
 
 @end
 
-@implementation Fiber
+@implementation RFFiber
 
 static NSMutableDictionary *fibers;
 static SerialOperationQueue *fibersQueue;
 
-+ (NSString *)register:(Fiber *)fiber
++ (NSString *)register:(RFFiber *)fiber
 {
     // fibersQueue synchronises fiber creation and deletion
     static dispatch_once_t onceToken;
@@ -91,7 +91,7 @@ static SerialOperationQueue *fibersQueue;
     return fibers[[[NSOperationQueue currentQueue] name]];
 }
 
-+ (void)removeFiber:(Fiber *)fiber
++ (void)removeFiber:(RFFiber *)fiber
 {
     [fibersQueue addOperationWithBlockAndWait:^{
         [fibers removeObjectForKey:fiber.label];
@@ -100,7 +100,7 @@ static SerialOperationQueue *fibersQueue;
 
 + (void)yield:(id)obj
 {
-    [[Fiber current] yield:obj];
+    [[RFFiber current] yield:obj];
 }
 
 + (instancetype)fiberWithBlock:(id (^)(void))block
@@ -113,7 +113,7 @@ static SerialOperationQueue *fibersQueue;
     if (self = [super init]) {
         // register with the global fiber list -- this synchronises
         // fiber creation
-        _label = [Fiber register:self];
+        _label = [RFFiber register:self];
 
         _block = [block copy];
         _blockStarted = NO;
@@ -136,7 +136,7 @@ static SerialOperationQueue *fibersQueue;
         self.blockStarted = NO;
 
         // clean up
-        [Fiber removeFiber:self];
+        [RFFiber removeFiber:self];
         self.block = nil;
 
         dispatch_semaphore_signal(self.yieldSemaphore);
@@ -148,7 +148,7 @@ static SerialOperationQueue *fibersQueue;
     // if we are ever resumed and we don't have a block, the fiber is
     // dead, so raise an exception
     if (!self.isAlive) {
-        [NSException raise:@"FiberException" format:@"dead fiber called"];
+        [NSException raise:@"RFFiberException" format:@"dead fiber called"];
     }
     else {
         // if the block has started, resume it, otherwise start executing it

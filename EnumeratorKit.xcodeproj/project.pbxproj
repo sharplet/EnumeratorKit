@@ -15,16 +15,16 @@
 		4AC073CB174AC561005FA8E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073CE174AC561005FA8E5 /* libEnumeratorKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC073BA174AC561005FA8E5 /* libEnumeratorKit.a */; };
 		4AC073D4174AC561005FA8E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AC073D2174AC561005FA8E5 /* InfoPlist.strings */; };
-		4AC073E0174AC629005FA8E5 /* NSArray+FakeEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073DF174AC629005FA8E5 /* NSArray+FakeEnumerable.m */; };
-		4AC073E4174AC6FB005FA8E5 /* Fiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073E3174AC6FB005FA8E5 /* Fiber.m */; };
+		4AC073E0174AC629005FA8E5 /* NSArray+RFEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073DF174AC629005FA8E5 /* NSArray+RFEnumerable.m */; };
+		4AC073E4174AC6FB005FA8E5 /* RFFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073E3174AC6FB005FA8E5 /* RFFiber.m */; };
 		4AC073ED174AC86E005FA8E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AC073E7174AC86E005FA8E5 /* InfoPlist.strings */; };
-		4AC073EF174AC86E005FA8E5 /* FakeEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073EA174AC86E005FA8E5 /* FakeEnumerableSpec.m */; };
-		4AC073F0174AC86E005FA8E5 /* FakeEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073EB174AC86E005FA8E5 /* FakeEnumeratorSpec.m */; };
+		4AC073EF174AC86E005FA8E5 /* RFEnumerableDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073EA174AC86E005FA8E5 /* RFEnumerableDemo.m */; };
+		4AC073F0174AC86E005FA8E5 /* RFEnumeratorDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073EB174AC86E005FA8E5 /* RFEnumeratorDemo.m */; };
 		4AC073F6174AC8B2005FA8E5 /* NSNumber+BinaryOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F3174AC8B2005FA8E5 /* NSNumber+BinaryOperations.m */; };
 		4AC073F7174AC8B2005FA8E5 /* SortedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F5174AC8B2005FA8E5 /* SortedList.m */; };
-		4AC073FA174AC90E005FA8E5 /* FiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* FiberSpec.m */; };
-		4AC073FB174ACCAF005FA8E5 /* FakeEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */; };
-		4AC073FC174ACCAF005FA8E5 /* FakeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */; };
+		4AC073FA174AC90E005FA8E5 /* RFFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* RFFiberSpec.m */; };
+		4AC073FB174ACCAF005FA8E5 /* RFEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD61740D97100DDBAD4 /* RFEnumerable.m */; };
+		4AC073FC174ACCAF005FA8E5 /* RFEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD01740D56E00DDBAD4 /* RFEnumerator.m */; };
 		4AC07400174ACE3B005FA8E5 /* libEnumeratorKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC073BA174AC561005FA8E5 /* libEnumeratorKit.a */; };
 		FAEE85CCB014462F9B7D988F /* libPods-EnumeratorKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */; };
 /* End PBXBuildFile section */
@@ -63,29 +63,29 @@
 		4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AB6FAB21740C5AE00DDBAD4 /* EnumeratorKitDemo.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnumeratorKitDemo.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		4AB6FACF1740D56E00DDBAD4 /* FakeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeEnumerator.h; sourceTree = "<group>"; };
-		4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerator.m; sourceTree = "<group>"; };
-		4AB6FAD51740D97100DDBAD4 /* FakeEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeEnumerable.h; sourceTree = "<group>"; };
-		4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerable.m; sourceTree = "<group>"; };
+		4AB6FACF1740D56E00DDBAD4 /* RFEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFEnumerator.h; sourceTree = "<group>"; };
+		4AB6FAD01740D56E00DDBAD4 /* RFEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFEnumerator.m; sourceTree = "<group>"; };
+		4AB6FAD51740D97100DDBAD4 /* RFEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFEnumerable.h; sourceTree = "<group>"; };
+		4AB6FAD61740D97100DDBAD4 /* RFEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFEnumerable.m; sourceTree = "<group>"; };
 		4AC073BA174AC561005FA8E5 /* libEnumeratorKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEnumeratorKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC073BE174AC561005FA8E5 /* EnumeratorKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EnumeratorKit-Prefix.pch"; sourceTree = "<group>"; };
 		4AC073C8174AC561005FA8E5 /* EnumeratorKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnumeratorKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC073D1174AC561005FA8E5 /* EnumeratorKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EnumeratorKitTests-Info.plist"; sourceTree = "<group>"; };
 		4AC073D3174AC561005FA8E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4AC073DE174AC629005FA8E5 /* NSArray+FakeEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FakeEnumerable.h"; sourceTree = "<group>"; };
-		4AC073DF174AC629005FA8E5 /* NSArray+FakeEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FakeEnumerable.m"; sourceTree = "<group>"; };
-		4AC073E2174AC6FB005FA8E5 /* Fiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fiber.h; sourceTree = "<group>"; };
-		4AC073E3174AC6FB005FA8E5 /* Fiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fiber.m; sourceTree = "<group>"; };
+		4AC073DE174AC629005FA8E5 /* NSArray+RFEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RFEnumerable.h"; sourceTree = "<group>"; };
+		4AC073DF174AC629005FA8E5 /* NSArray+RFEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RFEnumerable.m"; sourceTree = "<group>"; };
+		4AC073E2174AC6FB005FA8E5 /* RFFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFFiber.h; sourceTree = "<group>"; };
+		4AC073E3174AC6FB005FA8E5 /* RFFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFFiber.m; sourceTree = "<group>"; };
 		4AC073E5174AC76F005FA8E5 /* SuppressPerformSelectorMemoryWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuppressPerformSelectorMemoryWarnings.h; sourceTree = "<group>"; };
 		4AC073E8174AC86E005FA8E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AC073E9174AC86E005FA8E5 /* EnumeratorKitDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "EnumeratorKitDemo-Info.plist"; sourceTree = "<group>"; };
-		4AC073EA174AC86E005FA8E5 /* FakeEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumerableSpec.m; sourceTree = "<group>"; };
-		4AC073EB174AC86E005FA8E5 /* FakeEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumeratorSpec.m; sourceTree = "<group>"; };
+		4AC073EA174AC86E005FA8E5 /* RFEnumerableDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFEnumerableDemo.m; sourceTree = "<group>"; };
+		4AC073EB174AC86E005FA8E5 /* RFEnumeratorDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFEnumeratorDemo.m; sourceTree = "<group>"; };
 		4AC073F2174AC8B2005FA8E5 /* NSNumber+BinaryOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BinaryOperations.h"; sourceTree = "<group>"; };
 		4AC073F3174AC8B2005FA8E5 /* NSNumber+BinaryOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BinaryOperations.m"; sourceTree = "<group>"; };
 		4AC073F4174AC8B2005FA8E5 /* SortedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedList.h; sourceTree = "<group>"; };
 		4AC073F5174AC8B2005FA8E5 /* SortedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedList.m; sourceTree = "<group>"; };
-		4AC073F9174AC90E005FA8E5 /* FiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiberSpec.m; sourceTree = "<group>"; };
+		4AC073F9174AC90E005FA8E5 /* RFFiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFFiberSpec.m; sourceTree = "<group>"; };
 		73DAA49542C4411784916871 /* Pods-EnumeratorKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitTests.xcconfig"; path = "Pods/Pods-EnumeratorKitTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16B286636B2440D82D0D1C8 /* Pods-EnumeratorKitDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitDemo.xcconfig"; path = "Pods/Pods-EnumeratorKitDemo.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -162,12 +162,12 @@
 		4AC073BC174AC561005FA8E5 /* EnumeratorKit */ = {
 			isa = PBXGroup;
 			children = (
-				4AB6FAD51740D97100DDBAD4 /* FakeEnumerable.h */,
-				4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */,
-				4AB6FACF1740D56E00DDBAD4 /* FakeEnumerator.h */,
-				4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */,
-				4AC073DE174AC629005FA8E5 /* NSArray+FakeEnumerable.h */,
-				4AC073DF174AC629005FA8E5 /* NSArray+FakeEnumerable.m */,
+				4AB6FAD51740D97100DDBAD4 /* RFEnumerable.h */,
+				4AB6FAD61740D97100DDBAD4 /* RFEnumerable.m */,
+				4AB6FACF1740D56E00DDBAD4 /* RFEnumerator.h */,
+				4AB6FAD01740D56E00DDBAD4 /* RFEnumerator.m */,
+				4AC073DE174AC629005FA8E5 /* NSArray+RFEnumerable.h */,
+				4AC073DF174AC629005FA8E5 /* NSArray+RFEnumerable.m */,
 				4AC073E5174AC76F005FA8E5 /* SuppressPerformSelectorMemoryWarnings.h */,
 				4AC073E1174AC63B005FA8E5 /* Fibers */,
 				4AC073BD174AC561005FA8E5 /* Supporting Files */,
@@ -186,7 +186,7 @@
 		4AC073CF174AC561005FA8E5 /* EnumeratorKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				4AC073F9174AC90E005FA8E5 /* FiberSpec.m */,
+				4AC073F9174AC90E005FA8E5 /* RFFiberSpec.m */,
 				4AC073D0174AC561005FA8E5 /* Supporting Files */,
 			);
 			path = EnumeratorKitTests;
@@ -204,8 +204,8 @@
 		4AC073E1174AC63B005FA8E5 /* Fibers */ = {
 			isa = PBXGroup;
 			children = (
-				4AC073E2174AC6FB005FA8E5 /* Fiber.h */,
-				4AC073E3174AC6FB005FA8E5 /* Fiber.m */,
+				4AC073E2174AC6FB005FA8E5 /* RFFiber.h */,
+				4AC073E3174AC6FB005FA8E5 /* RFFiber.m */,
 			);
 			path = Fibers;
 			sourceTree = "<group>";
@@ -213,8 +213,8 @@
 		4AC073E6174AC86E005FA8E5 /* EnumeratorKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				4AC073EA174AC86E005FA8E5 /* FakeEnumerableSpec.m */,
-				4AC073EB174AC86E005FA8E5 /* FakeEnumeratorSpec.m */,
+				4AC073EA174AC86E005FA8E5 /* RFEnumerableDemo.m */,
+				4AC073EB174AC86E005FA8E5 /* RFEnumeratorDemo.m */,
 				4AC073FD174ACD76005FA8E5 /* Helpers */,
 				4AC073F8174AC8C4005FA8E5 /* Supporting Files */,
 			);
@@ -440,8 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC073EF174AC86E005FA8E5 /* FakeEnumerableSpec.m in Sources */,
-				4AC073F0174AC86E005FA8E5 /* FakeEnumeratorSpec.m in Sources */,
+				4AC073EF174AC86E005FA8E5 /* RFEnumerableDemo.m in Sources */,
+				4AC073F0174AC86E005FA8E5 /* RFEnumeratorDemo.m in Sources */,
 				4AC073F6174AC8B2005FA8E5 /* NSNumber+BinaryOperations.m in Sources */,
 				4AC073F7174AC8B2005FA8E5 /* SortedList.m in Sources */,
 			);
@@ -451,10 +451,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC073E0174AC629005FA8E5 /* NSArray+FakeEnumerable.m in Sources */,
-				4AC073E4174AC6FB005FA8E5 /* Fiber.m in Sources */,
-				4AC073FB174ACCAF005FA8E5 /* FakeEnumerable.m in Sources */,
-				4AC073FC174ACCAF005FA8E5 /* FakeEnumerator.m in Sources */,
+				4AC073E0174AC629005FA8E5 /* NSArray+RFEnumerable.m in Sources */,
+				4AC073E4174AC6FB005FA8E5 /* RFFiber.m in Sources */,
+				4AC073FB174ACCAF005FA8E5 /* RFEnumerable.m in Sources */,
+				4AC073FC174ACCAF005FA8E5 /* RFEnumerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC073FA174AC90E005FA8E5 /* FiberSpec.m in Sources */,
+				4AC073FA174AC90E005FA8E5 /* RFFiberSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

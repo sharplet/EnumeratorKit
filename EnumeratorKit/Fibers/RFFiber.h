@@ -1,6 +1,6 @@
 //
-//  Fiber.h
-//  FakeEnumerable
+//  RFFiber.h
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 17/05/13.
 //  Implementation based heavily on https://github.com/alskipp/MacrubyFibers/blob/master/lib/fiber.rb
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Fiber : NSObject
+@interface RFFiber : NSObject
 
 + (instancetype)fiberWithBlock:(id (^)(void))block;
 - (id)initWithBlock:(id (^)(void))block;

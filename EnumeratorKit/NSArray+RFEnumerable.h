@@ -1,14 +1,14 @@
 //
-//  NSArray+FakeEnumerable.h
-//  FakeEnumerable
+//  NSArray+RFEnumerable.h
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "FakeEnumerable.h"
+#import "RFEnumerable.h"
 
-@interface NSArray (FakeEnumerable) <FakeEnumerable>
+@interface NSArray (RFEnumerable) <RFEnumerable>
 
 @end

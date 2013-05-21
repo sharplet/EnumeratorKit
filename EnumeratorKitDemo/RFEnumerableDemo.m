@@ -2,9 +2,9 @@
 #import "SortedList.h"
 #import "NSNumber+BinaryOperations.h"
 
-SPEC_BEGIN(FakeEnumerableSpec)
+SPEC_BEGIN(RFEnumerableDemo)
 
-describe(@"FakeEnumerable", ^{
+describe(@"RFEnumerable", ^{
 
     __block id list;
     beforeAll(^{

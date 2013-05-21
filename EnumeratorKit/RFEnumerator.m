@@ -1,31 +1,31 @@
 //
-//  FakeEnumerator.m
-//  FakeEnumerable
+//  RFEnumerator.m
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#import "FakeEnumerator.h"
-#import "Fiber.h"
+#import "RFEnumerator.h"
+#import "RFFiber.h"
 
-@interface FakeEnumerator ()
+@interface RFEnumerator ()
 
 @property (nonatomic, copy) void (^block)(id);
-@property (nonatomic, strong) Fiber *fiber;
+@property (nonatomic, strong) RFFiber *fiber;
 
 - (id)next:(BOOL)peek;
 @property (nonatomic, strong) id lastPeek;
 
 @end
 
-@implementation FakeEnumerator
+@implementation RFEnumerator
 
-+ (instancetype)enumeratorWithBlock:(void (^)(id<Yielder> y))block
++ (instancetype)enumeratorWithBlock:(void (^)(id<RFYielder> y))block
 {
     return [[self alloc] initWithBlock:block];
 }
-- (id)initWithBlock:(void (^)(id<Yielder> y))block
+- (id)initWithBlock:(void (^)(id<RFYielder> y))block
 {
     if (self = [super init]) {
         _block = [block copy];
@@ -58,9 +58,9 @@
 {
     // first time around, dispatch the iteration onto our fiber
     if (!self.fiber) {
-        __weak FakeEnumerator *weakSelf = self;
-        self.fiber = [Fiber fiberWithBlock:^id{
-            weakSelf.block([Fiber class]);
+        __weak RFEnumerator *weakSelf = self;
+        self.fiber = [RFFiber fiberWithBlock:^id{
+            weakSelf.block([RFFiber class]);
             return nil;
         }];
     }

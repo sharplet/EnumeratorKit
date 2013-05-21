@@ -1,38 +1,38 @@
 //
-//  FakeEnumerable.m
-//  FakeEnumerable
+//  RFEnumerable.m
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
 #import <objc/runtime.h>
-#import "FakeEnumerable.h"
-#import "FakeEnumerator.h"
-#import "NSArray+FakeEnumerable.h"
+#import "RFEnumerable.h"
+#import "RFEnumerator.h"
+#import "NSArray+RFEnumerable.h"
 #import "SuppressPerformSelectorMemoryWarnings.h"
 
-@implementation FakeEnumerable
+@implementation RFEnumerable
 
-- (id<FakeEnumerable>)each
+- (id<RFEnumerable>)each
 {
-    return [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
+    return [RFEnumerator enumeratorWithBlock:^(id<RFYielder> y) {
         [self each:^(id obj) {
             [y yield:obj];
         }];
     }];
 }
-- (id<FakeEnumerable>)each:(void (^)(id obj))block
+- (id<RFEnumerable>)each:(void (^)(id obj))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
 }
 
-- (id<FakeEnumerable>)map
+- (id<RFEnumerable>)map
 {
     return nil;
 }
-- (id<FakeEnumerable>)map:(id (^)(id))block
+- (id<RFEnumerable>)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -41,12 +41,12 @@
     return result;
 }
 
-- (id<FakeEnumerable>)sortBy:(id (^)(id))block
+- (id<RFEnumerable>)sortBy:(id (^)(id))block
 {
     return nil;
 }
 
-- (id<FakeEnumerable>)filter:(BOOL (^)(id))block
+- (id<RFEnumerable>)filter:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -57,7 +57,7 @@
     return result;
 }
 
-- (id<FakeEnumerable>)inject:(SEL)binaryOperation
+- (id<RFEnumerable>)inject:(SEL)binaryOperation
 {
     return [self reduce:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
@@ -66,7 +66,7 @@
     }];
 }
 
-- (id<FakeEnumerable>)reduce:(id (^)(id, id))block
+- (id<RFEnumerable>)reduce:(id (^)(id, id))block
 {
     __block id memo;
     [self each:^(id obj) {
@@ -80,12 +80,12 @@
 
 @end
 
-@implementation NSObject (IncludeFakeEnumerable)
+@implementation NSObject (IncludeRFEnumerable)
 
 + (void)includeEnumerable
 {
     unsigned int methodCount;
-    Method *methods = class_copyMethodList([FakeEnumerable class], &methodCount);
+    Method *methods = class_copyMethodList([RFEnumerable class], &methodCount);
 
     for (int i = 0; i < methodCount; i++) {
         SEL name = method_getName(methods[i]);

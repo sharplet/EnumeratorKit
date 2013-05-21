@@ -1,13 +1,13 @@
 //
 //  SupressPerformSelectorMemoryWarnings.h
-//  FakeEnumerable
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 14/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#ifndef FakeEnumerable_SupressPerformSelectorMemoryWarnings_h
-#define FakeEnumerable_SupressPerformSelectorMemoryWarnings_h
+#ifndef RFEnumerable_SupressPerformSelectorMemoryWarnings_h
+#define RFEnumerable_SupressPerformSelectorMemoryWarnings_h
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
         do { \

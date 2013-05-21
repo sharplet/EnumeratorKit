@@ -1,15 +1,15 @@
 //
-//  NSArray+FakeEnumerable.m
-//  FakeEnumerable
+//  NSArray+RFEnumerable.m
+//  RFEnumerable
 //
 //  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#import "NSArray+FakeEnumerable.h"
-#import "FakeEnumerator.h"
+#import "NSArray+RFEnumerable.h"
+#import "RFEnumerator.h"
 
-@implementation NSArray (FakeEnumerable)
+@implementation NSArray (RFEnumerable)
 
 + (void)load
 {

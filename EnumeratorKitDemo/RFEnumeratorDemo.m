@@ -1,10 +1,10 @@
 #import <Kiwi.h>
-#import "FakeEnumerator.h"
+#import "RFEnumerator.h"
 #import "SortedList.h"
 
-SPEC_BEGIN(FakeEnumeratorSpec)
+SPEC_BEGIN(RFEnumeratorDemo)
 
-describe(@"FakeEnumerator", ^{
+describe(@"RFEnumerator", ^{
 
     __block SortedList * list;
     beforeAll(^{
@@ -15,7 +15,7 @@ describe(@"FakeEnumerator", ^{
     });
 
     it(@"supports next", ^{
-        FakeEnumerator * e = list.each;
+        RFEnumerator * e = list.each;
 
         [[e.next should] equal:@3];
         [[e.next should] equal:@4];
@@ -27,7 +27,7 @@ describe(@"FakeEnumerator", ^{
     });
 
     it(@"supports rewind", ^{
-        FakeEnumerator * e = list.each;
+        RFEnumerator * e = list.each;
 
         (void)e.next;
         (void)e.next;
@@ -42,7 +42,7 @@ describe(@"FakeEnumerator", ^{
     });
 
     it(@"supports peek", ^{
-        FakeEnumerator * e = list.each;
+        RFEnumerator * e = list.each;
 
         [[e.peek should] equal:@3];
         [[e.next should] equal:@3];
@@ -58,7 +58,7 @@ describe(@"FakeEnumerator", ^{
     });
 
 //    it(@"supports withIndex", ^{
-//        FakeEnumerator * e = list.map;
+//        RFEnumerator * e = list.map;
 //        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];
 //
 //        [[[e withIndex:^id(id obj, id index) {
@@ -70,7 +70,7 @@ describe(@"FakeEnumerator", ^{
 
         it(@"iterates over the fibonacci sequence", ^{
             // describe the fibonacci sequence with an enumerator
-            FakeEnumerator * fib = [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
+            RFEnumerator * fib = [RFEnumerator enumeratorWithBlock:^(id<RFYielder> y) {
                 id a = @1, b = @1;
                 while (1) {
                     [y yield:a];
