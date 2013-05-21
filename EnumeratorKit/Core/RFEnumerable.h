@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EnumeratorKit.h"
 
 @protocol RFEnumerable <NSObject>
 

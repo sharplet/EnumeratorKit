@@ -105,7 +105,7 @@ static SerialOperationQueue *fibersQueue;
 
 + (instancetype)fiberWithBlock:(id (^)(void))block
 {
-    return [[self alloc] initWithBlock:block];
+    return [[RFFiber alloc] initWithBlock:block];
 }
 
 - (id)initWithBlock:(id (^)(void))block

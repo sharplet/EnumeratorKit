@@ -86,6 +86,7 @@
 		4AC073F4174AC8B2005FA8E5 /* SortedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortedList.h; sourceTree = "<group>"; };
 		4AC073F5174AC8B2005FA8E5 /* SortedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedList.m; sourceTree = "<group>"; };
 		4AC073F9174AC90E005FA8E5 /* RFFiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFFiberSpec.m; sourceTree = "<group>"; };
+		4AC3BB79174B64EB00108331 /* EnumeratorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumeratorKit.h; sourceTree = "<group>"; };
 		73DAA49542C4411784916871 /* Pods-EnumeratorKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitTests.xcconfig"; path = "Pods/Pods-EnumeratorKitTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16B286636B2440D82D0D1C8 /* Pods-EnumeratorKitDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitDemo.xcconfig"; path = "Pods/Pods-EnumeratorKitDemo.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -162,6 +163,7 @@
 		4AC073BC174AC561005FA8E5 /* EnumeratorKit */ = {
 			isa = PBXGroup;
 			children = (
+				4AC3BB79174B64EB00108331 /* EnumeratorKit.h */,
 				4AC3BB77174B62E500108331 /* Core */,
 				4AC073E1174AC63B005FA8E5 /* Fibers */,
 				4AC3BB78174B632C00108331 /* Private Headers */,

@@ -7,8 +7,6 @@
 //
 
 #import "SortedList.h"
-#import "RFEnumerator.h"
-#import "NSArray+RFEnumerable.h"
 
 @interface SortedList ()
 @property (nonatomic, strong) NSMutableArray *data;

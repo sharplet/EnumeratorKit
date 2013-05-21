@@ -1,4 +1,5 @@
 #import <Kiwi.h>
+#import "EnumeratorKit.h"
 #import "SortedList.h"
 #import "NSNumber+BinaryOperations.h"
 

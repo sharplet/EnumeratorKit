@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#ifndef RFEnumerable_SupressPerformSelectorMemoryWarnings_h
-#define RFEnumerable_SupressPerformSelectorMemoryWarnings_h
-
 #define SuppressPerformSelectorLeakWarning(Stuff) \
         do { \
             _Pragma("clang diagnostic push") \
@@ -16,5 +13,3 @@
                 Stuff; \
             _Pragma("clang diagnostic pop") \
         } while (0)
-
-#endif

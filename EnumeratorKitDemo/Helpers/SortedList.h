@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RFEnumerable.h"
-#import "NSNumber+BinaryOperations.h"
+#import "EnumeratorKit.h"
 
 @interface SortedList : NSObject <RFEnumerable>
 

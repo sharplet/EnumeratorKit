@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RFEnumerable.h"
+#import "EnumeratorKit.h"
 
 @interface NSArray (RFEnumerable) <RFEnumerable>
 

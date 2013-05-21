@@ -1,6 +1,7 @@
 #import <Kiwi.h>
 #import "RFEnumerator.h"
 #import "SortedList.h"
+#import "NSNumber+BinaryOperations.h"
 
 SPEC_BEGIN(RFEnumeratorDemo)
 

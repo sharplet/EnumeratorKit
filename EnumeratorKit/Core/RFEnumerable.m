@@ -7,9 +7,6 @@
 //
 
 #import <objc/runtime.h>
-#import "RFEnumerable.h"
-#import "RFEnumerator.h"
-#import "NSArray+RFEnumerable.h"
 #import "SuppressPerformSelectorMemoryWarnings.h"
 
 @implementation RFEnumerable
