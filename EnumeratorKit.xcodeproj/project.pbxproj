@@ -162,14 +162,9 @@
 		4AC073BC174AC561005FA8E5 /* EnumeratorKit */ = {
 			isa = PBXGroup;
 			children = (
-				4AB6FAD51740D97100DDBAD4 /* RFEnumerable.h */,
-				4AB6FAD61740D97100DDBAD4 /* RFEnumerable.m */,
-				4AB6FACF1740D56E00DDBAD4 /* RFEnumerator.h */,
-				4AB6FAD01740D56E00DDBAD4 /* RFEnumerator.m */,
-				4AC073DE174AC629005FA8E5 /* NSArray+RFEnumerable.h */,
-				4AC073DF174AC629005FA8E5 /* NSArray+RFEnumerable.m */,
-				4AC073E5174AC76F005FA8E5 /* SuppressPerformSelectorMemoryWarnings.h */,
+				4AC3BB77174B62E500108331 /* Core */,
 				4AC073E1174AC63B005FA8E5 /* Fibers */,
+				4AC3BB78174B632C00108331 /* Private Headers */,
 				4AC073BD174AC561005FA8E5 /* Supporting Files */,
 			);
 			path = EnumeratorKit;
@@ -239,6 +234,28 @@
 				4AC073F5174AC8B2005FA8E5 /* SortedList.m */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4AC3BB77174B62E500108331 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4AB6FAD51740D97100DDBAD4 /* RFEnumerable.h */,
+				4AB6FAD61740D97100DDBAD4 /* RFEnumerable.m */,
+				4AB6FACF1740D56E00DDBAD4 /* RFEnumerator.h */,
+				4AB6FAD01740D56E00DDBAD4 /* RFEnumerator.m */,
+				4AC073DE174AC629005FA8E5 /* NSArray+RFEnumerable.h */,
+				4AC073DF174AC629005FA8E5 /* NSArray+RFEnumerable.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4AC3BB78174B632C00108331 /* Private Headers */ = {
+			isa = PBXGroup;
+			children = (
+				4AC073E5174AC76F005FA8E5 /* SuppressPerformSelectorMemoryWarnings.h */,
+			);
+			name = "Private Headers";
+			path = PrivateHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
