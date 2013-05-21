@@ -1,6 +1,6 @@
 //
 //  RFFiber.h
-//  RFEnumerable
+//  EnumeratorKit
 //
 //  Created by Adam Sharp on 17/05/13.
 //  Implementation based heavily on https://github.com/alskipp/MacrubyFibers/blob/master/lib/fiber.rb

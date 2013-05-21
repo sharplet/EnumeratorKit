@@ -1,6 +1,6 @@
 //
 //  SupressPerformSelectorMemoryWarnings.h
-//  RFEnumerable
+//  EnumeratorKit
 //
 //  Created by Adam Sharp on 14/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  RFFiber.m
-//  RFEnumerable
+//  EnumeratorKit
 //
 //  Created by Adam Sharp on 17/05/13.
 //
