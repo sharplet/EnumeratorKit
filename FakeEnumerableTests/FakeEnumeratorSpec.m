@@ -4,7 +4,7 @@
 
 SPEC_BEGIN(FakeEnumeratorSpec)
 
-describe(@"FakeEnumerable", ^{
+describe(@"FakeEnumerator", ^{
 
     __block SortedList * list;
     beforeAll(^{
@@ -23,7 +23,7 @@ describe(@"FakeEnumerable", ^{
         [[e.next should] equal:@13];
         [[e.next should] equal:@42];
 
-        [[theBlock(^{ (void)e.next; }) should] raiseWithName:@"StopIteration"];
+        [e.next shouldBeNil];
     });
 
     it(@"supports rewind", ^{
@@ -41,13 +41,53 @@ describe(@"FakeEnumerable", ^{
         [[e.next should] equal:@7];
     });
 
-    it(@"supports withIndex", ^{
-        FakeEnumerator * e = list.map;
-        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];
+    it(@"supports peek", ^{
+        FakeEnumerator * e = list.each;
 
-        [[[e withIndex:^id(id obj, id index) {
-            return [NSString stringWithFormat:@"%@. %@", obj, index];
-        }] should] equal:expected];
+        [[e.peek should] equal:@3];
+        [[e.next should] equal:@3];
+        [[e.peek should] equal:@4];
+        [[e.peek should] equal:@4];
+        [[e.next should] equal:@4];
+        [[e.next should] equal:@7];
+
+        [[e.next should] equal:@13];
+        [[e.next should] equal:@42];
+
+        [e.peek shouldBeNil];
+    });
+
+//    it(@"supports withIndex", ^{
+//        FakeEnumerator * e = list.map;
+//        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];
+//
+//        [[[e withIndex:^id(id obj, id index) {
+//            return [NSString stringWithFormat:@"%@. %@", obj, index];
+//        }] should] equal:expected];
+//    });
+
+    describe(@"infinite enumeration", ^{
+
+        it(@"iterates over the fibonacci sequence", ^{
+            // describe the fibonacci sequence with an enumerator
+            FakeEnumerator * fib = [FakeEnumerator enumeratorWithBlock:^(id<Yielder> y) {
+                id a = @1, b = @1;
+                while (1) {
+                    [y yield:a];
+                    id next = [a add:b];
+                    a = b; b = next;
+                }
+            }];
+
+            // get the first 10 elements
+            NSMutableArray *result = [NSMutableArray new];
+            for (int i = 0; i < 10; i++) {
+                [result addObject:fib.next];
+            }
+
+            [[result should] equal:@[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]];
+        });
+
     });
 
 });

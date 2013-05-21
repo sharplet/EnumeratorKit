@@ -11,6 +11,6 @@
 @interface NSArray (FakeEnumerable)
 
 - (id)each;
-- (id)each:(void (^)(id))block;
+- (id)each:(void (^)(id obj))block;
 
 @end

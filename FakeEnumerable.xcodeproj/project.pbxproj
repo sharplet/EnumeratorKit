@@ -28,6 +28,8 @@
 		4AB6FAD91740D9E500DDBAD4 /* FakeEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FAD81740D9E500DDBAD4 /* FakeEnumerableSpec.m */; };
 		4AB6FADC1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FADB1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m */; };
 		4AB6FADE1740E06800DDBAD4 /* FakeEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */; };
+		4AC0735C1746197B005FA8E5 /* Fiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0735B1746197B005FA8E5 /* Fiber.m */; };
+		4AC0735E17475BE5005FA8E5 /* FiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0735D17475BE5005FA8E5 /* FiberSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,9 @@
 		4AB6FADB1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BinaryOperations.m"; sourceTree = "<group>"; };
 		4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeEnumeratorSpec.m; sourceTree = "<group>"; };
 		4AB6FAE217419DD500DDBAD4 /* SuppressPerformSelectorMemoryWarnings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuppressPerformSelectorMemoryWarnings.h; sourceTree = "<group>"; };
+		4AC0735A1746197B005FA8E5 /* Fiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fiber.h; sourceTree = "<group>"; };
+		4AC0735B1746197B005FA8E5 /* Fiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fiber.m; sourceTree = "<group>"; };
+		4AC0735D17475BE5005FA8E5 /* FiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiberSpec.m; sourceTree = "<group>"; };
 		5C8477AE494846319FC9870B /* libPods-FakeEnumerableTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FakeEnumerableTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +146,8 @@
 				4AB6FAD61740D97100DDBAD4 /* FakeEnumerable.m */,
 				4AB6FACF1740D56E00DDBAD4 /* FakeEnumerator.h */,
 				4AB6FAD01740D56E00DDBAD4 /* FakeEnumerator.m */,
+				4AC0735A1746197B005FA8E5 /* Fiber.h */,
+				4AC0735B1746197B005FA8E5 /* Fiber.m */,
 				4AB6FAD21740D61400DDBAD4 /* NSArray+FakeEnumerable.h */,
 				4AB6FAD31740D61400DDBAD4 /* NSArray+FakeEnumerable.m */,
 				4AB6FADA1740DDD400DDBAD4 /* NSNumber+BinaryOperations.h */,
@@ -173,6 +180,7 @@
 				4AB6FABA1740C5AE00DDBAD4 /* Supporting Files */,
 				4AB6FAD81740D9E500DDBAD4 /* FakeEnumerableSpec.m */,
 				4AB6FADD1740E06800DDBAD4 /* FakeEnumeratorSpec.m */,
+				4AC0735D17475BE5005FA8E5 /* FiberSpec.m */,
 			);
 			path = FakeEnumerableTests;
 			sourceTree = "<group>";
@@ -332,6 +340,7 @@
 				4AB6FAD41740D61400DDBAD4 /* NSArray+FakeEnumerable.m in Sources */,
 				4AB6FAD71740D97100DDBAD4 /* FakeEnumerable.m in Sources */,
 				4AB6FADC1740DDD400DDBAD4 /* NSNumber+BinaryOperations.m in Sources */,
+				4AC0735C1746197B005FA8E5 /* Fiber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +350,7 @@
 			files = (
 				4AB6FAD91740D9E500DDBAD4 /* FakeEnumerableSpec.m in Sources */,
 				4AB6FADE1740E06800DDBAD4 /* FakeEnumeratorSpec.m in Sources */,
+				4AC0735E17475BE5005FA8E5 /* FiberSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +409,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -423,7 +433,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
