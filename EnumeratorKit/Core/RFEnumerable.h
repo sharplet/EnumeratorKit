@@ -17,7 +17,6 @@
 @optional
 - (id<RFEnumerable>)each;
 
-- (id<RFEnumerable>)map;
 - (id<RFEnumerable>)map:(id (^)(id obj))block;
 - (id<RFEnumerable>)sortBy:(id (^)(id obj))block;
 - (id<RFEnumerable>)filter:(BOOL (^)(id obj))block;

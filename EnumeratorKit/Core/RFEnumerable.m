@@ -25,25 +25,6 @@
     return nil;
 }
 
-- (id<RFEnumerable>)map
-{
-    // FIXME: initially, should probably ignore the block-less forms and stick with -each
-    //
-    // This won't work: [@[...].map each:...]
-    // But we should start with this: [@[...] map:...].each
-    //
-    // Ruby allows both but probably don't need to be quite so smart for a 0.1 due
-    // to lack of dynamic block support and implicit returns.
-    //
-    // Basically, we will only be able to get an RFEnumerable at the end
-    // of the chain (with -each)??
-    return [[RFEnumerator alloc] initWithBlock:^(id<RFYielder> y) {
-        [self map:^id(id obj) {
-            [y yield:obj];
-            return obj;
-        }];
-    }];
-}
 - (id<RFEnumerable>)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2A7D1B3ADA18411D9AD3D4D1 /* libPods-EnumeratorKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */; };
-		4A46762A174CAEBF0073F549 /* RFEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* RFEnumerableSpec.m */; };
 		4AB6FAB41740C5AE00DDBAD4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */; };
 		4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073BB174AC561005FA8E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
@@ -485,7 +484,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC073FA174AC90E005FA8E5 /* RFFiberSpec.m in Sources */,
-				4A46762A174CAEBF0073F549 /* RFEnumerableSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
