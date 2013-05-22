@@ -1,11 +1,11 @@
 #import <Kiwi.h>
-#import "RFEnumerator.h"
+#import "EKEnumerator.h"
 #import "SortedList.h"
 #import "NSNumber+BinaryOperations.h"
 
-SPEC_BEGIN(RFEnumeratorDemo)
+SPEC_BEGIN(EKEnumeratorDemo)
 
-describe(@"RFEnumerator", ^{
+describe(@"EKEnumerator", ^{
 
     __block SortedList * list;
     beforeAll(^{
@@ -16,7 +16,7 @@ describe(@"RFEnumerator", ^{
     });
 
     it(@"supports next", ^{
-        RFEnumerator * e = list.each;
+        EKEnumerator * e = list.each;
 
         [[e.next should] equal:@3];
         [[e.next should] equal:@4];
@@ -28,7 +28,7 @@ describe(@"RFEnumerator", ^{
     });
 
     it(@"supports rewind", ^{
-        RFEnumerator * e = list.each;
+        EKEnumerator * e = list.each;
 
         (void)e.next;
         (void)e.next;
@@ -43,7 +43,7 @@ describe(@"RFEnumerator", ^{
     });
 
     it(@"supports peek", ^{
-        RFEnumerator * e = list.each;
+        EKEnumerator * e = list.each;
 
         [[e.peek should] equal:@3];
         [[e.next should] equal:@3];
@@ -59,7 +59,7 @@ describe(@"RFEnumerator", ^{
     });
 
 //    it(@"supports withIndex", ^{
-//        RFEnumerator * e = list.map;
+//        EKEnumerator * e = list.map;
 //        id expected = @[ @"0. 3", @"1. 4", @"2. 7", @"3. 13", @"4. 42" ];
 //
 //        [[[e withIndex:^id(id obj, id index) {
@@ -71,7 +71,7 @@ describe(@"RFEnumerator", ^{
 
         it(@"iterates over the fibonacci sequence", ^{
             // describe the fibonacci sequence with an enumerator
-            RFEnumerator * fib = [RFEnumerator enumeratorWithBlock:^(id<RFYielder> y) {
+            EKEnumerator * fib = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
                 id a = @1, b = @1;
                 while (1) {
                     [y yield:a];

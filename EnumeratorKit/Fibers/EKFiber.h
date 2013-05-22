@@ -1,5 +1,5 @@
 //
-//  RFFiber.h
+//  EKFiber.h
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 17/05/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RFFiber : NSObject
+@interface EKFiber : NSObject
 
 + (instancetype)fiberWithBlock:(id (^)(void))block;
 - (id)initWithBlock:(id (^)(void))block;

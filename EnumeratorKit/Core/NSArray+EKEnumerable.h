@@ -1,5 +1,5 @@
 //
-//  NSArray+RFEnumerable.h
+//  NSArray+EKEnumerable.h
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 13/05/13.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "EnumeratorKit.h"
 
-@interface NSArray (RFEnumerable) <RFEnumerable>
+@interface NSArray (EKEnumerable) <EKEnumerable>
 
 @end

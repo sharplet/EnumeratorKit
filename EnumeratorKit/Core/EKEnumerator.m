@@ -1,31 +1,31 @@
 //
-//  RFEnumerator.m
+//  EKEnumerator.m
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#import "RFEnumerator.h"
-#import "RFFiber.h"
+#import "EKEnumerator.h"
+#import "EKFiber.h"
 
-@interface RFEnumerator ()
+@interface EKEnumerator ()
 
 @property (nonatomic, copy) void (^block)(id);
-@property (nonatomic, strong) RFFiber *fiber;
+@property (nonatomic, strong) EKFiber *fiber;
 
 - (id)next:(BOOL)peek;
 @property (nonatomic, strong) id lastPeek;
 
 @end
 
-@implementation RFEnumerator
+@implementation EKEnumerator
 
-+ (instancetype)enumeratorWithBlock:(void (^)(id<RFYielder> y))block
++ (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block
 {
     return [[self alloc] initWithBlock:block];
 }
-- (id)initWithBlock:(void (^)(id<RFYielder> y))block
+- (id)initWithBlock:(void (^)(id<EKYielder> y))block
 {
     if (self = [super init]) {
         _block = [block copy];
@@ -58,9 +58,9 @@
 {
     // first time around, dispatch the iteration onto our fiber
     if (!self.fiber) {
-        __weak RFEnumerator *weakSelf = self;
-        self.fiber = [RFFiber fiberWithBlock:^id{
-            weakSelf.block([RFFiber class]);
+        __weak EKEnumerator *weakSelf = self;
+        self.fiber = [EKFiber fiberWithBlock:^id{
+            weakSelf.block([EKFiber class]);
             return nil;
         }];
     }

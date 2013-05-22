@@ -1,12 +1,12 @@
 //
-//  RFFiber.m
+//  EKFiber.m
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 17/05/13.
 //
 //
 
-#import "RFFiber.h"
+#import "EKFiber.h"
 
 
 
@@ -42,10 +42,10 @@
 
 
 
-@interface RFFiber ()
+@interface EKFiber ()
 
-+ (NSString *)register:(RFFiber *)fiber;
-+ (void)removeFiber:(RFFiber *)fiber;
++ (NSString *)register:(EKFiber *)fiber;
++ (void)removeFiber:(EKFiber *)fiber;
 
 - (void)executeBlock;
 
@@ -61,12 +61,12 @@
 
 @end
 
-@implementation RFFiber
+@implementation EKFiber
 
 static NSMutableDictionary *fibers;
 static SerialOperationQueue *fibersQueue;
 
-+ (NSString *)register:(RFFiber *)fiber
++ (NSString *)register:(EKFiber *)fiber
 {
     // fibersQueue synchronises fiber creation and deletion
     static dispatch_once_t onceToken;
@@ -91,7 +91,7 @@ static SerialOperationQueue *fibersQueue;
     return fibers[[[NSOperationQueue currentQueue] name]];
 }
 
-+ (void)removeFiber:(RFFiber *)fiber
++ (void)removeFiber:(EKFiber *)fiber
 {
     [fibersQueue addOperationWithBlockAndWait:^{
         [fibers removeObjectForKey:fiber.label];
@@ -100,12 +100,12 @@ static SerialOperationQueue *fibersQueue;
 
 + (void)yield:(id)obj
 {
-    [[RFFiber current] yield:obj];
+    [[EKFiber current] yield:obj];
 }
 
 + (instancetype)fiberWithBlock:(id (^)(void))block
 {
-    return [[RFFiber alloc] initWithBlock:block];
+    return [[EKFiber alloc] initWithBlock:block];
 }
 
 - (id)initWithBlock:(id (^)(void))block
@@ -113,7 +113,7 @@ static SerialOperationQueue *fibersQueue;
     if (self = [super init]) {
         // register with the global fiber list -- this synchronises
         // fiber creation
-        _label = [RFFiber register:self];
+        _label = [EKFiber register:self];
 
         _block = [block copy];
         _blockStarted = NO;
@@ -136,7 +136,7 @@ static SerialOperationQueue *fibersQueue;
         self.blockStarted = NO;
 
         // clean up
-        [RFFiber removeFiber:self];
+        [EKFiber removeFiber:self];
         self.block = nil;
 
         dispatch_semaphore_signal(self.yieldSemaphore);
@@ -148,7 +148,7 @@ static SerialOperationQueue *fibersQueue;
     // if we are ever resumed and we don't have a block, the fiber is
     // dead, so raise an exception
     if (!self.isAlive) {
-        [NSException raise:@"RFFiberException" format:@"dead fiber called"];
+        [NSException raise:@"EKFiberException" format:@"dead fiber called"];
     }
     else {
         // if the block has started, resume it, otherwise start executing it

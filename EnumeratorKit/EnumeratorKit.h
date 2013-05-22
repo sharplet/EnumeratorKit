@@ -7,9 +7,9 @@
 
 
 /* EnumeratorKit core headers */
-#import "RFEnumerable.h"
-#import "RFEnumerator.h"
+#import "EKEnumerable.h"
+#import "EKEnumerator.h"
 
 
 /* Foundation collection class additions */
-#import "NSArray+RFEnumerable.h"
+#import "NSArray+EKEnumerable.h"

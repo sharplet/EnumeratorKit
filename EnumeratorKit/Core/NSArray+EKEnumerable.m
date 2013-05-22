@@ -1,15 +1,14 @@
 //
-//  NSArray+RFEnumerable.m
+//  NSArray+EKEnumerable.m
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
 //
 
-#import "NSArray+RFEnumerable.h"
-#import "RFEnumerator.h"
+#import "NSArray+EKEnumerable.h"
 
-@implementation NSArray (RFEnumerable)
+@implementation NSArray (EKEnumerable)
 
 + (void)load
 {

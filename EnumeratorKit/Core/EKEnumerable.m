@@ -1,5 +1,5 @@
 //
-//  RFEnumerable.m
+//  EKEnumerable.m
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 13/05/13.
@@ -9,23 +9,23 @@
 #import <objc/runtime.h>
 #import "SuppressPerformSelectorMemoryWarnings.h"
 
-@implementation RFEnumerable
+@implementation EKEnumerable
 
-- (id<RFEnumerable>)each
+- (id<EKEnumerable>)each
 {
-    return [RFEnumerator enumeratorWithBlock:^(id<RFYielder> y) {
+    return [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
         [self each:^(id obj) {
             [y yield:obj];
         }];
     }];
 }
-- (id<RFEnumerable>)each:(void (^)(id obj))block
+- (id<EKEnumerable>)each:(void (^)(id obj))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
 }
 
-- (id<RFEnumerable>)map:(id (^)(id))block
+- (id<EKEnumerable>)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -34,12 +34,12 @@
     return result;
 }
 
-- (id<RFEnumerable>)sortBy:(id (^)(id))block
+- (id<EKEnumerable>)sortBy:(id (^)(id))block
 {
     return nil;
 }
 
-- (id<RFEnumerable>)filter:(BOOL (^)(id))block
+- (id<EKEnumerable>)filter:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -50,7 +50,7 @@
     return result;
 }
 
-- (id<RFEnumerable>)inject:(SEL)binaryOperation
+- (id<EKEnumerable>)inject:(SEL)binaryOperation
 {
     return [self reduce:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
@@ -59,9 +59,13 @@
     }];
 }
 
-- (id<RFEnumerable>)reduce:(id (^)(id, id))block
+- (id<EKEnumerable>)reduce:(id (^)(id, id))block
 {
-    __block id memo;
+    return [self reduce:nil withBlock:block];
+}
+- (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id, id))block
+{
+    __block id memo = initial;
     [self each:^(id obj) {
         if (!memo)
             memo = obj;
@@ -73,12 +77,12 @@
 
 @end
 
-@implementation NSObject (IncludeRFEnumerable)
+@implementation NSObject (IncludeEKEnumerable)
 
 + (void)includeEnumerable
 {
     unsigned int methodCount;
-    Method *methods = class_copyMethodList([RFEnumerable class], &methodCount);
+    Method *methods = class_copyMethodList([EKEnumerable class], &methodCount);
 
     for (int i = 0; i < methodCount; i++) {
         SEL name = method_getName(methods[i]);

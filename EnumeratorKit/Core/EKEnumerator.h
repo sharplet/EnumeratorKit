@@ -1,5 +1,5 @@
 //
-//  RFEnumerator.h
+//  EKEnumerator.h
 //  EnumeratorKit
 //
 //  Created by Adam Sharp on 13/05/13.
@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "EnumeratorKit.h"
 
-@protocol RFYielder <NSObject>
+@protocol EKYielder <NSObject>
 - (void)yield:(id)obj;
 @end
 
-@interface RFEnumerator : NSObject <RFEnumerable>
+@interface EKEnumerator : NSObject <EKEnumerable>
 
-+ (instancetype)enumeratorWithBlock:(void (^)(id<RFYielder> y))block;
-- (id)initWithBlock:(void (^)(id<RFYielder> y))block;
++ (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block;
+- (id)initWithBlock:(void (^)(id<EKYielder> y))block;
 
 - (id)next;
 - (id)peek;

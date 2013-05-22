@@ -38,6 +38,16 @@
                ReferencedContainer = "container:EnumeratorKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4AB6FAB11740C5AE00DDBAD4"
+               BuildableName = "EnumeratorKitDemo.octest"
+               BlueprintName = "EnumeratorKitDemo"
+               ReferencedContainer = "container:EnumeratorKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

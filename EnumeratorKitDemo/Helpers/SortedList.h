@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "EnumeratorKit.h"
 
-@interface SortedList : NSObject <RFEnumerable>
+@interface SortedList : NSObject <EKEnumerable>
 
 - (instancetype)insert:(NSNumber *)object;
 

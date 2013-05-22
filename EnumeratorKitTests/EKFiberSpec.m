@@ -1,18 +1,18 @@
 #import <Kiwi.h>
-#import "RFFiber.h"
+#import "EKFiber.h"
 
-SPEC_BEGIN(RFFiberSpec)
+SPEC_BEGIN(EKFiberSpec)
 
 describe(@"-resume", ^{
 
     context(@"with no yield statements", ^{
-        __block RFFiber *fiber;
+        __block EKFiber *fiber;
         id (^noYieldBlock)(void) = ^id{
             return @"foo";
         };
 
         beforeEach(^{
-            fiber = [RFFiber fiberWithBlock:noYieldBlock];
+            fiber = [EKFiber fiberWithBlock:noYieldBlock];
         });
 
         it(@"returns the block's return value", ^{
@@ -21,7 +21,7 @@ describe(@"-resume", ^{
 
         it(@"raises a dead fiber error if resumed a second time", ^{
             (void)fiber.resume;
-            [[theBlock(^{ (void)fiber.resume; }) should] raiseWithName:@"RFFiberException"];
+            [[theBlock(^{ (void)fiber.resume; }) should] raiseWithName:@"EKFiberException"];
         });
 
     });
@@ -29,8 +29,8 @@ describe(@"-resume", ^{
     context(@"with a single yield", ^{
 
         it(@"returns the yielded value, then the block return value", ^{
-            RFFiber *fiber = [RFFiber fiberWithBlock:^id{
-                [RFFiber yield:@1];
+            EKFiber *fiber = [EKFiber fiberWithBlock:^id{
+                [EKFiber yield:@1];
                 return @2;
             }];
 

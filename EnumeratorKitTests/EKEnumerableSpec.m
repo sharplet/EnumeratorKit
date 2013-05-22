@@ -1,13 +1,13 @@
 #import <Kiwi.h>
-#import "NSArray+RFEnumerable.h"
+#import "NSArray+EKEnumerable.h"
 
-SPEC_BEGIN(RFEnumerableSpec)
+SPEC_BEGIN(EKEnumerableSpec)
 
 describe(@"-map", ^{
 
-    it(@"returns an RFEnumerator", ^{
+    it(@"returns an EKEnumerator", ^{
         id result = @[].map;
-        [[result should] beKindOfClass:[RFEnumerator class]];
+        [[result should] beKindOfClass:[EKEnumerator class]];
     });
 
     describe(@"the enumerator", ^{

@@ -3,9 +3,9 @@
 #import "SortedList.h"
 #import "NSNumber+BinaryOperations.h"
 
-SPEC_BEGIN(RFEnumerableDemo)
+SPEC_BEGIN(EKEnumerableDemo)
 
-describe(@"RFEnumerable", ^{
+describe(@"EKEnumerable", ^{
 
     __block id list;
     beforeAll(^{
