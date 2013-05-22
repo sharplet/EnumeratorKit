@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A7D1B3ADA18411D9AD3D4D1 /* libPods-EnumeratorKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */; };
+		4A46762A174CAEBF0073F549 /* RFEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* RFEnumerableSpec.m */; };
 		4AB6FAB41740C5AE00DDBAD4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */; };
 		4AB6FAB61740C5AE00DDBAD4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073BB174AC561005FA8E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
@@ -87,6 +88,7 @@
 		4AC073F5174AC8B2005FA8E5 /* SortedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortedList.m; sourceTree = "<group>"; };
 		4AC073F9174AC90E005FA8E5 /* RFFiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFFiberSpec.m; sourceTree = "<group>"; };
 		4AC3BB79174B64EB00108331 /* EnumeratorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumeratorKit.h; sourceTree = "<group>"; };
+		4AC3BB7A174B6D9100108331 /* RFEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFEnumerableSpec.m; sourceTree = "<group>"; };
 		73DAA49542C4411784916871 /* Pods-EnumeratorKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitTests.xcconfig"; path = "Pods/Pods-EnumeratorKitTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16B286636B2440D82D0D1C8 /* Pods-EnumeratorKitDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitDemo.xcconfig"; path = "Pods/Pods-EnumeratorKitDemo.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -183,6 +185,7 @@
 		4AC073CF174AC561005FA8E5 /* EnumeratorKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				4AC3BB7A174B6D9100108331 /* RFEnumerableSpec.m */,
 				4AC073F9174AC90E005FA8E5 /* RFFiberSpec.m */,
 				4AC073D0174AC561005FA8E5 /* Supporting Files */,
 			);
@@ -482,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC073FA174AC90E005FA8E5 /* RFFiberSpec.m in Sources */,
+				4A46762A174CAEBF0073F549 /* RFEnumerableSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
