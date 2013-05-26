@@ -21,6 +21,7 @@
 - (id<EKEnumerable> (^)(id (^)(id obj)))map;
 
 - (id<EKEnumerable>)filter:(BOOL (^)(id obj))block;
+- (id<EKEnumerable> (^)(BOOL (^)(id obj)))filter;
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation;
 - (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation;

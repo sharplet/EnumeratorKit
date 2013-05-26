@@ -48,6 +48,12 @@
     }];
     return result;
 }
+- (id<EKEnumerable> (^)(BOOL (^)(id)))filter
+{
+    return ^id<EKEnumerable>(BOOL (^block)(id)) {
+        return [self filter:block];
+    };
+}
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation
 {

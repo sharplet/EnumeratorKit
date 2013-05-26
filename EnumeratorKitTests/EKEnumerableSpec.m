@@ -64,6 +64,32 @@ describe(@"-map", ^{
 
 });
 
+describe(@"-filter", ^{
+
+    context(@"message style", ^{
+
+        it(@"selects matching items from the enumerable", ^{
+            id result = [@[@1,@2,@3] filter:^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            }];
+            [[result should] equal:@[@2]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"selects matching items from the enumerable", ^{
+            id result = @[@1,@2,@3].filter(^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            });
+            [[result should] equal:@[@2]];
+        });
+
+    });
+
+});
+
 describe(@"-reduce", ^{
 
     context(@"message style", ^{
