@@ -31,6 +31,12 @@
     }];
     return result;
 }
+- (id<EKEnumerable> (^)(id (^)(id)))map
+{
+    return ^id<EKEnumerable>(id (^block)(id obj)) {
+        return [self map:block];
+    };
+}
 
 - (id<EKEnumerable>)sortBy:(id (^)(id))block
 {

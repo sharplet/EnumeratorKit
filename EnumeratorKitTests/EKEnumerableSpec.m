@@ -35,4 +35,32 @@ describe(@"-each", ^{
 
 });
 
+describe(@"-map", ^{
+
+    context(@"message style", ^{
+
+        it(@"returns an array with the mapped elements", ^{
+            id strings = [@[@1,@2,@3] map:^(id obj){
+                return [NSString stringWithFormat:@"%@", obj];
+            }];
+
+            [[strings should] equal:@[@"1", @"2", @"3"]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"returns an array with the mapped elements", ^{
+            id strings = @[@1,@2,@3].map(^(id obj){
+                return [NSString stringWithFormat:@"%@", obj];
+            });
+
+            [[strings should] equal:@[@"1", @"2", @"3"]];
+        });
+
+    });
+
+});
+
 SPEC_END
