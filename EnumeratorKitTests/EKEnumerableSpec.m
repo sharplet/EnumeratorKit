@@ -3,18 +3,34 @@
 
 SPEC_BEGIN(EKEnumerableSpec)
 
-describe(@"-map", ^{
+describe(@"-each", ^{
 
-    it(@"returns an EKEnumerator", ^{
-        id result = @[].map;
-        [[result should] beKindOfClass:[EKEnumerator class]];
+    context(@"message style", ^{
+
+        it(@"performs the block once for each element", ^{
+            __block int count = 0;
+
+            [@[@1,@2,@3] each:^(id obj){
+                count++;
+            }];
+
+            [[theValue(count) should] equal:theValue(3)];
+        });
+
     });
 
-    describe(@"the enumerator", ^{
-        it(@"iterates over the unmapped collection", ^{
-            id iterated = [@[@"foo"].map each:^(id obj){}];
-            [[iterated should] equal:@[@"foo"]];
+    context(@"function style", ^{
+
+        it(@"performs the block once for each element", ^{
+            __block int count = 0;
+
+            @[@1,@2,@3].each(^(id obj){
+                count++;
+            });
+
+            [[theValue(count) should] equal:theValue(3)];
         });
+
     });
 
 });

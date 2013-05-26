@@ -8,16 +8,21 @@ SPEC_BEGIN(EKEnumeratorDemo)
 describe(@"EKEnumerator", ^{
 
     __block SortedList * list;
-    beforeAll(^{
+    __block EKEnumerator * e;
+    beforeEach(^{
         list = [[SortedList alloc] init];
 
         // will get stored internally as 3,4,7,13,42
         [[[[[list insert:@3] insert:@13] insert:@42] insert:@4] insert:@7];
+
+        e = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
+            [list each:^(id obj) {
+                [y yield:obj];
+            }];
+        }];
     });
 
     it(@"supports next", ^{
-        EKEnumerator * e = list.each;
-
         [[e.next should] equal:@3];
         [[e.next should] equal:@4];
         [[e.next should] equal:@7];
@@ -28,8 +33,6 @@ describe(@"EKEnumerator", ^{
     });
 
     it(@"supports rewind", ^{
-        EKEnumerator * e = list.each;
-
         (void)e.next;
         (void)e.next;
         (void)e.next;
@@ -43,8 +46,6 @@ describe(@"EKEnumerator", ^{
     });
 
     it(@"supports peek", ^{
-        EKEnumerator * e = list.each;
-
         [[e.peek should] equal:@3];
         [[e.next should] equal:@3];
         [[e.peek should] equal:@4];

@@ -33,10 +33,6 @@
     return self;
 }
 
-- (id)each
-{
-    return self;
-}
 - (id)each:(void (^)(id))block
 {
     id obj;

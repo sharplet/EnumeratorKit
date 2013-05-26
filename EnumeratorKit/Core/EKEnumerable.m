@@ -11,18 +11,16 @@
 
 @implementation EKEnumerable
 
-- (id<EKEnumerable>)each
-{
-    return [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
-        [self each:^(id obj) {
-            [y yield:obj];
-        }];
-    }];
-}
 - (id<EKEnumerable>)each:(void (^)(id obj))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
+}
+- (id<EKEnumerable> (^)(void (^)(id obj)))each
+{
+    return ^id<EKEnumerable>(void (^block)(id obj)) {
+        return [self each:block];
+    };
 }
 
 - (id<EKEnumerable>)map:(id (^)(id))block

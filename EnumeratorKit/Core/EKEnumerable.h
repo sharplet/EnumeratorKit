@@ -15,7 +15,7 @@
 - (id<EKEnumerable>)each:(void (^)(id obj))block;
 
 @optional
-- (id<EKEnumerable>)each;
+- (id<EKEnumerable> (^)(void (^)(id obj)))each;
 
 - (id<EKEnumerable>)map:(id (^)(id obj))block;
 - (id<EKEnumerable>)sortBy:(id (^)(id obj))block;
