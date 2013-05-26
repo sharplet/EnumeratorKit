@@ -104,4 +104,31 @@ describe(@"-reduce", ^{
 
 });
 
+describe(@"-inject", ^{
+
+    context(@"message style", ^{
+
+        it(@"returns the result of applying the selector to each element and the total", ^{
+            [[ (id)[@[@1,@2,@3] inject:@selector(add:)] should] equal:@6];
+        });
+
+        it(@"it starts from the initial value if provided", ^{
+            [[ (id)[@[@2,@3] inject:@1 withOperation:@selector(add:)] should] equal:@6];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"behaves like -reduce single argument function style", ^{
+            id total = @[@1,@2,@3].inject(^(id m, id i){
+                return [m add:i];
+            });
+            [[total should] equal:@6];
+        });
+
+    });
+
+});
+
 SPEC_END

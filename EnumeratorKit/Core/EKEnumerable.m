@@ -56,11 +56,21 @@
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation
 {
-    return [self reduce:^id(id memo, id obj) {
+    return [self inject:nil withOperation:binaryOperation];
+}
+- (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation
+{
+    return [self reduce:initial withBlock:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
             return [memo performSelector:binaryOperation withObject:obj];
         );
     }];
+}
+- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject
+{
+    return ^id<EKEnumerable>(id (^block)(id,id)) {
+        return [self reduce:block];
+    };
 }
 
 - (id<EKEnumerable>)reduce:(id (^)(id, id))block
