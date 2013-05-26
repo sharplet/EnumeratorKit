@@ -38,11 +38,6 @@
     };
 }
 
-- (id<EKEnumerable>)sortBy:(id (^)(id))block
-{
-    return nil;
-}
-
 - (id<EKEnumerable>)filter:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];

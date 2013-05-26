@@ -20,7 +20,6 @@
 - (id<EKEnumerable>)map:(id (^)(id obj))block;
 - (id<EKEnumerable> (^)(id (^)(id obj)))map;
 
-- (id<EKEnumerable>)sortBy:(id (^)(id obj))block;
 - (id<EKEnumerable>)filter:(BOOL (^)(id obj))block;
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation;
