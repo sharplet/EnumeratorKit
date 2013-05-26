@@ -78,7 +78,7 @@ static SerialOperationQueue *fibersQueue;
     // register the new fiber
     __block id label;
     [fibersQueue addOperationWithBlockAndWait:^{
-        static NSUInteger fiberCounter = 0;
+        static unsigned int fiberCounter = 0;
         label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
         fibers[label] = fiber;
     }];
