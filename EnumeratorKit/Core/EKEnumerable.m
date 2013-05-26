@@ -78,6 +78,35 @@
     }];
     return memo;
 }
+- (id<EKEnumerable> (^)(id, ...))reduce
+{
+    return ^id<EKEnumerable>(id args, ...) {
+        // determine if we're using the 1 or 2 arg form from the
+        // type of the first arg
+        BOOL isEmptyCollection = [args respondsToSelector:@selector(count)] && [args count] == 0;
+        BOOL canBeMutable = [args respondsToSelector:@selector(mutableCopyWithZone:)];
+        BOOL isNSNumber = [args isKindOfClass:[NSNumber class]];
+
+        int argc = (isEmptyCollection || canBeMutable || isNSNumber) ? 2 : 1;
+
+        // capture the arg(s)
+        id memo = nil;
+        id (^block)(id,id);
+        if (argc == 2) {
+            va_list arglist;
+            va_start(arglist, args);
+            memo = args;
+            block = va_arg(arglist, id);
+            va_end(arglist);
+        }
+        else {
+            block = args;
+        }
+
+        // execute the real implementation of reduce:
+        return [self reduce:memo withBlock:block];
+    };
+}
 
 @end
 

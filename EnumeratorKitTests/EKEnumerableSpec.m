@@ -1,5 +1,6 @@
 #import <Kiwi.h>
 #import "NSArray+EKEnumerable.h"
+#import "NSNumber+BinaryOperations.h"
 
 SPEC_BEGIN(EKEnumerableSpec)
 
@@ -57,6 +58,46 @@ describe(@"-map", ^{
             });
 
             [[strings should] equal:@[@"1", @"2", @"3"]];
+        });
+
+    });
+
+});
+
+describe(@"-reduce", ^{
+
+    context(@"message style", ^{
+
+        it(@"uses the first element in the collection if no initial is provided", ^{
+            id total = [@[@1,@2,@3] reduce:^(id m, id i){
+                return [m add:i];
+            }];
+            [[total should] equal:@6];
+        });
+
+        it(@"uses the initial if provided", ^{
+            id total = [@[@2,@3] reduce:@1 withBlock:^(id m, id i){
+                return [m add:i];
+            }];
+            [[total should] equal:@6];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"uses the first element in the collection if no initial is provided", ^{
+            id total = @[@1,@2,@3].reduce(^(id m, id i){
+                return [m add:i];
+            });
+            [[total should] equal:@6];
+        });
+
+        it(@"uses the initial if provided", ^{
+            id total = @[@2,@3].reduce(@1, ^(id m, id i){
+                return [m add:i];
+            });
+            [[total should] equal:@6];
         });
 
     });

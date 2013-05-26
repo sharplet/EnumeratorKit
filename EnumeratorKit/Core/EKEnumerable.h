@@ -25,8 +25,10 @@
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation;
 - (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation;
+
 - (id<EKEnumerable>)reduce:(id (^)(id memo, id obj))block;
 - (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
+- (id<EKEnumerable> (^)(id args, ...))reduce;
 
 @end
 
