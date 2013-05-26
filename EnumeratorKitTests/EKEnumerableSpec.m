@@ -82,6 +82,30 @@ describe(@"-reduce", ^{
             [[total should] equal:@6];
         });
 
+        it(@"supports building an array", ^{
+            id result = [@[@1,@2,@3] reduce:@[] withBlock:^id(id memo, id obj){
+                [memo addObject:[NSString stringWithFormat:@"%@", obj]];
+                return memo;
+            }];
+            [[result should] equal:@[@"1", @"2", @"3"]];
+        });
+
+        it(@"supports building a string", ^{
+            id result = [@[@1,@2,@3] reduce:@"abc" withBlock:^id(id memo, id obj) {
+                [memo appendString:[NSString stringWithFormat:@"%@", obj]];
+                return memo;
+            }];
+            [[result should] equal:@"abc123"];
+        });
+
+        it(@"supports building a dictionary", ^{
+            id result = [@[@1,@2,@3] reduce:@{} withBlock:^id(id memo, id obj) {
+                [memo setObject:[NSString stringWithFormat:@"%@", obj] forKey:obj];
+                return memo;
+            }];
+            [[result should] equal:@{ @1: @"1", @2: @"2", @3: @"3" }];
+        });
+
     });
 
     context(@"function style", ^{
@@ -98,6 +122,30 @@ describe(@"-reduce", ^{
                 return [m add:i];
             });
             [[total should] equal:@6];
+        });
+
+        it(@"supports building an array", ^{
+            id result = @[@1,@2,@3].reduce(@[], ^id(id memo, id obj){
+                [memo addObject:[NSString stringWithFormat:@"%@", obj]];
+                return memo;
+            });
+            [[result should] equal:@[@"1", @"2", @"3"]];
+        });
+
+        it(@"supports building a string", ^{
+            id result = @[@1,@2,@3].reduce(@"abc", ^id(id memo, id obj){
+                [memo appendString:[NSString stringWithFormat:@"%@", obj]];
+                return memo;
+            });
+            [[result should] equal:@"abc123"];
+        });
+
+        it(@"supports building a dictionary", ^{
+            id result = @[@1,@2,@3].reduce(@{}, ^id(id memo, id obj){
+                [memo setObject:[NSString stringWithFormat:@"%@", obj] forKey:obj];
+                return memo;
+            });
+            [[result should] equal:@{ @1: @"1", @2: @"2", @3: @"3" }];
         });
 
     });

@@ -79,7 +79,9 @@
 }
 - (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id, id))block
 {
-    __block id memo = initial;
+    // if the initial can be mutable (e.g., @[] or @{}), get a mutable copy
+    __block id memo = [initial respondsToSelector:@selector(mutableCopyWithZone:)] ? [initial mutableCopy] : initial;
+
     [self each:^(id obj) {
         if (!memo)
             memo = obj;
