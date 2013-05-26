@@ -1,0 +1,4 @@
+[
+	"-workspace", "EnumeratorKit.xcworkspace",
+	"-scheme", "EnumeratorKit"
+]
