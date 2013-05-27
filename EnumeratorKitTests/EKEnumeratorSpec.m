@@ -3,6 +3,22 @@
 
 SPEC_BEGIN(EKEnumeratorSpec)
 
+describe(@"-initWithObject", ^{
+
+    it(@"returns an external -each: iterator for enumerable objects", ^{
+        EKEnumerator *e = [EKEnumerator enumeratorWithObject:@[@1,@2,@3]];
+        id result = e.take(3);
+        [[result should] equal:@[@1,@2,@3]];
+    });
+
+    it(@"returns an iterator that yields the object, when passed a regular object", ^{
+        EKEnumerator *e = [EKEnumerator enumeratorWithObject:@999];
+        id result = e.take(3);
+        [[result should] equal:@[@999]];
+    });
+
+});
+
 describe(@"-each", ^{
 
     it(@"doesn't consume an external iteration", ^{

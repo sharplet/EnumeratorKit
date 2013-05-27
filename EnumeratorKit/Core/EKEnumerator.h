@@ -15,6 +15,9 @@
 
 @interface EKEnumerator : NSObject <EKEnumerable>
 
++ (instancetype)enumeratorWithObject:(id)object;
+- (id)initWithObject:(id)object;
+
 + (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block;
 - (id)initWithBlock:(void (^)(id<EKYielder> y))block;
 

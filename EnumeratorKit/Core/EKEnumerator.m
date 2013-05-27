@@ -26,6 +26,27 @@
     [self includeEnumerable];
 }
 
++ (instancetype)enumeratorWithObject:(id)object
+{
+    return [[EKEnumerator alloc] initWithObject:object];
+}
+- (id)initWithObject:(id)object
+{
+    if ([object respondsToSelector:@selector(each:)]) {
+        self = [self initWithBlock:^(id<EKYielder> y) {
+            [object each:^(id obj) {
+                [y yield:obj];
+            }];
+        }];
+    }
+    else {
+        self = [self initWithBlock:^(id<EKYielder> y) {
+            [y yield:object];
+        }];
+    }
+    return self;
+}
+
 + (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block
 {
     return [[self alloc] initWithBlock:block];

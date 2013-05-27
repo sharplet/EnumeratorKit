@@ -31,6 +31,8 @@
 		4AD3D58D1750802D0050CE35 /* SortedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F5174AC8B2005FA8E5 /* SortedList.m */; };
 		4AD3D58E1751AD7A0050CE35 /* EKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */; };
 		4AD3D590175348CD0050CE35 /* EKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */; };
+		4AD3D59317534ACD0050CE35 /* NSObject+EKEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */; };
+		4AD3D59517534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */; };
 		FAEE85CCB014462F9B7D988F /* libPods-EnumeratorKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,9 @@
 		4AC3BB79174B64EB00108331 /* EnumeratorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumeratorKit.h; sourceTree = "<group>"; };
 		4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerableSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumeratorSpec.m; sourceTree = "<group>"; };
+		4AD3D59117534ACD0050CE35 /* NSObject+EKEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EKEnumerator.h"; sourceTree = "<group>"; };
+		4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EKEnumerator.m"; sourceTree = "<group>"; };
+		4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectAsEKEnumeratorSpec.m; sourceTree = "<group>"; };
 		73DAA49542C4411784916871 /* Pods-EnumeratorKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitTests.xcconfig"; path = "Pods/Pods-EnumeratorKitTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		7D39112AED2D4E279325695D /* libPods-EnumeratorKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16B286636B2440D82D0D1C8 /* Pods-EnumeratorKitDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnumeratorKitDemo.xcconfig"; path = "Pods/Pods-EnumeratorKitDemo.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -195,6 +200,7 @@
 				4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */,
 				4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */,
 				4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */,
+				4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */,
 				4AD3D58B17507FCD0050CE35 /* Helpers */,
 				4AC073D0174AC561005FA8E5 /* Supporting Files */,
 			);
@@ -255,6 +261,8 @@
 				4AB6FAD01740D56E00DDBAD4 /* EKEnumerator.m */,
 				4AC073DE174AC629005FA8E5 /* NSArray+EKEnumerable.h */,
 				4AC073DF174AC629005FA8E5 /* NSArray+EKEnumerable.m */,
+				4AD3D59117534ACD0050CE35 /* NSObject+EKEnumerator.h */,
+				4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -493,6 +501,7 @@
 				4AC073E4174AC6FB005FA8E5 /* EKFiber.m in Sources */,
 				4AC073FB174ACCAF005FA8E5 /* EKEnumerable.m in Sources */,
 				4AC073FC174ACCAF005FA8E5 /* EKEnumerator.m in Sources */,
+				4AD3D59317534ACD0050CE35 /* NSObject+EKEnumerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +515,7 @@
 				4AD3D58D1750802D0050CE35 /* SortedList.m in Sources */,
 				4AD3D58E1751AD7A0050CE35 /* EKEnumerableSpec.m in Sources */,
 				4AD3D590175348CD0050CE35 /* EKEnumeratorSpec.m in Sources */,
+				4AD3D59517534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 /* EnumeratorKit core headers */
 #import "EKEnumerable.h"
 #import "EKEnumerator.h"
+#import "NSObject+EKEnumerator.h"
 
 
 /* Foundation collection class additions */

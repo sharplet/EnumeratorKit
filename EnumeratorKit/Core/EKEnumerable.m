@@ -26,11 +26,7 @@
 - (id<EKEnumerable>)take:(NSUInteger)number
 {
     NSMutableArray *result = [NSMutableArray array];
-    EKEnumerator *e = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
-        [self each:^(id obj) {
-            [y yield:obj];
-        }];
-    }];
+    EKEnumerator *e = self.asEnumerator;
 
     NSUInteger count = 0;
     while (e.peek && ++count <= number) {
