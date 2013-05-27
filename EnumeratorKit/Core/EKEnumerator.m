@@ -35,11 +35,16 @@
 
 - (id)each:(void (^)(id))block
 {
-    id obj;
-    while ((obj = self.next)) {
-        block(obj);
+    EKFiber *fiber = [EKFiber fiberWithBlock:^id{
+        self.block([EKFiber class]);
+        return nil;
+    }];
+
+    id next;
+    while ((next = fiber.resume)) {
+        block(next);
     }
-    return self.rewind;
+    return self;
 }
 
 - (id)next
