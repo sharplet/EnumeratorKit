@@ -19,6 +19,12 @@
 
 @implementation EKEnumerable
 
++ (void)load
+{
+    [NSArray includeEnumerable];
+    [NSDictionary includeEnumerable];
+}
+
 - (id<EKEnumerable>)each:(void (^)(id obj))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
