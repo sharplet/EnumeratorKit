@@ -15,16 +15,21 @@
 - (id<EKEnumerable>)each:(void (^)(id obj))block;
 
 @optional
-- (id<EKEnumerable>)each;
+- (id<EKEnumerable> (^)(void (^)(id obj)))each;
 
 - (id<EKEnumerable>)map:(id (^)(id obj))block;
-- (id<EKEnumerable>)sortBy:(id (^)(id obj))block;
+- (id<EKEnumerable> (^)(id (^)(id obj)))map;
+
 - (id<EKEnumerable>)filter:(BOOL (^)(id obj))block;
+- (id<EKEnumerable> (^)(BOOL (^)(id obj)))filter;
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation;
 - (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation;
+- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject;
+
 - (id<EKEnumerable>)reduce:(id (^)(id memo, id obj))block;
 - (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
+- (id<EKEnumerable> (^)(id args, ...))reduce;
 
 @end
 

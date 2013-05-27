@@ -22,13 +22,6 @@ describe(@"EKEnumerable", ^{
         [[mapped should] equal:@[ @4, @5, @8, @14, @43 ]];
     });
 
-//    it(@"supports sortBy", ^{
-//        // ascii sort order
-//        [[[list sortBy:^id(id obj) {
-//            return [NSString stringWithFormat:@"%@", obj];
-//        }] should] equal:@[ @13, @3, @4, @42, @7 ]];
-//    });
-
     it(@"supports filter", ^{
         id filtered = [list filter:^BOOL(id obj) {
             return [obj integerValue] % 2 == 0;

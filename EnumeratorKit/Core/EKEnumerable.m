@@ -11,18 +11,16 @@
 
 @implementation EKEnumerable
 
-- (id<EKEnumerable>)each
-{
-    return [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
-        [self each:^(id obj) {
-            [y yield:obj];
-        }];
-    }];
-}
 - (id<EKEnumerable>)each:(void (^)(id obj))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
+}
+- (id<EKEnumerable> (^)(void (^)(id obj)))each
+{
+    return ^id<EKEnumerable>(void (^block)(id obj)) {
+        return [self each:block];
+    };
 }
 
 - (id<EKEnumerable>)map:(id (^)(id))block
@@ -33,10 +31,11 @@
     }];
     return result;
 }
-
-- (id<EKEnumerable>)sortBy:(id (^)(id))block
+- (id<EKEnumerable> (^)(id (^)(id)))map
 {
-    return nil;
+    return ^id<EKEnumerable>(id (^block)(id obj)) {
+        return [self map:block];
+    };
 }
 
 - (id<EKEnumerable>)filter:(BOOL (^)(id))block
@@ -49,14 +48,30 @@
     }];
     return result;
 }
+- (id<EKEnumerable> (^)(BOOL (^)(id)))filter
+{
+    return ^id<EKEnumerable>(BOOL (^block)(id)) {
+        return [self filter:block];
+    };
+}
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation
 {
-    return [self reduce:^id(id memo, id obj) {
+    return [self inject:nil withOperation:binaryOperation];
+}
+- (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation
+{
+    return [self reduce:initial withBlock:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
             return [memo performSelector:binaryOperation withObject:obj];
         );
     }];
+}
+- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject
+{
+    return ^id<EKEnumerable>(id (^block)(id,id)) {
+        return [self reduce:block];
+    };
 }
 
 - (id<EKEnumerable>)reduce:(id (^)(id, id))block
@@ -65,7 +80,9 @@
 }
 - (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id, id))block
 {
-    __block id memo = initial;
+    // if the initial can be mutable (e.g., @[] or @{}), get a mutable copy
+    __block id memo = [initial respondsToSelector:@selector(mutableCopyWithZone:)] ? [initial mutableCopy] : initial;
+
     [self each:^(id obj) {
         if (!memo)
             memo = obj;
@@ -73,6 +90,35 @@
             memo = block(memo, obj);
     }];
     return memo;
+}
+- (id<EKEnumerable> (^)(id, ...))reduce
+{
+    return ^id<EKEnumerable>(id args, ...) {
+        // determine if we're using the 1 or 2 arg form from the
+        // type of the first arg
+        BOOL isEmptyCollection = [args respondsToSelector:@selector(count)] && [args count] == 0;
+        BOOL canBeMutable = [args respondsToSelector:@selector(mutableCopyWithZone:)];
+        BOOL isNSNumber = [args isKindOfClass:[NSNumber class]];
+
+        int argc = (isEmptyCollection || canBeMutable || isNSNumber) ? 2 : 1;
+
+        // capture the arg(s)
+        id memo = nil;
+        id (^block)(id,id);
+        if (argc == 2) {
+            va_list arglist;
+            va_start(arglist, args);
+            memo = args;
+            block = va_arg(arglist, id);
+            va_end(arglist);
+        }
+        else {
+            block = args;
+        }
+
+        // execute the real implementation of reduce:
+        return [self reduce:memo withBlock:block];
+    };
 }
 
 @end
