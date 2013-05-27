@@ -17,6 +17,9 @@
 @optional
 - (id<EKEnumerable> (^)(void (^)(id obj)))each;
 
+- (id<EKEnumerable>)take:(NSUInteger)number;
+- (id<EKEnumerable> (^)(NSUInteger))take;
+
 - (id<EKEnumerable>)map:(id (^)(id obj))block;
 - (id<EKEnumerable> (^)(id (^)(id obj)))map;
 

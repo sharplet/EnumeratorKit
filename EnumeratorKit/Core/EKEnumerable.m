@@ -23,6 +23,29 @@
     };
 }
 
+- (id<EKEnumerable>)take:(NSUInteger)number
+{
+    NSMutableArray *result = [NSMutableArray array];
+    EKEnumerator *e = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
+        [self each:^(id obj) {
+            [y yield:obj];
+        }];
+    }];
+
+    NSUInteger count = 0;
+    while (e.peek && ++count <= number) {
+        [result addObject:e.next];
+    }
+
+    return result;
+}
+- (id<EKEnumerable> (^)(NSUInteger))take
+{
+    return ^id<EKEnumerable>(NSUInteger number) {
+        return [self take:number];
+    };
+}
+
 - (id<EKEnumerable>)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];

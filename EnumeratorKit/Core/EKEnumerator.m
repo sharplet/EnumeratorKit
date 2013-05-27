@@ -21,6 +21,11 @@
 
 @implementation EKEnumerator
 
++ (void)load
+{
+    [self includeEnumerable];
+}
+
 + (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block
 {
     return [[self alloc] initWithBlock:block];

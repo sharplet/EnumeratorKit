@@ -81,12 +81,7 @@ describe(@"EKEnumerator", ^{
                 }
             }];
 
-            // get the first 10 elements
-            NSMutableArray *result = [NSMutableArray new];
-            for (int i = 0; i < 10; i++) {
-                [result addObject:fib.next];
-            }
-
+            id result = fib.take(10);
             [[result should] equal:@[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]];
         });
 

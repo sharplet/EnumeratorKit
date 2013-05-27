@@ -36,6 +36,60 @@ describe(@"-each", ^{
 
 });
 
+describe(@"-take", ^{
+
+    context(@"message style", ^{
+
+        it(@"returns an empty array if you take 0", ^{
+            id result = [@[@1,@2,@3] take:0];
+            [[result should] equal:@[]];
+        });
+
+        it(@"returns the specified number of elements if you take < the collection's length", ^{
+            id result = [@[@1,@2,@3] take:2];
+            [[result should] equal:@[@1,@2]];
+        });
+
+        it(@"returns all elements if you take >= the collection's length", ^{
+            id result = [@[@1,@2,@3] take:5];
+            [[result should] equal:@[@1,@2,@3]];
+        });
+
+        it(@"if called on an enumerator, always begins at the start", ^{
+            EKEnumerator *e = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
+                [@[@1,@2,@3] each:^(id obj) {
+                    [y yield:obj];
+                }];
+            }];
+
+            (void)e.next;
+            id result = [e take:2];
+            [[result should] equal:@[@1,@2]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"returns an empty array if you take 0", ^{
+            id result = @[@1,@2,@3].take(0);
+            [[result should] equal:@[]];
+        });
+
+        it(@"returns the specified number of elements if you take < the collection's length", ^{
+            id result = @[@1,@2,@3].take(2);
+            [[result should] equal:@[@1,@2]];
+        });
+
+        it(@"returns all elements if you take >= the collection's length", ^{
+            id result = @[@1,@2,@3].take(5);
+            [[result should] equal:@[@1,@2,@3]];
+        });
+
+    });
+
+});
+
 describe(@"-map", ^{
 
     context(@"message style", ^{
