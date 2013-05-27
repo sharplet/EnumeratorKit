@@ -79,10 +79,9 @@
 		4AC073D1174AC561005FA8E5 /* EnumeratorKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EnumeratorKitTests-Info.plist"; sourceTree = "<group>"; };
 		4AC073D3174AC561005FA8E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AC073DE174AC629005FA8E5 /* NSArray+EKEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSArray+EKEnumerable.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4AC073DF174AC629005FA8E5 /* NSArray+EKEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+EKEnumerable.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4AC073DF174AC629005FA8E5 /* NSArray+EKEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+EKEnumerable.m"; sourceTree = "<group>"; };
 		4AC073E2174AC6FB005FA8E5 /* EKFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EKFiber.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4AC073E3174AC6FB005FA8E5 /* EKFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKFiber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4AC073E5174AC76F005FA8E5 /* SuppressPerformSelectorMemoryWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuppressPerformSelectorMemoryWarnings.h; sourceTree = "<group>"; };
 		4AC073E8174AC86E005FA8E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AC073E9174AC86E005FA8E5 /* EnumeratorKitDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "EnumeratorKitDemo-Info.plist"; sourceTree = "<group>"; };
 		4AC073EA174AC86E005FA8E5 /* EKEnumerableDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerableDemo.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -175,7 +174,6 @@
 				4AC3BB79174B64EB00108331 /* EnumeratorKit.h */,
 				4AC3BB77174B62E500108331 /* Core */,
 				4AC073E1174AC63B005FA8E5 /* Fibers */,
-				4AC3BB78174B632C00108331 /* Private Headers */,
 				4AC073BD174AC561005FA8E5 /* Supporting Files */,
 			);
 			path = EnumeratorKit;
@@ -261,15 +259,6 @@
 				4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		4AC3BB78174B632C00108331 /* Private Headers */ = {
-			isa = PBXGroup;
-			children = (
-				4AC073E5174AC76F005FA8E5 /* SuppressPerformSelectorMemoryWarnings.h */,
-			);
-			name = "Private Headers";
-			path = PrivateHeaders;
 			sourceTree = "<group>";
 		};
 		4AD3D58B17507FCD0050CE35 /* Helpers */ = {
