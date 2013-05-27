@@ -7,6 +7,7 @@
 //
 
 #import <objc/runtime.h>
+#import "EnumeratorKit.h"
 #import "SuppressPerformSelectorMemoryWarnings.h"
 
 @implementation EKEnumerable

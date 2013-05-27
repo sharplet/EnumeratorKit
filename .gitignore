@@ -2,3 +2,4 @@ Pods/
 xcuserdata/
 Build/
 *.xcworkspace/
+Podfile.lock

@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+EKEnumerator.h"
+#import "EKEnumerator.h"
 
 @implementation NSObject (EKEnumerator)
 

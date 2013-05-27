@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EnumeratorKit.h"
+#import "EKEnumerable.h"
 
 @protocol EKYielder <NSObject>
 - (void)yield:(id)obj;

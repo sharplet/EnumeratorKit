@@ -85,7 +85,7 @@
 {
     // first time around, dispatch the iteration onto our fiber
     if (!self.fiber) {
-        __weak EKEnumerator *weakSelf = self;
+        __unsafe_unretained EKEnumerator *weakSelf = self;
         self.fiber = [EKFiber fiberWithBlock:^id{
             weakSelf.block([EKFiber class]);
             return nil;
