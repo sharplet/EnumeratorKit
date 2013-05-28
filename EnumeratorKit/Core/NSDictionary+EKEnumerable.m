@@ -40,4 +40,32 @@
     };
 }
 
+- (id<EKEnumerable>)eachKey:(void (^)(id))block
+{
+    [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        block(key);
+    }];
+    return self;
+}
+- (id<EKEnumerable> (^)(void (^)(id obj)))eachKey
+{
+    return ^id<EKEnumerable>(void (^block)(id)) {
+        return [self eachKey:block];
+    };
+}
+
+- (id<EKEnumerable>)eachObject:(void (^)(id))block
+{
+    [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        block(obj);
+    }];
+    return self;
+}
+- (id<EKEnumerable> (^)(void (^)(id obj)))eachObject
+{
+    return ^id<EKEnumerable>(void (^block)(id)) {
+        return [self eachObject:block];
+    };
+}
+
 @end

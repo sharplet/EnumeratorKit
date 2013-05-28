@@ -16,4 +16,10 @@
 - (id<EKEnumerable> (^)(void (^)(id entry)))eachEntry;
 - (id<EKEnumerable> (^)(void (^)(id pair)))eachPair;
 
+- (id<EKEnumerable>)eachKey:(void (^)(id key))block;
+- (id<EKEnumerable> (^)(void (^)(id key)))eachKey;
+
+- (id<EKEnumerable>)eachObject:(void (^)(id obj))block;
+- (id<EKEnumerable> (^)(void (^)(id obj)))eachObject;
+
 @end

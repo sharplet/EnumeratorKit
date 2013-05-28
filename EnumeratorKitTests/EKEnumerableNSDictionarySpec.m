@@ -99,4 +99,64 @@ describe(@"-eachEntry", ^{
 
 });
 
+describe(@"-eachKey", ^{
+
+    context(@"message style", ^{
+
+        it(@"enumerates over keys", ^{
+            __block NSUInteger count = 0;
+            [@{ @1: @"1", @2: @"2" } eachKey:^(id key) {
+                count++;
+                [[key should] beKindOfClass:[NSNumber class]];
+            }];
+            [[theValue(count) should] equal:theValue(2)];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"enumerates over keys", ^{
+            __block NSUInteger count = 0;
+            @{ @1: @"1", @2: @"2" }.eachKey(^(id key) {
+                count++;
+                [[key should] beKindOfClass:[NSNumber class]];
+            });
+            [[theValue(count) should] equal:theValue(2)];
+        });
+
+    });
+
+});
+
+describe(@"-eachObject", ^{
+
+    context(@"message style", ^{
+
+        it(@"enumerates over objects", ^{
+            __block NSUInteger count = 0;
+            [@{ @1: @"1", @2: @"2" } eachObject:^(id obj) {
+                count++;
+                [[obj should] beKindOfClass:[NSString class]];
+            }];
+            [[theValue(count) should] equal:theValue(2)];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"enumerates over objects", ^{
+            __block NSUInteger count = 0;
+            @{ @1: @"1", @2: @"2" }.eachObject(^(id obj) {
+                count++;
+                [[obj should] beKindOfClass:[NSString class]];
+            });
+            [[theValue(count) should] equal:theValue(2)];
+        });
+
+    });
+
+});
+
 SPEC_END
