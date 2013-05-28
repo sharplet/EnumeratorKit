@@ -39,26 +39,30 @@
     };
 }
 
-- (id<EKEnumerable>)take:(NSUInteger)number
+- (NSArray *)asArray
+{
+    return [self take:-1];
+}
+- (NSArray *)take:(NSInteger)number
 {
     NSMutableArray *result = [NSMutableArray array];
     EKEnumerator *e = self.asEnumerator;
 
     NSUInteger count = 0;
-    while (e.peek && ++count <= number) {
+    while (e.peek && (number < 0 || ++count <= number)) {
         [result addObject:e.next];
     }
 
     return result;
 }
-- (id<EKEnumerable> (^)(NSUInteger))take
+- (NSArray * (^)(NSInteger))take
 {
-    return ^id<EKEnumerable>(NSUInteger number) {
+    return ^NSArray *(NSInteger number) {
         return [self take:number];
     };
 }
 
-- (id<EKEnumerable>)map:(id (^)(id))block
+- (NSArray *)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -67,14 +71,14 @@
     }];
     return result;
 }
-- (id<EKEnumerable> (^)(id (^)(id)))map
+- (NSArray * (^)(id (^)(id)))map
 {
-    return ^id<EKEnumerable>(id (^block)(id obj)) {
+    return ^NSArray *(id (^block)(id obj)) {
         return [self map:block];
     };
 }
 
-- (id<EKEnumerable>)filter:(BOOL (^)(id))block
+- (NSArray *)filter:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -84,9 +88,9 @@
     }];
     return result;
 }
-- (id<EKEnumerable> (^)(BOOL (^)(id)))filter
+- (NSArray * (^)(BOOL (^)(id)))filter
 {
-    return ^id<EKEnumerable>(BOOL (^block)(id)) {
+    return ^NSArray *(BOOL (^block)(id)) {
         return [self filter:block];
     };
 }

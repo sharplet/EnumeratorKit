@@ -55,7 +55,7 @@ describe(@"-take", ^{
             [[result should] equal:@[@1,@2,@3]];
         });
 
-        it(@"if called on an enumerator, always begins at the start", ^{
+        it(@"always begins at the start, if called on an enumerator", ^{
             EKEnumerator *e = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y) {
                 [@[@1,@2,@3] each:^(id obj) {
                     [y yield:obj];
@@ -65,6 +65,11 @@ describe(@"-take", ^{
             (void)e.next;
             id result = [e take:2];
             [[result should] equal:@[@1,@2]];
+        });
+
+        it(@"returns the whole collection if passed a negative number", ^{
+            id result = [@[@1,@2,@3] take:-1];
+            [[result should] equal:@[@1,@2,@3]];
         });
 
     });
@@ -86,6 +91,21 @@ describe(@"-take", ^{
             [[result should] equal:@[@1,@2,@3]];
         });
 
+    });
+
+});
+
+describe(@"-asArray", ^{
+
+    it(@"enumerates the entire collection and returns an array", ^{
+        id result = @{ @1: @"1", @2: @"2" }.asArray;
+        [[result should] equal:@[@[@1,@"1"], @[@2,@"2"]]];
+    });
+
+    it(@"returns self if the receive is an array", ^{
+        NSArray *orig = @[@1,@2];
+        NSArray *result = orig.asArray;
+        [[result should] beIdenticalTo:orig];
     });
 
 });

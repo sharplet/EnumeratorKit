@@ -16,14 +16,15 @@
 @optional
 - (id<EKEnumerable> (^)(void (^)(id obj)))each;
 
-- (id<EKEnumerable>)take:(NSUInteger)number;
-- (id<EKEnumerable> (^)(NSUInteger))take;
+- (NSArray *)asArray;
+- (NSArray *)take:(NSInteger)number;
+- (NSArray * (^)(NSInteger))take;
 
-- (id<EKEnumerable>)map:(id (^)(id obj))block;
-- (id<EKEnumerable> (^)(id (^)(id obj)))map;
+- (NSArray *)map:(id (^)(id obj))block;
+- (NSArray * (^)(id (^)(id obj)))map;
 
-- (id<EKEnumerable>)filter:(BOOL (^)(id obj))block;
-- (id<EKEnumerable> (^)(BOOL (^)(id obj)))filter;
+- (NSArray *)filter:(BOOL (^)(id obj))block;
+- (NSArray * (^)(BOOL (^)(id obj)))filter;
 
 - (id<EKEnumerable>)inject:(SEL)binaryOperation;
 - (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation;

@@ -23,4 +23,10 @@
     return self;
 }
 
+// overrides -[EKEnumerable asArray]
+- (NSArray *)asArray
+{
+    return self;
+}
+
 @end
