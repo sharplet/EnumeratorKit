@@ -14,3 +14,4 @@
 
 /* Foundation collection class additions */
 #import "NSArray+EKEnumerable.h"
+#import "NSDictionary+EKEnumerable.h"
