@@ -110,6 +110,21 @@
     };
 }
 
+- (NSArray *)sortBy:(id (^)(id))block
+{
+    return self.map(^(id i){
+        return @[block(i), i];
+    }).sort.map(^(id a) {
+        return a[1];
+    });
+}
+- (NSArray *(^)(id (^)(id)))sortBy
+{
+    return ^NSArray *(id (^block)(id)) {
+        return [self sortBy:block];
+    };
+}
+
 - (id<EKEnumerable>)inject:(SEL)binaryOperation
 {
     return [self inject:nil withOperation:binaryOperation];
