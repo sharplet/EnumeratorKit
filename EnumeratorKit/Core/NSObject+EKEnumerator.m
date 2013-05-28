@@ -11,7 +11,7 @@
 
 @implementation NSObject (EKEnumerator)
 
-- (id<EKEnumerable>)asEnumerator
+- (EKEnumerator *)asEnumerator
 {
     return [EKEnumerator enumeratorWithObject:self];
 }

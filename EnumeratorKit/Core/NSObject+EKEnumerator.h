@@ -11,6 +11,6 @@
 
 @interface NSObject (EKEnumerator)
 
-- (id<EKEnumerable>)asEnumerator;
+- (EKEnumerator *)asEnumerator;
 
 @end
