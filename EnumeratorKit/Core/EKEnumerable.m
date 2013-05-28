@@ -62,7 +62,8 @@
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
-        [result addObject:block(obj)];
+        id mapped = block(obj);
+        [result addObject:(mapped ? mapped : [NSNull null])];
     }];
     return result;
 }
