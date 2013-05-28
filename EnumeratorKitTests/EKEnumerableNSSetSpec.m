@@ -1,7 +1,7 @@
 #import <Kiwi.h>
 #import "NSSet+EKEnumerable.h"
 
-SPEC_BEGIN(NSSetEKEnumerableSpec)
+SPEC_BEGIN(EKEnumerableNSSetSpec)
 
 describe(@"-each", ^{
 

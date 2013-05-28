@@ -1,7 +1,7 @@
 #import <Kiwi.h>
 #import "NSDictionary+EKEnumerable.h"
 
-SPEC_BEGIN(NSDictionaryEKEnumerableSpec)
+SPEC_BEGIN(EKEnumerableNSDictionarySpec)
 
 describe(@"-each", ^{
 
