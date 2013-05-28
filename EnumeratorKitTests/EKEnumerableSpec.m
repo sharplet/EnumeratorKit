@@ -169,6 +169,23 @@ describe(@"-filter", ^{
 
 });
 
+describe(@"-sort", ^{
+
+    it(@"sorts elements that respond to -compare:", ^{
+        [[@[@2,@3,@1].sort should] equal:@[@1,@2,@3]];
+        [[@[@"foo",@"bar",@"baz"].sort should] equal:@[@"bar",@"baz",@"foo"]];
+    });
+
+    it(@"sorts an array of arrays by comparing the first elemements if they exist", ^{
+        [[@[ @[], @[@2], @[@1] ].sort should] equal:@[ @[@1], @[@2], @[] ]];
+    });
+
+    it(@"it sorts a dictionary by comparing keys", ^{
+        [[@{ @"foo": @1, @"bar": @2 }.sort should] equal:@[ @[@"bar",@2], @[@"foo",@1] ]];
+    });
+
+});
+
 describe(@"-reduce", ^{
 
     context(@"message style", ^{

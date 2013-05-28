@@ -26,6 +26,10 @@
 - (NSArray *)filter:(BOOL (^)(id obj))block;
 - (NSArray * (^)(BOOL (^)(id obj)))filter;
 
+- (NSArray *)sort;
+- (NSArray *)sortWith:(NSComparator)comparator;
+- (NSArray * (^)(NSComparator))sortWith;
+
 - (id<EKEnumerable>)inject:(SEL)binaryOperation;
 - (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation;
 - (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject;

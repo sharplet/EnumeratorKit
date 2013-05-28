@@ -29,4 +29,19 @@
     return self;
 }
 
+- (NSComparisonResult)compare:(NSArray *)array
+{
+    NSComparisonResult result = NSOrderedSame;
+    NSUInteger countA = self.count, countB = array.count;
+
+    if (countA == 0)
+        result = NSOrderedDescending;
+    else if (countB == 0)
+        result = NSOrderedAscending;
+    else
+        result = [self[0] compare:array[0]];
+
+    return result;
+}
+
 @end

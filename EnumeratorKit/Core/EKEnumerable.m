@@ -95,6 +95,21 @@
     };
 }
 
+- (NSArray *)sort
+{
+    return [self.asArray sortedArrayUsingSelector:@selector(compare:)];
+}
+- (NSArray *)sortWith:(NSComparator)comparator
+{
+    return [self.asArray sortedArrayUsingComparator:comparator];
+}
+- (NSArray *(^)(NSComparator))sortWith
+{
+    return ^NSArray *(NSComparator comparator) {
+        return [self sortWith:comparator];
+    };
+}
+
 - (id<EKEnumerable>)inject:(SEL)binaryOperation
 {
     return [self inject:nil withOperation:binaryOperation];
