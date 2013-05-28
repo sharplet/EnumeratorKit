@@ -23,6 +23,7 @@
 {
     [NSArray includeEnumerable];
     [NSDictionary includeEnumerable];
+    [NSSet includeEnumerable];
 }
 
 - (id<EKEnumerable>)each:(void (^)(id obj))block
