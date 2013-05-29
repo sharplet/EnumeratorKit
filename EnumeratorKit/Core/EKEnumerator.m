@@ -23,7 +23,7 @@
 
 + (void)load
 {
-    [self includeEnumerable];
+    [self includeEKEnumerable];
 }
 
 + (instancetype)enumeratorWithObject:(id)object

@@ -21,10 +21,10 @@
 
 + (void)load
 {
-    [NSArray includeEnumerable];
-    [NSDictionary includeEnumerable];
-    [NSSet includeEnumerable];
-    [NSOrderedSet includeEnumerable];
+    [NSArray includeEKEnumerable];
+    [NSDictionary includeEKEnumerable];
+    [NSSet includeEKEnumerable];
+    [NSOrderedSet includeEKEnumerable];
 }
 
 - (id<EKEnumerable>)each:(void (^)(id obj))block
@@ -226,9 +226,9 @@
 
 @end
 
-@implementation NSObject (IncludeEKEnumerable)
+@implementation NSObject (includeEKEnumerable)
 
-+ (void)includeEnumerable
++ (void)includeEKEnumerable
 {
     unsigned int methodCount;
     Method *methods = class_copyMethodList([EKEnumerable class], &methodCount);

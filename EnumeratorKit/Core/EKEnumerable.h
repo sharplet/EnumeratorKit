@@ -53,6 +53,8 @@
 
 @end
 
-@interface NSObject (IncludeEKEnumerable)
-+ (void)includeEnumerable;
+@interface NSObject (includeEKEnumerable)
+
++ (void)includeEKEnumerable;
+
 @end

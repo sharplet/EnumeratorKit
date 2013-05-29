@@ -16,7 +16,7 @@
 
 + (void)load
 {
-    [self includeEnumerable];
+    [self includeEKEnumerable];
 }
 
 - (id)init
