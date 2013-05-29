@@ -16,6 +16,9 @@
 @optional
 - (id<EKEnumerable> (^)(void (^)(id obj)))each;
 
+- (id<EKEnumerable>)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
+- (id<EKEnumerable> (^)(void (^)(id obj, NSUInteger i)))eachWithIndex;
+
 - (NSArray *)asArray;
 - (NSArray *)take:(NSInteger)number;
 - (NSArray * (^)(NSInteger))take;

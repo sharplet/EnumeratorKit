@@ -39,6 +39,21 @@
     };
 }
 
+- (id<EKEnumerable>)eachWithIndex:(void (^)(id, NSUInteger))block
+{
+    __block NSUInteger i = 0;
+    [self each:^(id obj) {
+        block(obj, ++i);
+    }];
+    return self;
+}
+- (id<EKEnumerable> (^)(void (^)(id, NSUInteger)))eachWithIndex
+{
+    return ^id<EKEnumerable>(void (^block)(id, NSUInteger)) {
+        return [self eachWithIndex:block];
+    };
+}
+
 - (NSArray *)asArray
 {
     return [self take:-1];

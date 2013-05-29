@@ -36,6 +36,40 @@ describe(@"-each", ^{
 
 });
 
+describe(@"-eachWithIndex", ^{
+
+    context(@"message style", ^{
+
+        it(@"yields each object and its index to the block", ^{
+            NSMutableArray *objects = [NSMutableArray array], *indexes = [NSMutableArray array];
+            [@[@"foo", @"bar", @"baz"] eachWithIndex:^(id obj, NSUInteger i) {
+                [objects addObject:obj];
+                [indexes addObject:@(i)];
+            }];
+
+            [[objects should] equal:@[@"foo",@"bar",@"baz"]];
+            [[indexes should] equal:@[@1,@2,@3]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"yields each object and its index to the block", ^{
+            NSMutableArray *objects = [NSMutableArray array], *indexes = [NSMutableArray array];
+            @[@"foo", @"bar", @"baz"].eachWithIndex(^(id obj, NSUInteger i) {
+                [objects addObject:obj];
+                [indexes addObject:@(i)];
+            });
+
+            [[objects should] equal:@[@"foo",@"bar",@"baz"]];
+            [[indexes should] equal:@[@1,@2,@3]];
+        });
+
+    });
+
+});
+
 describe(@"-take", ^{
 
     context(@"message style", ^{
