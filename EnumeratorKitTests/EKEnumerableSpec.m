@@ -233,9 +233,13 @@ describe(@"-sortBy", ^{
     });
 
     context(@"function style", ^{
-        [[@[@"foo", @1].sortBy(^(id obj){
-            return [NSString stringWithFormat:@"%@", obj];
-        }) should] equal:@[@1, @"foo"]];
+
+        it(@"uses the block's return value as the sort key", ^{
+            [[@[@"foo", @1].sortBy(^(id obj){
+                return [NSString stringWithFormat:@"%@", obj];
+            }) should] equal:@[@1, @"foo"]];
+        });
+
     });
 
 });
