@@ -36,6 +36,9 @@
 - (NSArray *)sortBy:(id (^)(id obj))block;
 - (NSArray * (^)(id (^)(id obj)))sortBy;
 
+- (id)find:(BOOL (^)(id obj))block;
+- (id (^)(BOOL (^)(id obj)))find;
+
 - (id)inject:(SEL)binaryOperation;
 - (id)inject:(id)initial withOperation:(SEL)binaryOperation;
 - (id (^)(id (^)(id memo, id obj)))inject;

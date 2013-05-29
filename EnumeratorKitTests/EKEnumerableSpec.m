@@ -244,6 +244,36 @@ describe(@"-sortBy", ^{
 
 });
 
+describe(@"-find", ^{
+
+    context(@"message style", ^{
+
+        it(@"stops the first time the block returns YES and returns the object", ^{
+            __block NSUInteger count = 0;
+            [[[@[@1,@2,@3] find:^BOOL(id obj) {
+                count++;
+                return [obj integerValue] % 2 == 0;
+            }] should] equal:@2];
+            [[theValue(count) should] equal:theValue(2)];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"stops the first time the block returns YES and returns the object", ^{
+            __block NSUInteger count = 0;
+            [[@[@1,@2,@3].find(^BOOL(id obj) {
+                count++;
+                return [obj integerValue] % 2 == 0;
+            }) should] equal:@2];
+            [[theValue(count) should] equal:theValue(2)];
+        });
+
+    });
+
+});
+
 describe(@"-reduce", ^{
 
     context(@"message style", ^{

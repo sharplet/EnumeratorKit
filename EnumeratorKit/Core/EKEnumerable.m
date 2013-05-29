@@ -140,6 +140,24 @@
     };
 }
 
+- (id)find:(BOOL (^)(id))block
+{
+    id next;
+    EKEnumerator *e = self.asEnumerator;
+    while ((next = e.next)) {
+        if (block(next)) {
+            return next;
+        }
+    }
+    return nil;
+}
+- (id (^)(BOOL (^)(id)))find
+{
+    return ^id(BOOL (^block)(id)) {
+        return [self find:block];
+    };
+}
+
 - (id)inject:(SEL)binaryOperation
 {
     return [self inject:nil withOperation:binaryOperation];
