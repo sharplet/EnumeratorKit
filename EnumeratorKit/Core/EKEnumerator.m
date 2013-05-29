@@ -128,9 +128,4 @@
     return self;
 }
 
-- (id)withIndex:(id (^)(id, id))block
-{
-    return nil;
-}
-
 @end

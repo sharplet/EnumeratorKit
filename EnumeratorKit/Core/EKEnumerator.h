@@ -24,6 +24,5 @@
 - (id)next;
 - (id)peek;
 - (id)rewind;
-- (id)withIndex:(id (^)(id obj, id index))block;
 
 @end
