@@ -148,7 +148,7 @@ describe(@"-asArray", ^{
         [[result should] equal:@[@[@1,@"1"], @[@2,@"2"]]];
     });
 
-    it(@"returns self if the receive is an array", ^{
+    it(@"returns self if the receiver is an array", ^{
         NSArray *orig = @[@1,@2];
         NSArray *result = orig.asArray;
         [[result should] beIdenticalTo:orig];
