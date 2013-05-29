@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EKEnumerable.h"
+#import "EKEnumerator.h"
 
 @interface NSObject (EKEnumerator)
 

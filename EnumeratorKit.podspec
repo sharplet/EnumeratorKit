@@ -10,16 +10,16 @@ Pod::Spec.new do |s|
 
   s.source_files = 'EnumeratorKit/EnumeratorKit.h'
 
-  s.default_subspec = 'EKEnumerable'
+  s.default_subspec = 'Core'
 
-  s.subspec 'EKEnumerable' do |e|
-    e.source_files = 'EnumeratorKit/Core', 'EnumeratorKit/PrivateHeaders'
+  s.subspec 'Core' do |e|
+    e.source_files = 'EnumeratorKit/Core'
 
     e.dependency 'EnumeratorKit/EKFiber'
   end
 
   s.subspec 'EKFiber' do |f|
-    f.source_files = 'EnumeratorKit/Fibers'
+    f.source_files = 'EnumeratorKit/EKFiber'
   end
 
   s.requires_arc = true
