@@ -1,6 +1,18 @@
 #import <Kiwi.h>
 #import "NSArray+EKEnumerable.h"
-#import "NSNumber+BinaryOperations.h"
+
+@interface NSNumber (BinaryOperations)
+- (instancetype)add:(NSNumber *)number;
+@end
+
+@implementation NSNumber (BinaryOperations)
+
+- (instancetype)add:(NSNumber *)number
+{
+    return @([self doubleValue] + [number doubleValue]);
+}
+
+@end
 
 SPEC_BEGIN(EKEnumerableSpec)
 
