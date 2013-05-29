@@ -140,11 +140,11 @@
     };
 }
 
-- (id<EKEnumerable>)inject:(SEL)binaryOperation
+- (id)inject:(SEL)binaryOperation
 {
     return [self inject:nil withOperation:binaryOperation];
 }
-- (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation
+- (id)inject:(id)initial withOperation:(SEL)binaryOperation
 {
     return [self reduce:initial withBlock:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
@@ -152,9 +152,9 @@
         );
     }];
 }
-- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject
+- (id (^)(id (^)(id memo, id obj)))inject
 {
-    return ^id<EKEnumerable>(id (^block)(id,id)) {
+    return ^id(id (^block)(id,id)) {
         return [self reduce:block];
     };
 }

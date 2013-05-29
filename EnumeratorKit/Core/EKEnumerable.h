@@ -36,9 +36,9 @@
 - (NSArray *)sortBy:(id (^)(id obj))block;
 - (NSArray * (^)(id (^)(id obj)))sortBy;
 
-- (id<EKEnumerable>)inject:(SEL)binaryOperation;
-- (id<EKEnumerable>)inject:(id)initial withOperation:(SEL)binaryOperation;
-- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject;
+- (id)inject:(SEL)binaryOperation;
+- (id)inject:(id)initial withOperation:(SEL)binaryOperation;
+- (id (^)(id (^)(id memo, id obj)))inject;
 
 - (id<EKEnumerable>)reduce:(id (^)(id memo, id obj))block;
 - (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
