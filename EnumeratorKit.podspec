@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.requires_arc = true
 
-  s.homepage     = 'http://github.com/sharplet/EnumeratorKit'
+  s.homepage     = 'https://github.com/sharplet/EnumeratorKit'
   s.license      = 'MIT'
   s.author       = { 'Adam Sharp' => 'adsharp@me.com' }
   s.source       = { :git => 'https://github.com/sharplet/EnumeratorKit.git', :tag => "#{s.version}" }
