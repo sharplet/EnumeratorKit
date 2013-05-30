@@ -6,34 +6,38 @@ EnumeratorKit is a collection enumeration library modelled after Ruby's
 It allows you to work with collections of objects in a very compact,
 expressive way:
 
-    #import <EnumeratorKit.h>
+```objc
+#import <EnumeratorKit.h>
 
-    // perform the block once for each element in the collection
-    @[ @1, @2, @3 ].each(^(id i){
-        NSLog(@"%@", i);
-    });
+// perform the block once for each element in the collection
+@[ @1, @2, @3 ].each(^(id i){
+    NSLog(@"%@", i);
+});
 
-    // return a new array with each element converted to a string
-    @[ @1, @2, @3 ].map(^(id i){
-        return [i stringValue];
-    });
+// return a new array with each element converted to a string
+@[ @1, @2, @3 ].map(^(id i){
+    return [i stringValue];
+});
+```
 
 Additionally, these operations can be chained together to form a
 higher-level operation:
 
-    @{ @"Hello": @"world", @"foo": @"BAR" }.sortBy(^(id p){
-        // sort entries by their keys, case insensitive
-        return [p[0] lowercaseString];
-    }).each(^(id i){
-        // log the result
-        NSLog(@"%@", i);
-    }).map(^(id p){
-        // combine each key-value pair into a new string
-        return [NSString stringWithFormat:@"%@ %@", p[0], p[1]];
-    }).filter(^(id p){
-        return [p[1] hasSuffix:@"orld"];
-    }).lastObject;
-    // => @"Hello world";
+```objc
+@{ @"Hello": @"world", @"foo": @"BAR" }.sortBy(^(id p){
+    // sort entries by their keys, case insensitive
+    return [p[0] lowercaseString];
+}).each(^(id i){
+    // log the result
+    NSLog(@"%@", i);
+}).map(^(id p){
+    // combine each key-value pair into a new string
+    return [NSString stringWithFormat:@"%@ %@", p[0], p[1]];
+}).filter(^(id p){
+    return [p[1] hasSuffix:@"orld"];
+}).lastObject;
+// => @"Hello world";
+```
 
 EnumeratorKit implements this functionality for all of the core
 collection classes (and their mutable counterparts): `NSArray`,
@@ -47,16 +51,18 @@ number of advantages over `NSEnumerator`, for example:
  - Implements the entire `EKEnumerable` API
  - Lazy enumeration over an infinite collection:
 
-        // you may have seen this in Ruby before
-        EKEnumerator *fib = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y){
-            int a = 1, b = 1;
-            while (1) { // infinite loop (!)
-                [y yield:@(a)];
-                NSUInteger next = a + b;
-                a = b; b = next;
-            }
-        }];
-        fib.take(10); // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
+```objc
+// you may have seen this in Ruby before
+EKEnumerator *fib = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y){
+    int a = 1, b = 1;
+    while (1) { // infinite loop (!)
+        [y yield:@(a)];
+        NSUInteger next = a + b;
+        a = b; b = next;
+    }
+}];
+fib.take(10); // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
+```
 
 
 ## Getting Started
@@ -65,11 +71,15 @@ number of advantages over `NSEnumerator`, for example:
 
 EnumeratorKit is available via [CocoaPods]. Add it to your `Podfile`:
 
-    pod 'EnumeratorKit', '~> 0.1.0'
+```ruby
+pod 'EnumeratorKit', '~> 0.1.0'
+```
 
 (And don't forget to `pod install`.) Then import the header:
 
-    #import <EnumeratorKit.h>
+```objc
+#import <EnumeratorKit.h>
+```
 
 Now you're ready to go.
 
@@ -90,7 +100,9 @@ Now you're ready to go.
 
 The `EKEnumerable` class defines an API of methods that are all based on one operation:
 
-    - (id<EKEnumerable)each:(void (^)(id obj))block;
+```objc
+- (id<EKEnumerable)each:(void (^)(id obj))block;
+```
 
 Different collection classes implement their own version of `-each:`,
 to define the order their elements should be traversed. For example, on
@@ -150,41 +162,47 @@ operations:
 You can very easily get the benefit of the entire `EKEnumerable` API in
 your own collection classes:
 
- 1. Adopt the `EKEnumerable` protocol in your class's public interface
+#### 1. Adopt the `EKEnumerable` protocol in your class's public interface
 
-        # import <EnumeratorKit.h>
-        @interface MyAwesomeCollection : NSObject <EKEnumerable>
-        ...
-        @end
+```objc
+# import <EnumeratorKit.h>
+@interface MyAwesomeCollection : NSObject <EKEnumerable>
+...
+@end
+```
 
- 2. In the implementation, override `+load` and `includeEKEnumerable`
+#### 2. In the implementation, override `+load` and `includeEKEnumerable`
 
-        + (void)load
-        {
-            [self includeEKEnumerable];
-        }
+```obc
++ (void)load
+{
+    [self includeEKEnumerable];
+}
+```
 
- 3. Implement `-each:`
+#### 3. Implement `-each:`
 
-        @implementation MyAwesomeCollection
-        .
-        .
-        .
-        - (id<EKEnumerable>)each:(void (^)(id))block
-        {
-            // hypothetical enumeration code
-            for (int i; i < self.length; i++) {
-                // call the block, passing in each element
-                block(self[i]);
-            }
+```objc
+@implementation MyAwesomeCollection
+.
+.
+.
+- (id<EKEnumerable>)each:(void (^)(id))block
+{
+    // hypothetical enumeration code
+    for (int i; i < self.length; i++) {
+        // call the block, passing in each element
+        block(self[i]);
+    }
 
-            // make sure you return self, to enable enumerator chaining
-            return self;
-        }
-        .
-        .
-        .
-        @end
+    // make sure you return self, to enable enumerator chaining
+    return self;
+}
+.
+.
+.
+@end
+```
 
 
 ## Function-style API
@@ -192,30 +210,34 @@ your own collection classes:
 Here is an implementation of `-sortBy:` using standard Objective-C
 message passing syntax:
 
-    // EKEnumerable.m
-    - (NSArray *)sortBy:(id (^)(id obj))block
-    {
-        return [[[self map:^(id i){
-            return @[block(i), i];
-        }] sort] map:^(id i){
-            return i[1];
-        }];
-    }
+```objc
+// EKEnumerable.m
+- (NSArray *)sortBy:(id (^)(id obj))block
+{
+    return [[[self map:^(id i){
+        return @[block(i), i];
+    }] sort] map:^(id i){
+        return i[1];
+    }];
+}
+```
 
 It doesn't take long for those square brackets to get a bit unwieldy.
 
 However, through an abuse of Objective-C's property syntax, this can be
 rewritten like so:
 
-    // the real implementation of -sortBy
-    - (NSArray *)sortBy:(id (^)(id obj))block
-    {
-        return self.map(^(id i){
-            return @[block(i), i];
-        }).sort.map(^(id a) {
-            return a[1];
-        });
-    }
+```objc
+// the real implementation of -sortBy
+- (NSArray *)sortBy:(id (^)(id obj))block
+{
+    return self.map(^(id i){
+        return @[block(i), i];
+    }).sort.map(^(id a) {
+        return a[1];
+    });
+}
+```
 
 ...that's still valid Objective-C --- it's just been cleaned up a bit.
 It's also a very natural way to work with method chains, as it doesn't
