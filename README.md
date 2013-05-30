@@ -1,4 +1,4 @@
-# EnumeratorKit --- Ruby-style enumeration in Objective-C
+# EnumeratorKit — Ruby-style enumeration in Objective-C
 
 EnumeratorKit is a collection enumeration library modelled after Ruby's
 `Enumerable` module and `Enumerator` class.
@@ -126,34 +126,35 @@ functionality just by implementing that method and mixing in
 ## Available methods
 
 Complete API documentation is coming! In the meantime, [the Kiwi
-tests][] provide a lot of useful examples. (If you're interested in
+tests][tests] provide a lot of useful examples. (If you're interested in
 reading more, I'd also recommend having a look at Ruby's [Enumerable
 docs][rb-enumerable].) Here's a whirlwhind tour of the supported
 operations:
 
- - `-each` --- perform the block once for each item in the collection
- - `-eachWithIndex` --- like `-each`, but with the current index passed
+ - `-each` — perform the block once for each item in the collection
+ - `-eachWithIndex` — like `-each`, but with the current index passed
    as a second argument to the block
- - `-asArray` --- get an array representation of any enumeration
- - `-take` --- get the specified number of elements from the beginning
+ - `-asArray` — get an array representation of any enumeration
+ - `-take` — get the specified number of elements from the beginning
    of the enumeration
- - `-map` --- create a new array with the results of applying the block
+ - `-map` — create a new array with the results of applying the block
    to each item in the collection
- - `-filter` --- create a new array with all the elements for which the
+ - `-filter` — create a new array with all the elements for which the
    block returns `YES`
- - `-find` --- return the first element for which the block returns
+ - `-find` — return the first element for which the block returns
    `YES`, or `nil`
- - `-sort` --- return a sorted array (items in the collection must
+ - `-sort` — return a sorted array (items in the collection must
    respond to `compare:`)
- - `-sortWith` --- like `-sort`, but allows you to specify an
+ - `-sortWith` — like `-sort`, but allows you to specify an
    `NSComparator`
- - `-sortBy` --- use the result of applying the block to each element
+ - `-sortBy` — use the result of applying the block to each element
    as sort keys for sorting the receiver
- - `-inject`/`-reduce` --- compute the result of "injecting" the binary
+ - `-inject`/`-reduce` — compute the result of "injecting" the binary
    operation or block between each item in the collection, e.g., to sum
    a list of numbers, or to build a new collection in an accumulator
    variable
 
+[tests]: https://github.com/sharplet/EnumeratorKit/tree/master/Tests
 [rb-enumerable]: http://ruby-doc.org/core-2.0/Enumerable.html "Enumerable | ruby-doc.org"
 
 
@@ -239,7 +240,7 @@ rewritten like so:
 }
 ```
 
-...that's still valid Objective-C --- it's just been cleaned up a bit.
+...that's still valid Objective-C — it's just been cleaned up a bit.
 It's also a very natural way to work with method chains, as it doesn't
 involve backtracking to insert square brackets when Xcode gets confused.
 
@@ -275,7 +276,7 @@ functionality. Special thanks to:
    Ruby][practicing-ruby]. This article heavily influenced the
    implementation of `EKEnumerable` and `EKEnumerator`.
  - [@alskipp][] for [his implementation of Fibers in
-   MacRuby][macruby-fibers] --- this really helped me tease out the
+   MacRuby][macruby-fibers] — this really helped me tease out the
    race conditions in `EKFiber`!
  - [ReactiveCocoa][] for bringing some functional goodness to
    Objective-C programming.
