@@ -170,7 +170,7 @@
         );
     }];
 }
-- (id (^)(id (^)(id memo, id obj)))inject
+- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject
 {
     return ^id(id (^block)(id,id)) {
         return [self reduce:block];

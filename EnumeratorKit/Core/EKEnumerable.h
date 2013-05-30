@@ -41,7 +41,7 @@
 
 - (id)inject:(SEL)binaryOperation;
 - (id)inject:(id)initial withOperation:(SEL)binaryOperation;
-- (id (^)(id (^)(id memo, id obj)))inject;
+- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject;
 
 - (id<EKEnumerable>)reduce:(id (^)(id memo, id obj))block;
 - (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
