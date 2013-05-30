@@ -47,6 +47,10 @@
     return self;
 }
 
++ (instancetype)new:(void (^)(id<EKYielder>))block
+{
+    return [[self alloc] initWithBlock:block];
+}
 + (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block
 {
     return [[self alloc] initWithBlock:block];

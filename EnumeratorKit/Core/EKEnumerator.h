@@ -18,6 +18,7 @@
 + (instancetype)enumeratorWithObject:(id)object;
 - (id)initWithObject:(id)object;
 
++ (instancetype)new:(void (^)(id<EKYielder> y))block;
 + (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block;
 - (id)initWithBlock:(void (^)(id<EKYielder> y))block;
 
