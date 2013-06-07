@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'http://github.com/sharplet/EnumeratorKit'
   s.license      = 'MIT'
   s.author       = { 'Adam Sharp' => 'adsharp@me.com' }
-  s.source       = { :git => 'https://github.com/sharplet/EnumeratorKit.git', :tag => "#{s.version}" }
+  s.source       = { :git => 'anzgit:EnumeratorKit.git', :tag => "#{s.version}" }
 
   s.source_files = 'EnumeratorKit/EnumeratorKit.h'
 
