@@ -50,6 +50,7 @@
 - (void)executeBlock;
 
 @property (nonatomic, copy) id (^block)(void);
+@property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
 @property (nonatomic, strong) NSString *label;
 
 @property (nonatomic) BOOL blockStarted;
@@ -94,6 +95,7 @@ static SerialOperationQueue *fibersQueue;
 + (void)removeFiber:(EKFiber *)fiber
 {
     [fibersQueue addOperationWithBlockAndWait:^{
+        [fiber.queue cancelAllOperations];
         [fibers removeObjectForKey:fiber.label];
     }];
 }
@@ -131,16 +133,23 @@ static SerialOperationQueue *fibersQueue;
 {
     self.blockStarted = YES;
 
-    [self.queue addOperationWithBlock:^{
-        self.blockResult = self.block();
-        self.blockStarted = NO;
+    __unsafe_unretained EKFiber *weakSelf = self;
+    NSBlockOperation *operation = [NSBlockOperation new];
+    [operation addExecutionBlock:^{
+        if (!self.blockOperation.isCancelled) {
+            weakSelf.blockResult = weakSelf.block();
+            weakSelf.blockStarted = NO;
 
-        // clean up
-        [EKFiber removeFiber:self];
-        self.block = nil;
+            // clean up
+            [EKFiber removeFiber:weakSelf];
+            weakSelf.block = nil;
 
-        dispatch_semaphore_signal(self.yieldSemaphore);
+            dispatch_semaphore_signal(weakSelf.yieldSemaphore);
+        }
     }];
+
+    self.blockOperation = operation;
+    [self.queue addOperation:self.blockOperation];
 }
 
 - (id)resume
@@ -165,11 +174,28 @@ static SerialOperationQueue *fibersQueue;
     return self.blockResult;
 }
 
+- (void)destroy
+{
+    [EKFiber removeFiber:self];
+}
+
 - (void)yield:(id)obj
 {
     self.blockResult = obj;
     dispatch_semaphore_signal(self.yieldSemaphore);
-    dispatch_semaphore_wait(self.resumeSemaphore, DISPATCH_TIME_FOREVER);
+
+    // wait until -resume is called, only as long as the fiber hasn't
+    // been cancelled
+    while (!self.blockOperation.isCancelled) {
+        double delayInSeconds = 0.02;
+        dispatch_time_t waitTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+
+        // if the semaphore is signalled, break out of the loop so that
+        // execution continues
+        if (!dispatch_semaphore_wait(self.resumeSemaphore, waitTime)) {
+            break;
+        }
+    }
 }
 
 - (BOOL)isAlive

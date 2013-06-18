@@ -128,8 +128,14 @@
 {
     // delete the fiber -- the iteration will be restarted next
     // time -next is called
+    [self.fiber destroy];
     self.fiber = nil;
     return self;
+}
+
+- (void)dealloc
+{
+    [self.fiber destroy];
 }
 
 @end
