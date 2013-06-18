@@ -41,22 +41,31 @@
 
 
 
+@interface EKNamedBlockOperation : NSBlockOperation
+@property (nonatomic, strong) NSString *name;
+@end
+
+@implementation EKNamedBlockOperation
+
+@end
+
+
+
 
 @interface EKFiber ()
 
-+ (NSString *)register:(EKFiber *)fiber;
++ (void)register:(EKFiber *)fiber;
 + (void)removeFiber:(EKFiber *)fiber;
 
 - (void)executeBlock;
 
 @property (nonatomic, copy) id (^block)(void);
-@property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
+@property (nonatomic, unsafe_unretained) EKNamedBlockOperation *blockOperation;
 @property (nonatomic, strong) NSString *label;
 
 @property (nonatomic) BOOL blockStarted;
 @property (nonatomic) id blockResult;
 
-@property (nonatomic) SerialOperationQueue *queue;
 @property (nonatomic) dispatch_semaphore_t resumeSemaphore;
 @property (nonatomic) dispatch_semaphore_t yieldSemaphore;
 
@@ -65,26 +74,30 @@
 @implementation EKFiber
 
 static NSMutableDictionary *fibers;
-static SerialOperationQueue *fibersQueue;
+static NSMutableDictionary *fiberThreads;
+static SerialOperationQueue *fiberSetupQueue;
+static NSOperationQueue *fiberExecutionQueue;
 
-+ (NSString *)register:(EKFiber *)fiber
++ (void)initialize
 {
     // fibersQueue synchronises fiber creation and deletion
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         fibers = [NSMutableDictionary new];
-        fibersQueue = [SerialOperationQueue new];
+        fiberSetupQueue = [SerialOperationQueue new];
+        fiberExecutionQueue = [SerialOperationQueue new];
     });
+}
 
++ (void)register:(EKFiber *)fiber
+{
     // register the new fiber
-    __block id label;
-    [fibersQueue addOperationWithBlockAndWait:^{
+    __weak NSThread *fiberThread = [NSThread currentThread];
+    [fiberSetupQueue addOperationWithBlockAndWait:^{
         static unsigned int fiberCounter = 0;
-        label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
-        fibers[label] = fiber;
+        fiber.label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
+        fibers[fiber.label] = fiber;
     }];
-
-    return label;
 }
 
 + (instancetype)current
@@ -94,8 +107,10 @@ static SerialOperationQueue *fibersQueue;
 
 + (void)removeFiber:(EKFiber *)fiber
 {
-    [fibersQueue addOperationWithBlockAndWait:^{
-        [fiber.queue cancelAllOperations];
+    [fiberSetupQueue addOperationWithBlockAndWait:^{
+        if (fiber.blockOperation.isExecuting) {
+            [fiber.blockOperation cancel];
+        }
         [fibers removeObjectForKey:fiber.label];
     }];
 }
@@ -113,16 +128,10 @@ static SerialOperationQueue *fibersQueue;
 - (id)initWithBlock:(id (^)(void))block
 {
     if (self = [super init]) {
-        // register with the global fiber list -- this synchronises
-        // fiber creation
-        _label = [EKFiber register:self];
-
         _block = [block copy];
         _blockStarted = NO;
 
-        // set up the fiber's queue and control semaphores
-        _queue = [SerialOperationQueue new];
-        _queue.name = self.label;
+        // set up the fiber's control semaphores
         _resumeSemaphore = dispatch_semaphore_create(0);
         _yieldSemaphore = dispatch_semaphore_create(0);
     }
@@ -134,9 +143,16 @@ static SerialOperationQueue *fibersQueue;
     self.blockStarted = YES;
 
     __unsafe_unretained EKFiber *weakSelf = self;
-    NSBlockOperation *operation = [NSBlockOperation new];
-    [operation addExecutionBlock:^{
-        if (!self.blockOperation.isCancelled) {
+    EKNamedBlockOperation *operation = [EKNamedBlockOperation new];
+    self.blockOperation = operation;
+
+    [self.blockOperation addExecutionBlock:^{
+        if (!weakSelf.blockOperation.isCancelled) {
+            // register with the global fiber list
+            [EKFiber register:weakSelf];
+            weakSelf.blockOperation.name = weakSelf.label;
+
+            // execute the block
             weakSelf.blockResult = weakSelf.block();
             weakSelf.blockStarted = NO;
 
@@ -148,8 +164,7 @@ static SerialOperationQueue *fibersQueue;
         }
     }];
 
-    self.blockOperation = operation;
-    [self.queue addOperation:self.blockOperation];
+    [fiberExecutionQueue addOperation:self.blockOperation];
 }
 
 - (id)resume
