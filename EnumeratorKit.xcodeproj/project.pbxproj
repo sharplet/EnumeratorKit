@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A20CDC8177C31D1004E510D /* EKSerialOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */; };
 		4A37C9AB17507B0B004A052E /* NSObjectIncludeEKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */; };
 		4AC073BB174AC561005FA8E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AC073C9174AC561005FA8E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */; };
@@ -55,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A20CDC6177C3169004E510D /* EKSerialOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EKSerialOperationQueue.h; sourceTree = "<group>"; };
+		4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSerialOperationQueue.m; sourceTree = "<group>"; };
 		4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectIncludeEKEnumerableSpec.m; sourceTree = "<group>"; };
 		4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -183,6 +186,8 @@
 			children = (
 				4AC073E2174AC6FB005FA8E5 /* EKFiber.h */,
 				4AC073E3174AC6FB005FA8E5 /* EKFiber.m */,
+				4A20CDC6177C3169004E510D /* EKSerialOperationQueue.h */,
+				4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */,
 			);
 			path = EKFiber;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				4AC073FC174ACCAF005FA8E5 /* EKEnumerator.m in Sources */,
 				4AD3D59317534ACD0050CE35 /* NSObject+EKEnumerator.m in Sources */,
 				4ACB2E061754161C009AC260 /* NSDictionary+EKEnumerable.m in Sources */,
+				4A20CDC8177C31D1004E510D /* EKSerialOperationQueue.m in Sources */,
 				4ACB2E0B17541B6E009AC260 /* NSSet+EKEnumerable.m in Sources */,
 				4ACB2E1017545532009AC260 /* NSOrderedSet+EKEnumerable.m in Sources */,
 			);

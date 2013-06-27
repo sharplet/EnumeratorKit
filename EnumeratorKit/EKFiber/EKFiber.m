@@ -7,40 +7,7 @@
 //
 
 #import "EKFiber.h"
-
-
-
-
-@interface SerialOperationQueue : NSOperationQueue
-- (void)addOperationWithBlockAndWait:(void (^)(void))block;
-@end
-
-@implementation SerialOperationQueue
-
-- (id)init
-{
-    if (self = [super init]) {
-        super.maxConcurrentOperationCount = 1;
-    }
-    return self;
-}
-
-- (void)setMaxConcurrentOperationCount:(NSInteger)cnt
-{
-    // no-op: queue must be a serial queue
-}
-
-- (void)addOperationWithBlockAndWait:(void (^)(void))block
-{
-    id operation = [NSBlockOperation blockOperationWithBlock:block];
-    [self addOperations:@[operation] waitUntilFinished:YES];
-}
-
-@end
-
-
-
-
+#import "EKSerialOperationQueue.h"
 
 @interface EKFiber ()
 
@@ -56,7 +23,7 @@
 @property (nonatomic) BOOL blockStarted;
 @property (nonatomic) id blockResult;
 
-@property (nonatomic) SerialOperationQueue *queue;
+@property (nonatomic) EKSerialOperationQueue *queue;
 @property (nonatomic) dispatch_semaphore_t resumeSemaphore;
 @property (nonatomic) dispatch_semaphore_t yieldSemaphore;
 
@@ -65,7 +32,7 @@
 @implementation EKFiber
 
 static NSMutableDictionary *fibers;
-static SerialOperationQueue *fibersQueue;
+static EKSerialOperationQueue *fibersQueue;
 
 + (NSString *)register:(EKFiber *)fiber
 {
@@ -73,7 +40,7 @@ static SerialOperationQueue *fibersQueue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         fibers = [NSMutableDictionary new];
-        fibersQueue = [SerialOperationQueue new];
+        fibersQueue = [EKSerialOperationQueue new];
     });
 
     // register the new fiber
@@ -121,7 +88,7 @@ static SerialOperationQueue *fibersQueue;
         _blockStarted = NO;
 
         // set up the fiber's queue and control semaphores
-        _queue = [SerialOperationQueue new];
+        _queue = [EKSerialOperationQueue new];
         _queue.name = self.label;
         _resumeSemaphore = dispatch_semaphore_create(0);
         _yieldSemaphore = dispatch_semaphore_create(0);
