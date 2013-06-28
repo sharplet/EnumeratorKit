@@ -12,6 +12,12 @@ describe(@"EKSemaphore", ^{
         queue = [NSOperationQueue new];
     });
 
+    describe(@"-init", ^{
+        specify(^{
+            [[theValue([EKSemaphore new].value) should] equal:theValue(0)];
+        });
+    });
+
     it(@"resumes execution when signalled", ^{
         __block NSNumber *executionState = @0;
         [queue addOperationWithBlock:^{

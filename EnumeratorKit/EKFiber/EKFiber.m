@@ -7,6 +7,7 @@
 //
 
 #import "EKFiber.h"
+#import "EKSemaphore.h"
 #import "EKSerialOperationQueue.h"
 
 @interface EKFiber ()
@@ -23,9 +24,9 @@
 @property (nonatomic) BOOL blockStarted;
 @property (nonatomic) id blockResult;
 
-@property (nonatomic) EKSerialOperationQueue *queue;
-@property (nonatomic) dispatch_semaphore_t resumeSemaphore;
-@property (nonatomic) dispatch_semaphore_t yieldSemaphore;
+@property (nonatomic, strong) EKSerialOperationQueue *queue;
+@property (nonatomic, strong) EKSemaphore *resumeSemaphore;
+@property (nonatomic, strong) EKSemaphore *yieldSemaphore;
 
 @end
 
@@ -90,8 +91,8 @@ static EKSerialOperationQueue *fibersQueue;
         // set up the fiber's queue and control semaphores
         _queue = [EKSerialOperationQueue new];
         _queue.name = self.label;
-        _resumeSemaphore = dispatch_semaphore_create(0);
-        _yieldSemaphore = dispatch_semaphore_create(0);
+        _resumeSemaphore = [EKSemaphore new];
+        _yieldSemaphore = [EKSemaphore new];
     }
     return self;
 }
@@ -111,7 +112,7 @@ static EKSerialOperationQueue *fibersQueue;
             [EKFiber removeFiber:weakSelf];
             weakSelf.block = nil;
 
-            dispatch_semaphore_signal(weakSelf.yieldSemaphore);
+            [weakSelf.yieldSemaphore signal];
         }
     }];
 
@@ -129,7 +130,7 @@ static EKSerialOperationQueue *fibersQueue;
     else {
         // if the block has started, resume it, otherwise start executing it
         if (self.blockStarted) {
-            dispatch_semaphore_signal(self.resumeSemaphore); // fiber queue resumes
+            [self.resumeSemaphore signal]; // fiber queue resumes
         }
         else {
             [self executeBlock];
@@ -137,7 +138,7 @@ static EKSerialOperationQueue *fibersQueue;
     }
 
     // wait until the fiber finishes or yields and return the result
-    dispatch_semaphore_wait(self.yieldSemaphore, DISPATCH_TIME_FOREVER);
+    [self.yieldSemaphore wait];
     return self.blockResult;
 }
 
@@ -149,17 +150,15 @@ static EKSerialOperationQueue *fibersQueue;
 - (void)yield:(id)obj
 {
     self.blockResult = obj;
-    dispatch_semaphore_signal(self.yieldSemaphore);
+    [self.yieldSemaphore signal];
 
     // wait until -resume is called, only as long as the fiber hasn't
     // been cancelled
     while (!self.blockOperation.isCancelled) {
-        double delayInSeconds = 0.02;
-        dispatch_time_t waitTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
 
         // if the semaphore is signalled, break out of the loop so that
         // execution continues
-        if (!dispatch_semaphore_wait(self.resumeSemaphore, waitTime)) {
+        if ([self.resumeSemaphore waitForTimeInterval:0.02]) {
             break;
         }
     }
@@ -168,12 +167,6 @@ static EKSerialOperationQueue *fibersQueue;
 - (BOOL)isAlive
 {
     return !!self.block;
-}
-
-- (void)dealloc
-{
-    dispatch_release(_resumeSemaphore);
-    dispatch_release(_yieldSemaphore);
 }
 
 @end
