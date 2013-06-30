@@ -78,7 +78,7 @@ static EKSerialOperationQueue *fibersQueue;
     return [[EKFiber alloc] initWithBlock:block];
 }
 
-- (id)initWithBlock:(id (^)(void))block
+- (instancetype)initWithBlock:(id (^)(void))block
 {
     if (self = [super init]) {
         // register with the global fiber list -- this synchronises

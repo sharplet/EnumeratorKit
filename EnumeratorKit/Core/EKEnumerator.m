@@ -30,7 +30,7 @@
 {
     return [[EKEnumerator alloc] initWithObject:object];
 }
-- (id)initWithObject:(id)object
+- (instancetype)initWithObject:(id)object
 {
     if ([object respondsToSelector:@selector(each:)]) {
         self = [self initWithBlock:^(id<EKYielder> y) {
@@ -55,7 +55,7 @@
 {
     return [[self alloc] initWithBlock:block];
 }
-- (id)initWithBlock:(void (^)(id<EKYielder> y))block
+- (instancetype)initWithBlock:(void (^)(id<EKYielder> y))block
 {
     if (self = [super init]) {
         _block = [block copy];

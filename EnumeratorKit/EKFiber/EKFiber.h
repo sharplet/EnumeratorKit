@@ -11,7 +11,7 @@
 @interface EKFiber : NSObject
 
 + (instancetype)fiberWithBlock:(id (^)(void))block;
-- (id)initWithBlock:(id (^)(void))block;
+- (instancetype)initWithBlock:(id (^)(void))block;
 
 + (instancetype)current;
 + (void)yield:(id)obj;
