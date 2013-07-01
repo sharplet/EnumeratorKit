@@ -60,7 +60,7 @@ describe(@"-eachWithIndex", ^{
             }];
 
             [[objects should] equal:@[@"foo",@"bar",@"baz"]];
-            [[indexes should] equal:@[@1,@2,@3]];
+            [[indexes should] equal:@[@0,@1,@2]];
         });
 
     });
@@ -75,7 +75,7 @@ describe(@"-eachWithIndex", ^{
             });
 
             [[objects should] equal:@[@"foo",@"bar",@"baz"]];
-            [[indexes should] equal:@[@1,@2,@3]];
+            [[indexes should] equal:@[@0,@1,@2]];
         });
 
     });
