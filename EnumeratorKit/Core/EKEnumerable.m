@@ -43,7 +43,7 @@
 {
     __block NSUInteger i = 0;
     [self each:^(id obj) {
-        block(obj, ++i);
+        block(obj, i++);
     }];
     return self;
 }
