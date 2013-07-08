@@ -50,26 +50,19 @@ describe(@"EKSemaphore", ^{
         [[expectFutureValue(theValue(waitSuccess)) shouldEventually] beYes];
     });
 
-    it(@"allows multiple threads to wait", ^{
+    it(@"blocks when the semaphore count is exceeded", ^{
         EKSemaphore *countedSem = [EKSemaphore semaphoreWithValue:2];
 
-        NSMutableArray *startedFlags = @[@NO, @NO, @NO].mutableCopy;
         NSMutableArray *finishedFlags = @[@NO, @NO, @NO].mutableCopy;
-        [queue addOperationWithBlock:^{
-            startedFlags[0] = @YES;
+        NSOperation *firstOperation = [NSBlockOperation blockOperationWithBlock:^{
             [countedSem wait];
             finishedFlags[0] = @YES;
         }];
-        [queue addOperationWithBlock:^{
-            startedFlags[1] = @YES;
+        NSOperation *secondOperation = [NSBlockOperation blockOperationWithBlock:^{
             [countedSem wait];
             finishedFlags[1] = @YES;
         }];
-
         NSOperation *thirdOperation = [NSBlockOperation blockOperationWithBlock:^{
-            startedFlags[2] = @YES;
-            [[startedFlags should] equal:@[@YES, @YES, @YES]];
-
             // as the semaphore value is 2, this will block until the
             // semaphore is signalled
             [countedSem wait];
@@ -81,10 +74,13 @@ describe(@"EKSemaphore", ^{
             [countedSem signal];
             [countedSem signal];
         }];
-        [queue addOperation:thirdOperation];
+
+        [firstOperation start];
+        [secondOperation start];
+        [queue addOperation:thirdOperation]; // execute the third operation asynchronously
 
         // wait here until the third operation starts executing
-        while (!thirdOperation.isExecuting) continue;
+        [[expectFutureValue(theValue(thirdOperation.isExecuting)) shouldEventually] beYes];
 
         // third operation has now started, but will not finish until
         // the semaphore is signalled
