@@ -20,6 +20,18 @@ describe(@"-initWithObject", ^{
 
 });
 
+describe(@"+new:", ^{
+
+    it(@"creates a new enumerator using the block", ^{
+        EKEnumerator *e = [EKEnumerator new:^(id<EKYielder> y) {
+            [y yield:@"Hello, world"];
+        }];
+        [e shouldNotBeNil];
+        [[e.next should] equal:@"Hello, world"];
+    });
+
+});
+
 describe(@"-each", ^{
 
     it(@"doesn't consume an external iteration", ^{

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'EnumeratorKit'
-  s.version      = '0.1'
+  s.version      = '0.1.1'
 
   s.summary      = 'Ruby-style enumeration in Objective-C.'
   s.description  = <<-EOS
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.requires_arc = true
 
-  s.homepage     = 'http://github.com/sharplet/EnumeratorKit'
+  s.homepage     = 'https://github.com/sharplet/EnumeratorKit'
   s.license      = 'MIT'
   s.author       = { 'Adam Sharp' => 'adsharp@me.com' }
   s.source       = { :git => 'anzgit:EnumeratorKit.git', :tag => "#{s.version}" }

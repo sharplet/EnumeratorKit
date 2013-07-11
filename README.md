@@ -72,7 +72,7 @@ fib.take(10); // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
 EnumeratorKit is available via [CocoaPods]. Add it to your `Podfile`:
 
 ```ruby
-pod 'EnumeratorKit', '~> 0.1.0'
+pod 'EnumeratorKit', '~> 0.1.1'
 ```
 
 (And don't forget to `pod install`.) Then import the header:

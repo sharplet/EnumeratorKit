@@ -7,40 +7,8 @@
 //
 
 #import "EKFiber.h"
-
-
-
-
-@interface SerialOperationQueue : NSOperationQueue
-- (void)addOperationWithBlockAndWait:(void (^)(void))block;
-@end
-
-@implementation SerialOperationQueue
-
-- (id)init
-{
-    if (self = [super init]) {
-        super.maxConcurrentOperationCount = 1;
-    }
-    return self;
-}
-
-- (void)setMaxConcurrentOperationCount:(NSInteger)cnt
-{
-    // no-op: queue must be a serial queue
-}
-
-- (void)addOperationWithBlockAndWait:(void (^)(void))block
-{
-    id operation = [NSBlockOperation blockOperationWithBlock:block];
-    [self addOperations:@[operation] waitUntilFinished:YES];
-}
-
-@end
-
-
-
-
+#import "EKSemaphore.h"
+#import "EKSerialOperationQueue.h"
 
 @interface EKFiber ()
 
@@ -50,21 +18,22 @@
 - (void)executeBlock;
 
 @property (nonatomic, copy) id (^block)(void);
+@property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
 @property (nonatomic, strong) NSString *label;
 
 @property (nonatomic) BOOL blockStarted;
 @property (nonatomic) id blockResult;
 
-@property (nonatomic) SerialOperationQueue *queue;
-@property (nonatomic) dispatch_semaphore_t resumeSemaphore;
-@property (nonatomic) dispatch_semaphore_t yieldSemaphore;
+@property (nonatomic, strong) EKSerialOperationQueue *queue;
+@property (nonatomic, strong) EKSemaphore *resumeSemaphore;
+@property (nonatomic, strong) EKSemaphore *yieldSemaphore;
 
 @end
 
 @implementation EKFiber
 
 static NSMutableDictionary *fibers;
-static SerialOperationQueue *fibersQueue;
+static EKSerialOperationQueue *fibersQueue;
 
 + (NSString *)register:(EKFiber *)fiber
 {
@@ -72,7 +41,7 @@ static SerialOperationQueue *fibersQueue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         fibers = [NSMutableDictionary new];
-        fibersQueue = [SerialOperationQueue new];
+        fibersQueue = [EKSerialOperationQueue new];
     });
 
     // register the new fiber
@@ -94,6 +63,7 @@ static SerialOperationQueue *fibersQueue;
 + (void)removeFiber:(EKFiber *)fiber
 {
     [fibersQueue addOperationWithBlockAndWait:^{
+        [fiber.queue cancelAllOperations];
         [fibers removeObjectForKey:fiber.label];
     }];
 }
@@ -108,7 +78,7 @@ static SerialOperationQueue *fibersQueue;
     return [[EKFiber alloc] initWithBlock:block];
 }
 
-- (id)initWithBlock:(id (^)(void))block
+- (instancetype)initWithBlock:(id (^)(void))block
 {
     if (self = [super init]) {
         // register with the global fiber list -- this synchronises
@@ -119,10 +89,10 @@ static SerialOperationQueue *fibersQueue;
         _blockStarted = NO;
 
         // set up the fiber's queue and control semaphores
-        _queue = [SerialOperationQueue new];
+        _queue = [EKSerialOperationQueue new];
         _queue.name = self.label;
-        _resumeSemaphore = dispatch_semaphore_create(0);
-        _yieldSemaphore = dispatch_semaphore_create(0);
+        _resumeSemaphore = [EKSemaphore new];
+        _yieldSemaphore = [EKSemaphore new];
     }
     return self;
 }
@@ -131,16 +101,23 @@ static SerialOperationQueue *fibersQueue;
 {
     self.blockStarted = YES;
 
-    [self.queue addOperationWithBlock:^{
-        self.blockResult = self.block();
-        self.blockStarted = NO;
+    __unsafe_unretained EKFiber *weakSelf = self;
+    NSBlockOperation *operation = [NSBlockOperation new];
+    [operation addExecutionBlock:^{
+        if (!self.blockOperation.isCancelled) {
+            weakSelf.blockResult = weakSelf.block();
+            weakSelf.blockStarted = NO;
 
-        // clean up
-        [EKFiber removeFiber:self];
-        self.block = nil;
+            // clean up
+            [EKFiber removeFiber:weakSelf];
+            weakSelf.block = nil;
 
-        dispatch_semaphore_signal(self.yieldSemaphore);
+            [weakSelf.yieldSemaphore signal];
+        }
     }];
+
+    self.blockOperation = operation;
+    [self.queue addOperation:self.blockOperation];
 }
 
 - (id)resume
@@ -153,7 +130,7 @@ static SerialOperationQueue *fibersQueue;
     else {
         // if the block has started, resume it, otherwise start executing it
         if (self.blockStarted) {
-            dispatch_semaphore_signal(self.resumeSemaphore); // fiber queue resumes
+            [self.resumeSemaphore signal]; // fiber queue resumes
         }
         else {
             [self executeBlock];
@@ -161,26 +138,35 @@ static SerialOperationQueue *fibersQueue;
     }
 
     // wait until the fiber finishes or yields and return the result
-    dispatch_semaphore_wait(self.yieldSemaphore, DISPATCH_TIME_FOREVER);
+    [self.yieldSemaphore wait];
     return self.blockResult;
+}
+
+- (void)destroy
+{
+    [EKFiber removeFiber:self];
 }
 
 - (void)yield:(id)obj
 {
     self.blockResult = obj;
-    dispatch_semaphore_signal(self.yieldSemaphore);
-    dispatch_semaphore_wait(self.resumeSemaphore, DISPATCH_TIME_FOREVER);
+    [self.yieldSemaphore signal];
+
+    // wait until -resume is called, only as long as the fiber hasn't
+    // been cancelled
+    while (!self.blockOperation.isCancelled) {
+
+        // if the semaphore is signalled, break out of the loop so that
+        // execution continues
+        if ([self.resumeSemaphore waitForTimeInterval:0.02]) {
+            break;
+        }
+    }
 }
 
 - (BOOL)isAlive
 {
     return !!self.block;
-}
-
-- (void)dealloc
-{
-    dispatch_release(_resumeSemaphore);
-    dispatch_release(_yieldSemaphore);
 }
 
 @end

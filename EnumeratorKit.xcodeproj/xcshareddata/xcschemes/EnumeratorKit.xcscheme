@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0460"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14335F4D1B31495FA1F639D7"
+               BlueprintIdentifier = "1D8616F1BD7942D89372DB9C"
                BuildableName = "libPods-EnumeratorKitTests.a"
                BlueprintName = "Pods-EnumeratorKitTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">

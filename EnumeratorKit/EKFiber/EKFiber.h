@@ -11,12 +11,13 @@
 @interface EKFiber : NSObject
 
 + (instancetype)fiberWithBlock:(id (^)(void))block;
-- (id)initWithBlock:(id (^)(void))block;
+- (instancetype)initWithBlock:(id (^)(void))block;
 
 + (instancetype)current;
 + (void)yield:(id)obj;
 
 - (id)resume;
+- (void)destroy;
 
 @property (nonatomic, readonly) BOOL isAlive;
 @property (nonatomic, readonly) NSString *label;

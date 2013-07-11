@@ -30,7 +30,7 @@
 {
     return [[EKEnumerator alloc] initWithObject:object];
 }
-- (id)initWithObject:(id)object
+- (instancetype)initWithObject:(id)object
 {
     if ([object respondsToSelector:@selector(each:)]) {
         self = [self initWithBlock:^(id<EKYielder> y) {
@@ -47,11 +47,15 @@
     return self;
 }
 
++ (instancetype)new:(void (^)(id<EKYielder>))block
+{
+    return [[self alloc] initWithBlock:block];
+}
 + (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block
 {
     return [[self alloc] initWithBlock:block];
 }
-- (id)initWithBlock:(void (^)(id<EKYielder> y))block
+- (instancetype)initWithBlock:(void (^)(id<EKYielder> y))block
 {
     if (self = [super init]) {
         _block = [block copy];
@@ -124,8 +128,14 @@
 {
     // delete the fiber -- the iteration will be restarted next
     // time -next is called
+    [self.fiber destroy];
     self.fiber = nil;
     return self;
+}
+
+- (void)dealloc
+{
+    [self.fiber destroy];
 }
 
 @end
