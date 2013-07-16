@@ -215,6 +215,60 @@ describe(@"-filter", ^{
 
 });
 
+describe(@"-chunk", ^{
+
+    context(@"message style", ^{
+
+        it(@"groups items by the return value of the block", ^{
+            NSArray *numbers = @[@3, @1, @4, @1, @5, @9, @2, @6, @5, @3, @5];
+            NSDictionary *expectedResult = @{
+                @NO: @[@3, @1, @1, @5, @9, @5, @3, @5],
+                @YES: @[@4, @2, @6]
+            };
+
+            [[[numbers chunk:^id<NSCopying>(id obj) {
+                return @([obj integerValue] % 2 == 0); // @YES if even, otherwise @NO
+            }] should] equal:expectedResult];
+        });
+
+        it(@"uses [NSNull null] as the key when the block returns nil", ^{
+            [[[@[@1, @2, @3] chunk:^id<NSCopying>(id obj) {
+                return [obj isEqual:@1] ? @"1" : nil;
+            }] should] equal:@{
+                @"1": @[@1],
+                [NSNull null]: @[@2, @3]
+            }];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"groups items by the return value of the block", ^{
+            NSArray *numbers = @[@3, @1, @4, @1, @5, @9, @2, @6, @5, @3, @5];
+            NSDictionary *expectedResult = @{
+                @NO: @[@3, @1, @1, @5, @9, @5, @3, @5],
+                @YES: @[@4, @2, @6]
+            };
+
+            [[numbers.chunk(^id<NSCopying>(id obj) {
+                return @([obj integerValue] % 2 == 0); // @YES if even, otherwise @NO
+            }) should] equal:expectedResult];
+        });
+
+        it(@"uses [NSNull null] as the key when the block returns nil", ^{
+            [[@[@1, @2, @3].chunk(^id<NSCopying>(id obj) {
+                return [obj isEqual:@1] ? @"1" : nil;
+            }) should] equal:@{
+                @"1": @[@1],
+                [NSNull null]: @[@2, @3]
+            }];
+        });
+
+    });
+
+});
+
 describe(@"-sort", ^{
 
     it(@"sorts elements that respond to -compare:", ^{
