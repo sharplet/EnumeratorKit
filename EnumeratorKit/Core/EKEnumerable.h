@@ -47,6 +47,9 @@
 - (NSDictionary *)chunk:(id<NSCopying> (^)(id obj))block;
 - (NSDictionary * (^)(id<NSCopying> (^)(id obj)))chunk;
 
+- (NSArray *)select:(BOOL (^)(id obj))block;
+- (NSArray * (^)(BOOL (^)(id obj)))select;
+
 - (NSArray *)filter:(BOOL (^)(id obj))block;
 - (NSArray * (^)(BOOL (^)(id obj)))filter;
 

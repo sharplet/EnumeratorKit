@@ -189,6 +189,32 @@ describe(@"-map", ^{
 
 });
 
+describe(@"-select", ^{
+
+    context(@"message style", ^{
+
+        it(@"selects the matching items from the enumerable", ^{
+            id result = [@[@1,@2,@3] select:^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            }];
+            [[result should] equal:@[@2]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"selects the matching items from the enumerable", ^{
+            id result = @[@1,@2,@3].select(^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            });
+            [[result should] equal:@[@2]];
+        });
+
+    });
+
+});
+
 describe(@"-filter", ^{
 
     context(@"message style", ^{

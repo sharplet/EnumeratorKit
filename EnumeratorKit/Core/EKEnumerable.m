@@ -118,7 +118,7 @@
     };
 }
 
-- (NSArray *)filter:(BOOL (^)(id))block
+- (NSArray *)select:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -126,7 +126,19 @@
             [result addObject:obj];
         }
     }];
-    return result;
+    return [result copy];
+}
+
+- (NSArray *(^)(BOOL (^)(id)))select
+{
+    return ^NSArray *(BOOL (^block)(id)) {
+        return [self select:block];
+    };
+}
+
+- (NSArray *)filter:(BOOL (^)(id))block
+{
+    return [self select:block];
 }
 - (NSArray * (^)(BOOL (^)(id)))filter
 {
@@ -250,6 +262,9 @@
 }
 
 @end
+
+
+#pragma mark -
 
 @implementation NSObject (includeEKEnumerable)
 
