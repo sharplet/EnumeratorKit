@@ -14,6 +14,7 @@ typedef void (^EKIndexedVisitor)(id obj, NSUInteger i);
 typedef BOOL (^EKPredicate)(id obj);
 typedef id (^EKMapping)(id obj);
 typedef id<NSCopying> (^EKKeyMapping)(id obj);
+typedef NSDictionary * (^EKEntryMapping)(id obj);
 
 
 @protocol EKEnumerable <NSObject>
@@ -33,6 +34,16 @@ typedef id<NSCopying> (^EKKeyMapping)(id obj);
 
 - (NSArray *)map:(EKMapping)block;
 - (NSArray * (^)(EKMapping))map;
+
+/**
+ `mapDictionary:` behaves just like `map:` except that it returns an
+ `NSDictionary` instead of an `NSArray`.
+
+ @param block A block that maps objects to entries. The dictionary returned
+     by this block must not contain more than a single entry.
+ */
+- (NSDictionary *)mapDictionary:(EKEntryMapping)block;
+- (NSDictionary * (^)(EKEntryMapping))mapDictionary;
 
 /**
  Applies the block to each item in the collection, using the result as

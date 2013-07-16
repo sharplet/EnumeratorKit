@@ -93,6 +93,25 @@
     };
 }
 
+- (NSDictionary *)mapDictionary:(EKEntryMapping)block
+{
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [self each:^(id obj) {
+        NSDictionary *entry = block(obj);
+        NSAssert([entry count] <= 1, @"Expected a dictionary with no more than 1 entry (%d entries)", [entry count]);
+
+        [dict addEntriesFromDictionary:entry];
+    }];
+    return [dict copy];
+}
+
+- (NSDictionary * (^)(EKEntryMapping))mapDictionary
+{
+    return ^NSDictionary *(EKEntryMapping block){
+        return [self mapDictionary:block];
+    };
+}
+
 - (NSDictionary *)chunk:(EKKeyMapping)block
 {
     NSMutableDictionary *chunks = [NSMutableDictionary new];

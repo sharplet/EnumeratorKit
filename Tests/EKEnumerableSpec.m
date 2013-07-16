@@ -189,6 +189,58 @@ describe(@"-map", ^{
 
 });
 
+describe(@"-mapDictionary", ^{
+
+    context(@"message style", ^{
+
+        it(@"uses the mapped entries to construct a dictionary", ^{
+            [[[@[@1, @2, @3] mapDictionary:^NSDictionary *(id obj) {
+                return @{obj: [obj stringValue]};
+            }] should] equal:@{
+                @1: @"1",
+                @2: @"2",
+                @3: @"3"
+            }];
+        });
+
+        it(@"raises an exception if the dictionary has more than one entry", ^{
+            [[theBlock(^{
+                [@[@"foo"] mapDictionary:^(id i){ return @{@1: @"1", @2: @"2", @3: @"3"}; }];
+            }) should] raise];
+        });
+
+        it(@"skips entries that are nil or empty", ^{
+            [[[@[@"foobar", @1234, [NSObject new]] mapDictionary:^NSDictionary *(id obj){
+                if ([obj isKindOfClass:[NSNumber class]]) {
+                    return @{obj: [obj stringValue]};
+                }
+                else if ([obj isKindOfClass:[NSString class]]) {
+                    return @{};
+                }
+                else {
+                    return nil;
+                }
+            }] should] equal:@{ @1234: @"1234" }];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"uses the mapped entries to construct a dictionary", ^{
+            [[@[@1, @2, @3].mapDictionary(^NSDictionary *(id obj) {
+                return @{obj: [obj stringValue]};
+            }) should] equal:@{
+                @1: @"1",
+                @2: @"2",
+                @3: @"3"
+            }];
+        });
+
+    });
+
+});
+
 describe(@"-select", ^{
 
     context(@"message style", ^{
