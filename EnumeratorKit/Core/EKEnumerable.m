@@ -27,19 +27,19 @@
     [NSOrderedSet includeEKEnumerable];
 }
 
-- (id<EKEnumerable>)each:(void (^)(id obj))block
+- (id<EKEnumerable>)each:(EKVisitor)block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
 }
-- (id<EKEnumerable> (^)(void (^)(id obj)))each
+- (id<EKEnumerable> (^)(EKVisitor))each
 {
-    return ^id<EKEnumerable>(void (^block)(id obj)) {
+    return ^id<EKEnumerable>(EKVisitor block) {
         return [self each:block];
     };
 }
 
-- (id<EKEnumerable>)eachWithIndex:(void (^)(id, NSUInteger))block
+- (id<EKEnumerable>)eachWithIndex:(EKIndexedVisitor)block
 {
     __block NSUInteger i = 0;
     [self each:^(id obj) {
@@ -47,9 +47,9 @@
     }];
     return self;
 }
-- (id<EKEnumerable> (^)(void (^)(id, NSUInteger)))eachWithIndex
+- (id<EKEnumerable> (^)(EKIndexedVisitor))eachWithIndex
 {
-    return ^id<EKEnumerable>(void (^block)(id, NSUInteger)) {
+    return ^id<EKEnumerable>(EKIndexedVisitor block) {
         return [self eachWithIndex:block];
     };
 }
@@ -77,7 +77,7 @@
     };
 }
 
-- (NSArray *)map:(id (^)(id))block
+- (NSArray *)map:(EKMapping)block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -86,14 +86,14 @@
     }];
     return result;
 }
-- (NSArray * (^)(id (^)(id)))map
+- (NSArray * (^)(EKMapping))map
 {
-    return ^NSArray *(id (^block)(id obj)) {
+    return ^NSArray *(EKMapping block) {
         return [self map:block];
     };
 }
 
-- (NSDictionary *)chunk:(id<NSCopying> (^)(id))block
+- (NSDictionary *)chunk:(EKKeyMapping)block
 {
     NSMutableDictionary *chunks = [NSMutableDictionary new];
     [self each:^(id obj) {
@@ -111,14 +111,14 @@
     return [[NSDictionary alloc] initWithDictionary:chunks copyItems:YES];
 }
 
-- (NSDictionary *(^)(id<NSCopying> (^)(id)))chunk
+- (NSDictionary *(^)(EKKeyMapping))chunk
 {
-    return ^NSDictionary *(id<NSCopying> (^block)(id)){
+    return ^NSDictionary *(EKKeyMapping block){
         return [self chunk:block];
     };
 }
 
-- (NSArray *)select:(BOOL (^)(id))block
+- (NSArray *)select:(EKPredicate)block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -129,20 +129,20 @@
     return [result copy];
 }
 
-- (NSArray *(^)(BOOL (^)(id)))select
+- (NSArray *(^)(EKPredicate))select
 {
-    return ^NSArray *(BOOL (^block)(id)) {
+    return ^NSArray *(EKPredicate block) {
         return [self select:block];
     };
 }
 
-- (NSArray *)filter:(BOOL (^)(id))block
+- (NSArray *)filter:(EKPredicate)block
 {
     return [self select:block];
 }
-- (NSArray * (^)(BOOL (^)(id)))filter
+- (NSArray * (^)(EKPredicate))filter
 {
-    return ^NSArray *(BOOL (^block)(id)) {
+    return ^NSArray *(EKPredicate block) {
         return [self filter:block];
     };
 }
@@ -162,7 +162,7 @@
     };
 }
 
-- (NSArray *)sortBy:(id (^)(id))block
+- (NSArray *)sortBy:(EKMapping)block
 {
     return self.map(^(id i){
         return @[block(i), i];
@@ -170,14 +170,14 @@
         return a[1];
     });
 }
-- (NSArray *(^)(id (^)(id)))sortBy
+- (NSArray *(^)(EKMapping))sortBy
 {
-    return ^NSArray *(id (^block)(id)) {
+    return ^NSArray *(EKMapping block) {
         return [self sortBy:block];
     };
 }
 
-- (id)find:(BOOL (^)(id))block
+- (id)find:(EKPredicate)block
 {
     id next;
     EKEnumerator *e = self.asEnumerator;
@@ -188,9 +188,9 @@
     }
     return nil;
 }
-- (id (^)(BOOL (^)(id)))find
+- (id (^)(EKPredicate))find
 {
-    return ^id(BOOL (^block)(id)) {
+    return ^id(EKPredicate block) {
         return [self find:block];
     };
 }
