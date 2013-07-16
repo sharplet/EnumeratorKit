@@ -147,6 +147,24 @@
     };
 }
 
+- (NSArray *)reject:(EKPredicate)block
+{
+    NSMutableArray * result = [NSMutableArray array];
+    [self each:^(id obj) {
+        if (!block(obj)) {
+            [result addObject:obj];
+        }
+    }];
+    return [result copy];
+}
+
+- (NSArray *(^)(EKPredicate))reject
+{
+    return ^NSArray *(EKPredicate block){
+        return [self reject:block];
+    };
+}
+
 - (NSArray *)sort
 {
     return [self.asArray sortedArrayUsingSelector:@selector(compare:)];

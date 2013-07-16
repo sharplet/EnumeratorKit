@@ -61,6 +61,9 @@ typedef id<NSCopying> (^EKKeyMapping)(id obj);
 - (NSArray *)filter:(EKPredicate)block;
 - (NSArray * (^)(EKPredicate))filter;
 
+- (NSArray *)reject:(EKPredicate)block;
+- (NSArray * (^)(EKPredicate))reject;
+
 - (NSArray *)sort;
 - (NSArray *)sortWith:(NSComparator)comparator;
 - (NSArray * (^)(NSComparator))sortWith;

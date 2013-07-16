@@ -241,6 +241,32 @@ describe(@"-filter", ^{
 
 });
 
+describe(@"-reject", ^{
+
+    context(@"message style", ^{
+
+        it(@"removes matching items from the enumerable", ^{
+            id result = [@[@1,@2,@3] reject:^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            }];
+            [[result should] equal:@[@1,@3]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"removes matching items from the enumerable", ^{
+            id result = @[@1,@2,@3].reject(^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            });
+            [[result should] equal:@[@1,@3]];
+        });
+
+    });
+
+});
+
 describe(@"-chunk", ^{
 
     context(@"message style", ^{
