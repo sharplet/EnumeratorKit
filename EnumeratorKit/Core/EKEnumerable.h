@@ -8,23 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
+// block types
+typedef void (^EKVisitor)(id obj);
+typedef void (^EKIndexedVisitor)(id obj, NSUInteger i);
+typedef BOOL (^EKPredicate)(id obj);
+typedef id (^EKMapping)(id obj);
+typedef id<NSCopying> (^EKKeyMapping)(id obj);
+
+
 @protocol EKEnumerable <NSObject>
 
 @required
-- (id<EKEnumerable>)each:(void (^)(id obj))block;
+- (id<EKEnumerable>)each:(EKVisitor)block;
 
 @optional
-- (id<EKEnumerable> (^)(void (^)(id obj)))each;
+- (id<EKEnumerable> (^)(EKVisitor))each;
 
-- (id<EKEnumerable>)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
-- (id<EKEnumerable> (^)(void (^)(id obj, NSUInteger i)))eachWithIndex;
+- (id<EKEnumerable>)eachWithIndex:(EKIndexedVisitor)block;
+- (id<EKEnumerable> (^)(EKIndexedVisitor))eachWithIndex;
 
 - (NSArray *)asArray;
 - (NSArray *)take:(NSInteger)number;
 - (NSArray * (^)(NSInteger))take;
 
-- (NSArray *)map:(id (^)(id obj))block;
-- (NSArray * (^)(id (^)(id obj)))map;
+- (NSArray *)map:(EKMapping)block;
+- (NSArray * (^)(EKMapping))map;
 
 /**
  Applies the block to each item in the collection, using the result as
@@ -44,21 +52,27 @@
  @param block A block whose return value will be used as a key to group
      the item by.
  */
-- (NSDictionary *)chunk:(id<NSCopying> (^)(id obj))block;
-- (NSDictionary * (^)(id<NSCopying> (^)(id obj)))chunk;
+- (NSDictionary *)chunk:(EKKeyMapping)block;
+- (NSDictionary * (^)(EKKeyMapping))chunk;
 
-- (NSArray *)filter:(BOOL (^)(id obj))block;
-- (NSArray * (^)(BOOL (^)(id obj)))filter;
+- (NSArray *)select:(EKPredicate)block;
+- (NSArray * (^)(EKPredicate))select;
+
+- (NSArray *)filter:(EKPredicate)block;
+- (NSArray * (^)(EKPredicate))filter;
+
+- (NSArray *)reject:(EKPredicate)block;
+- (NSArray * (^)(EKPredicate))reject;
 
 - (NSArray *)sort;
 - (NSArray *)sortWith:(NSComparator)comparator;
 - (NSArray * (^)(NSComparator))sortWith;
 
-- (NSArray *)sortBy:(id (^)(id obj))block;
-- (NSArray * (^)(id (^)(id obj)))sortBy;
+- (NSArray *)sortBy:(EKMapping)block;
+- (NSArray * (^)(EKMapping))sortBy;
 
-- (id)find:(BOOL (^)(id obj))block;
-- (id (^)(BOOL (^)(id obj)))find;
+- (id)find:(EKPredicate)block;
+- (id (^)(EKPredicate))find;
 
 - (id)inject:(SEL)binaryOperation;
 - (id)inject:(id)initial withOperation:(SEL)binaryOperation;
@@ -70,9 +84,11 @@
 
 @end
 
+
 @interface EKEnumerable : NSObject <EKEnumerable>
 
 @end
+
 
 @interface NSObject (includeEKEnumerable)
 

@@ -189,6 +189,32 @@ describe(@"-map", ^{
 
 });
 
+describe(@"-select", ^{
+
+    context(@"message style", ^{
+
+        it(@"selects the matching items from the enumerable", ^{
+            id result = [@[@1,@2,@3] select:^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            }];
+            [[result should] equal:@[@2]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"selects the matching items from the enumerable", ^{
+            id result = @[@1,@2,@3].select(^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            });
+            [[result should] equal:@[@2]];
+        });
+
+    });
+
+});
+
 describe(@"-filter", ^{
 
     context(@"message style", ^{
@@ -209,6 +235,32 @@ describe(@"-filter", ^{
                 return [obj integerValue] % 2 == 0;
             });
             [[result should] equal:@[@2]];
+        });
+
+    });
+
+});
+
+describe(@"-reject", ^{
+
+    context(@"message style", ^{
+
+        it(@"removes matching items from the enumerable", ^{
+            id result = [@[@1,@2,@3] reject:^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            }];
+            [[result should] equal:@[@1,@3]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"removes matching items from the enumerable", ^{
+            id result = @[@1,@2,@3].reject(^BOOL(id obj) {
+                return [obj integerValue] % 2 == 0;
+            });
+            [[result should] equal:@[@1,@3]];
         });
 
     });
