@@ -14,6 +14,7 @@
 
 /* Foundation collection class additions */
 #import "NSArray+EKEnumerable.h"
+#import "NSArray+EKFlatten.h"
 #import "NSDictionary+EKEnumerable.h"
 #import "NSSet+EKEnumerable.h"
 #import "NSOrderedSet+EKEnumerable.h"
