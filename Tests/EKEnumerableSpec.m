@@ -189,6 +189,30 @@ describe(@"-map", ^{
 
 });
 
+describe(@"-flattenMap", ^{
+
+    context(@"message style", ^{
+
+        it(@"returns a new array with the flattened result of applying the block to each item in the array", ^{
+            [[[@[@1, @2, @3, @4] flattenMap:^(id e){
+                return @[e, @(-[e integerValue])];
+            }] should] equal:@[@1, @(-1), @2, @(-2), @3, @(-3), @4, @(-4)]];
+        });
+
+    });
+
+    context(@"function style", ^{
+
+        it(@"returns a new array with the flattened result of applying the block to each item in the array", ^{
+            [[@[@1, @2, @3, @4].flattenMap(^(id e){
+                return @[e, @(-[e integerValue])];
+            }) should] equal:@[@1, @(-1), @2, @(-2), @3, @(-3), @4, @(-4)]];
+        });
+
+    });
+
+});
+
 describe(@"-mapDictionary", ^{
 
     context(@"message style", ^{
