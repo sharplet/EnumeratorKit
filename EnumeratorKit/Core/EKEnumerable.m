@@ -93,6 +93,17 @@
     };
 }
 
+- (NSArray *)flattenMap:(EKMapping)block
+{
+    return [[self map:block] flatten];
+}
+- (NSArray *(^)(EKMapping))flattenMap
+{
+    return ^NSArray *(EKMapping block){
+        return [self flattenMap:block];
+    };
+}
+
 - (NSDictionary *)mapDictionary:(EKEntryMapping)block
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];

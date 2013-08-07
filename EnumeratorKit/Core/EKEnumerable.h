@@ -36,6 +36,21 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
 - (NSArray * (^)(EKMapping))map;
 
 /**
+ Performs a `map:` with the block, returning a single flattened array
+ as the result.
+
+     [@[@0, @1, @2] flattenMap:^(id i){
+         return @[i, [i stringValue]];
+     }];
+     // => @[@0, @"0", @1, @"1", @2, @"2"]
+
+ @param block An `EKMapping` block that takes a single object as its
+     argument and returns a new object.
+ */
+- (NSArray *)flattenMap:(EKMapping)block;
+- (NSArray * (^)(EKMapping))flattenMap;
+
+/**
  `mapDictionary:` behaves just like `map:` except that it returns an
  `NSDictionary` instead of an `NSArray`.
 
