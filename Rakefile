@@ -21,9 +21,14 @@ task :docs do
     '--project-name', 'EnumeratorKit',
     '--project-company', 'EnumeratorKit',
     '--company-id', 'com.sharplet.EnumeratorKit',
+    '--output', 'appledoc',
     '--logformat', 'xcode',
-    '-o', 'appledoc',
-    '-h'
+    '--print-information-block-titles',
+    '--use-code-order',
+    '--create-html',
+    '--no-create-docset',
+    '--no-repeat-first-par',
+    '--no-warn-invalid-crossref'
   ]
 
   options << '--' << Dir['**/*.h']

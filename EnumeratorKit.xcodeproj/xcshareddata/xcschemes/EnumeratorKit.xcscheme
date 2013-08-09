@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D8616F1BD7942D89372DB9C"
+               BlueprintIdentifier = "66F794DBFA28417AA1C03191"
                BuildableName = "libPods-EnumeratorKitTests.a"
                BlueprintName = "Pods-EnumeratorKitTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">

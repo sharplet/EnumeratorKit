@@ -251,6 +251,7 @@
 				4AC073B6174AC561005FA8E5 /* Sources */,
 				4AC073B7174AC561005FA8E5 /* Frameworks */,
 				4AC073B8174AC561005FA8E5 /* CopyFiles */,
+				4A86564717B4D7000045DB54 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -338,6 +339,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-EnumeratorKitTests-resources.sh\"\n";
+		};
+		4A86564717B4D7000045DB54 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rake docs";
+			showEnvVarsInLog = 0;
 		};
 		4AC073C6174AC561005FA8E5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
