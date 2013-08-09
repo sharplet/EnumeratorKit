@@ -93,8 +93,8 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
 - (id)inject:(SEL)binaryOperation;
 - (id)inject:(id)initial withOperation:(SEL)binaryOperation;
 
-- (id<EKEnumerable>)reduce:(id (^)(id memo, id obj))block;
-- (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
+- (id)reduce:(id (^)(id memo, id obj))block;
+- (id)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
 
 #pragma mark Deprecated block property API
 
@@ -111,8 +111,8 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
 - (NSArray * (^)(NSComparator))sortWith DEPRECATED_ATTRIBUTE;
 - (NSArray * (^)(EKMapping))sortBy DEPRECATED_ATTRIBUTE;
 - (id (^)(EKPredicate))find DEPRECATED_ATTRIBUTE;
-- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject DEPRECATED_ATTRIBUTE;
-- (id<EKEnumerable> (^)(id args, ...))reduce DEPRECATED_ATTRIBUTE;
+- (id (^)(id (^)(id memo, id obj)))inject DEPRECATED_ATTRIBUTE;
+- (id (^)(id args, ...))reduce DEPRECATED_ATTRIBUTE;
 
 @end
 
