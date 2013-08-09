@@ -212,11 +212,11 @@
 
 - (NSArray *)sortBy:(EKMapping)block
 {
-    return self.map(^(id i){
+    return [[[self map:^(id i){
         return @[block(i), i];
-    }).sort.map(^(id a) {
+    }] sort] map:^(id a) {
         return a[1];
-    });
+    }];
 }
 - (NSArray *(^)(EKMapping))sortBy
 {

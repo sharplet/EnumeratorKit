@@ -183,7 +183,7 @@ describe(@"-map", ^{
     });
 
     it(@"preserves the cardinality of the enumerable by inserting NSNull for nil", ^{
-        id nulls = @[@1,@2,@3].map(^id(id i) { return nil; });
+        id nulls = [@[@1,@2,@3] map:^id(id i) { return nil; }];
         [[nulls should] equal:@[ [NSNull null], [NSNull null], [NSNull null] ]];
     });
 
