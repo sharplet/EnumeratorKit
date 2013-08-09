@@ -14,3 +14,19 @@ desc "Clean targets"
 task :clean do
   system 'xctool clean'
 end
+
+desc "Generate appledocs"
+task :docs do
+  options = [
+    '--project-name', 'EnumeratorKit',
+    '--project-company', 'EnumeratorKit',
+    '--company-id', 'com.sharplet.EnumeratorKit',
+    '--logformat', 'xcode',
+    '-o', 'appledoc',
+    '-h'
+  ]
+
+  options << '--' << Dir['**/*.h']
+
+  system 'appledoc', *options.flatten
+end
