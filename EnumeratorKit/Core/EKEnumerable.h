@@ -9,30 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <AvailabilityMacros.h>
 
-// block types
-typedef void (^EKVisitor)(id obj);
-typedef void (^EKIndexedVisitor)(id obj, NSUInteger i);
-typedef BOOL (^EKPredicate)(id obj);
-typedef id (^EKMapping)(id obj);
-typedef id<NSCopying> (^EKKeyMapping)(id obj);
-typedef NSDictionary * (^EKEntryMapping)(id obj);
-
 
 #pragma mark EKEnumerable API
 
 @protocol EKEnumerable <NSObject>
 
 @required
-- (id<EKEnumerable>)each:(EKVisitor)block;
+- (id<EKEnumerable>)each:(void (^)(id obj))block;
 
 @optional
-
-- (id<EKEnumerable>)eachWithIndex:(EKIndexedVisitor)block;
+- (id<EKEnumerable>)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
 
 - (NSArray *)asArray;
 - (NSArray *)take:(NSInteger)number;
 
-- (NSArray *)map:(EKMapping)block;
+- (NSArray *)map:(id (^)(id obj))block;
 
 /**
  Performs a `map:` with the block, returning a single flattened array
@@ -46,7 +37,7 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
  @param block An `EKMapping` block that takes a single object as its
      argument and returns a new object.
  */
-- (NSArray *)flattenMap:(EKMapping)block;
+- (NSArray *)flattenMap:(id (^)(id obj))block;
 
 /**
  `mapDictionary:` behaves just like `map:` except that it returns an
@@ -55,7 +46,7 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
  @param block A block that maps objects to entries. The dictionary returned
      by this block must not contain more than a single entry.
  */
-- (NSDictionary *)mapDictionary:(EKEntryMapping)block;
+- (NSDictionary *)mapDictionary:(NSDictionary *(^)(id obj))block;
 
 /**
  Applies the block to each item in the collection, using the result as
@@ -75,20 +66,20 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
  @param block A block whose return value will be used as a key to group
      the item by.
  */
-- (NSDictionary *)chunk:(EKKeyMapping)block;
+- (NSDictionary *)chunk:(id<NSCopying> (^)(id obj))block;
 
-- (NSArray *)select:(EKPredicate)block;
+- (NSArray *)select:(BOOL (^)(id obj))block;
 
-- (NSArray *)filter:(EKPredicate)block;
+- (NSArray *)filter:(BOOL (^)(id obj))block;
 
-- (NSArray *)reject:(EKPredicate)block;
+- (NSArray *)reject:(BOOL (^)(id obj))block;
 
 - (NSArray *)sort;
 - (NSArray *)sortWith:(NSComparator)comparator;
 
-- (NSArray *)sortBy:(EKMapping)block;
+- (NSArray *)sortBy:(id (^)(id obj))block;
 
-- (id)find:(EKPredicate)block;
+- (id)find:(BOOL (^)(id obj))block;
 
 - (id)inject:(SEL)binaryOperation;
 - (id)inject:(id)initial withOperation:(SEL)binaryOperation;
@@ -98,31 +89,29 @@ typedef NSDictionary * (^EKEntryMapping)(id obj);
 
 #pragma mark Deprecated block property API
 
-- (id<EKEnumerable> (^)(EKVisitor))each DEPRECATED_ATTRIBUTE;
-- (id<EKEnumerable> (^)(EKIndexedVisitor))eachWithIndex DEPRECATED_ATTRIBUTE;
+- (id<EKEnumerable> (^)(void (^)(id obj)))each DEPRECATED_ATTRIBUTE;
+- (id<EKEnumerable> (^)(void (^)(id obj, NSUInteger i)))eachWithIndex DEPRECATED_ATTRIBUTE;
 - (NSArray * (^)(NSInteger))take DEPRECATED_ATTRIBUTE;
-- (NSArray * (^)(EKMapping))map DEPRECATED_ATTRIBUTE;
-- (NSArray * (^)(EKMapping))flattenMap DEPRECATED_ATTRIBUTE;
-- (NSDictionary * (^)(EKEntryMapping))mapDictionary DEPRECATED_ATTRIBUTE;
-- (NSDictionary * (^)(EKKeyMapping))chunk DEPRECATED_ATTRIBUTE;
-- (NSArray * (^)(EKPredicate))select DEPRECATED_ATTRIBUTE;
-- (NSArray * (^)(EKPredicate))filter DEPRECATED_ATTRIBUTE;
-- (NSArray * (^)(EKPredicate))reject DEPRECATED_ATTRIBUTE;
+- (NSArray * (^)(id (^)(id obj)))map DEPRECATED_ATTRIBUTE;
+- (NSArray * (^)(id (^)(id obj)))flattenMap DEPRECATED_ATTRIBUTE;
+- (NSDictionary * (^)(NSDictionary * (^)(id obj)))mapDictionary DEPRECATED_ATTRIBUTE;
+- (NSDictionary * (^)(id<NSCopying> (^)(id obj)))chunk DEPRECATED_ATTRIBUTE;
+- (NSArray * (^)(BOOL (^)(id obj)))select DEPRECATED_ATTRIBUTE;
+- (NSArray * (^)(BOOL (^)(id obj)))filter DEPRECATED_ATTRIBUTE;
+- (NSArray * (^)(BOOL (^)(id obj)))reject DEPRECATED_ATTRIBUTE;
 - (NSArray * (^)(NSComparator))sortWith DEPRECATED_ATTRIBUTE;
-- (NSArray * (^)(EKMapping))sortBy DEPRECATED_ATTRIBUTE;
-- (id (^)(EKPredicate))find DEPRECATED_ATTRIBUTE;
+- (NSArray * (^)(id (^)(id obj)))sortBy DEPRECATED_ATTRIBUTE;
+- (id (^)(BOOL (^)(id obj)))find DEPRECATED_ATTRIBUTE;
 - (id (^)(id (^)(id memo, id obj)))inject DEPRECATED_ATTRIBUTE;
 - (id (^)(id args, ...))reduce DEPRECATED_ATTRIBUTE;
 
 @end
-
 
 #pragma mark - EKEnumerable mixin
 
 @interface EKEnumerable : NSObject <EKEnumerable>
 
 @end
-
 
 @interface NSObject (includeEKEnumerable)
 

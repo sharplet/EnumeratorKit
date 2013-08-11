@@ -27,19 +27,19 @@
     [NSOrderedSet includeEKEnumerable];
 }
 
-- (id<EKEnumerable>)each:(EKVisitor)block
+- (id<EKEnumerable>)each:(void (^)(id))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
 }
-- (id<EKEnumerable> (^)(EKVisitor))each
+- (id<EKEnumerable> (^)(void (^)(id)))each
 {
-    return ^id<EKEnumerable>(EKVisitor block) {
+    return ^id<EKEnumerable>(void (^block)(id)) {
         return [self each:block];
     };
 }
 
-- (id<EKEnumerable>)eachWithIndex:(EKIndexedVisitor)block
+- (id<EKEnumerable>)eachWithIndex:(void (^)(id, NSUInteger))block
 {
     __block NSUInteger i = 0;
     [self each:^(id obj) {
@@ -47,9 +47,9 @@
     }];
     return self;
 }
-- (id<EKEnumerable> (^)(EKIndexedVisitor))eachWithIndex
+- (id<EKEnumerable> (^)(void (^)(id, NSUInteger)))eachWithIndex
 {
-    return ^id<EKEnumerable>(EKIndexedVisitor block) {
+    return ^id<EKEnumerable>(void (^block)(id, NSUInteger)) {
         return [self eachWithIndex:block];
     };
 }
@@ -77,7 +77,7 @@
     };
 }
 
-- (NSArray *)map:(EKMapping)block
+- (NSArray *)map:(id (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -86,25 +86,25 @@
     }];
     return result;
 }
-- (NSArray * (^)(EKMapping))map
+- (NSArray *(^)(id (^)(id)))map
 {
-    return ^NSArray *(EKMapping block) {
+    return ^NSArray *(id (^block)(id)) {
         return [self map:block];
     };
 }
 
-- (NSArray *)flattenMap:(EKMapping)block
+- (NSArray *)flattenMap:(id (^)(id))block
 {
     return [[self map:block] flatten];
 }
-- (NSArray *(^)(EKMapping))flattenMap
+- (NSArray *(^)(id (^)(id)))flattenMap
 {
-    return ^NSArray *(EKMapping block){
+    return ^NSArray *(id (^block)(id)){
         return [self flattenMap:block];
     };
 }
 
-- (NSDictionary *)mapDictionary:(EKEntryMapping)block
+- (NSDictionary *)mapDictionary:(NSDictionary *(^)(id))block
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [self each:^(id obj) {
@@ -116,14 +116,14 @@
     return [dict copy];
 }
 
-- (NSDictionary * (^)(EKEntryMapping))mapDictionary
+- (NSDictionary * (^)(NSDictionary *(^)(id)))mapDictionary
 {
-    return ^NSDictionary *(EKEntryMapping block){
+    return ^NSDictionary *(NSDictionary *(^block)(id)){
         return [self mapDictionary:block];
     };
 }
 
-- (NSDictionary *)chunk:(EKKeyMapping)block
+- (NSDictionary *)chunk:(id<NSCopying> (^)(id))block
 {
     NSMutableDictionary *chunks = [NSMutableDictionary new];
     [self each:^(id obj) {
@@ -141,14 +141,14 @@
     return [[NSDictionary alloc] initWithDictionary:chunks copyItems:YES];
 }
 
-- (NSDictionary *(^)(EKKeyMapping))chunk
+- (NSDictionary *(^)(id<NSCopying> (^)(id)))chunk
 {
-    return ^NSDictionary *(EKKeyMapping block){
+    return ^NSDictionary *(id<NSCopying> (^block)(id)){
         return [self chunk:block];
     };
 }
 
-- (NSArray *)select:(EKPredicate)block
+- (NSArray *)select:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -159,25 +159,25 @@
     return [result copy];
 }
 
-- (NSArray *(^)(EKPredicate))select
+- (NSArray *(^)(BOOL (^)(id)))select
 {
-    return ^NSArray *(EKPredicate block) {
+    return ^NSArray *(BOOL (^block)(id)) {
         return [self select:block];
     };
 }
 
-- (NSArray *)filter:(EKPredicate)block
+- (NSArray *)filter:(BOOL (^)(id))block
 {
     return [self select:block];
 }
-- (NSArray * (^)(EKPredicate))filter
+- (NSArray * (^)(BOOL (^)(id)))filter
 {
-    return ^NSArray *(EKPredicate block) {
+    return ^NSArray *(BOOL (^block)(id)) {
         return [self filter:block];
     };
 }
 
-- (NSArray *)reject:(EKPredicate)block
+- (NSArray *)reject:(BOOL (^)(id))block
 {
     NSMutableArray * result = [NSMutableArray array];
     [self each:^(id obj) {
@@ -188,9 +188,9 @@
     return [result copy];
 }
 
-- (NSArray *(^)(EKPredicate))reject
+- (NSArray *(^)(BOOL (^)(id)))reject
 {
-    return ^NSArray *(EKPredicate block){
+    return ^NSArray *(BOOL (^block)(id)){
         return [self reject:block];
     };
 }
@@ -210,7 +210,7 @@
     };
 }
 
-- (NSArray *)sortBy:(EKMapping)block
+- (NSArray *)sortBy:(id (^)(id))block
 {
     return [[[self map:^(id i){
         return @[block(i), i];
@@ -218,14 +218,14 @@
         return a[1];
     }];
 }
-- (NSArray *(^)(EKMapping))sortBy
+- (NSArray *(^)(id (^)(id)))sortBy
 {
-    return ^NSArray *(EKMapping block) {
+    return ^NSArray *(id (^block)(id)) {
         return [self sortBy:block];
     };
 }
 
-- (id)find:(EKPredicate)block
+- (id)find:(BOOL (^)(id))block
 {
     id next;
     EKEnumerator *e = self.asEnumerator;
@@ -236,9 +236,9 @@
     }
     return nil;
 }
-- (id (^)(EKPredicate))find
+- (id (^)(BOOL (^)(id)))find
 {
-    return ^id(EKPredicate block) {
+    return ^id(BOOL (^block)(id)) {
         return [self find:block];
     };
 }
