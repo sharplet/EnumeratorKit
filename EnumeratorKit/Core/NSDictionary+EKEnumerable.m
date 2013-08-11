@@ -10,6 +10,11 @@
 
 @implementation NSDictionary (EKEnumerable)
 
++ (void)load
+{
+    [NSDictionary includeEKEnumerable];
+}
+
 - (id<EKEnumerable>)each:(void (^)(id))block
 {
     return [self eachPair:block];

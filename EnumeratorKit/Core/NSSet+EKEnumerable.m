@@ -10,6 +10,11 @@
 
 @implementation NSSet (EKEnumerable)
 
++ (void)load
+{
+    [NSSet includeEKEnumerable];
+}
+
 - (id<EKEnumerable>)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
