@@ -255,18 +255,18 @@
         );
     }];
 }
-- (id<EKEnumerable> (^)(id (^)(id memo, id obj)))inject
+- (id (^)(id (^)(id memo, id obj)))inject
 {
     return ^id(id (^block)(id,id)) {
         return [self reduce:block];
     };
 }
 
-- (id<EKEnumerable>)reduce:(id (^)(id, id))block
+- (id)reduce:(id (^)(id, id))block
 {
     return [self reduce:nil withBlock:block];
 }
-- (id<EKEnumerable>)reduce:(id)initial withBlock:(id (^)(id, id))block
+- (id)reduce:(id)initial withBlock:(id (^)(id, id))block
 {
     // if the initial can be mutable (e.g., @[] or @{}), get a mutable copy
     __block id memo = [initial respondsToSelector:@selector(mutableCopyWithZone:)] ? [initial mutableCopy] : initial;
@@ -279,7 +279,7 @@
     }];
     return memo;
 }
-- (id<EKEnumerable> (^)(id, ...))reduce
+- (id (^)(id, ...))reduce
 {
     return ^id<EKEnumerable>(id args, ...) {
         // determine if we're using the 1 or 2 arg form from the
