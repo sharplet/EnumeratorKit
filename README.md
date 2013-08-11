@@ -9,34 +9,35 @@ expressive way:
 ```objc
 #import <EnumeratorKit.h>
 
+NSArray *numbers = @[ @1, @2, @3 ];
+
 // perform the block once for each element in the collection
-@[ @1, @2, @3 ].each(^(id i){
+[numbers each:^(id i){
     NSLog(@"%@", i);
-});
+}];
 
 // return a new array with each element converted to a string
-@[ @1, @2, @3 ].map(^(id i){
+[numbers map:^(id i){
     return [i stringValue];
-});
+}];
 ```
 
 Additionally, these operations can be chained together to form a
 higher-level operation:
 
 ```objc
-@{ @"Hello": @"world", @"foo": @"BAR" }.sortBy(^(id p){
+NSDictionary *examples = @{ @"Hello": @"world", @"foo": @"BAR" };
+
+[[[examples sortBy:^(id p){
     // sort entries by their keys, case insensitive
     return [p[0] lowercaseString];
-}).each(^(id i){
-    // log the result
-    NSLog(@"%@", i);
-}).map(^(id p){
+}] map:^(id p){
     // combine each key-value pair into a new string
     return [NSString stringWithFormat:@"%@ %@", p[0], p[1]];
-}).filter(^(id p){
+}] select:^(id p){
     return [p[1] hasSuffix:@"orld"];
-}).lastObject;
-// => @"Hello world";
+}];
+// => @[@"Hello world"];
 ```
 
 EnumeratorKit implements this functionality for all of the core
@@ -53,7 +54,7 @@ number of advantages over `NSEnumerator`, for example:
 
 ```objc
 // you may have seen this in Ruby before
-EKEnumerator *fib = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y){
+EKEnumerator *fib = [EKEnumerator new:^(id<EKYielder> y){
     int a = 1, b = 1;
     while (1) { // infinite loop (!)
         [y yield:@(a)];
@@ -61,7 +62,7 @@ EKEnumerator *fib = [EKEnumerator enumeratorWithBlock:^(id<EKYielder> y){
         a = b; b = next;
     }
 }];
-fib.take(10); // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
+[fib take:10]; // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
 ```
 
 
@@ -204,48 +205,6 @@ your own collection classes:
 .
 @end
 ```
-
-
-## Function-style API
-
-Here is an implementation of `-sortBy:` using standard Objective-C
-message passing syntax:
-
-```objc
-// EKEnumerable.m
-- (NSArray *)sortBy:(id (^)(id obj))block
-{
-    return [[[self map:^(id i){
-        return @[block(i), i];
-    }] sort] map:^(id i){
-        return i[1];
-    }];
-}
-```
-
-It doesn't take long for those square brackets to get a bit unwieldy.
-
-However, through an abuse of Objective-C's property syntax, this can be
-rewritten like so:
-
-```objc
-// the real implementation of -sortBy
-- (NSArray *)sortBy:(id (^)(id obj))block
-{
-    return self.map(^(id i){
-        return @[block(i), i];
-    }).sort.map(^(id a) {
-        return a[1];
-    });
-}
-```
-
-...that's still valid Objective-C — it's just been cleaned up a bit.
-It's also a very natural way to work with method chains, as it doesn't
-involve backtracking to insert square brackets when Xcode gets confused.
-
-(If you're curious how this works, feel free to take a look at
-`EKEnumerable.m`.)
 
 
 ## To do
