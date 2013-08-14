@@ -11,15 +11,15 @@
 
 @interface NSDictionary (EKEnumerable) <EKEnumerable>
 
-- (id<EKEnumerable>)eachEntry:(void (^)(id entry))block;
-- (id<EKEnumerable>)eachPair:(void (^)(id pair))block;
+- (instancetype)eachEntry:(void (^)(id entry))block;
+- (instancetype)eachPair:(void (^)(id pair))block;
 - (id<EKEnumerable> (^)(void (^)(id entry)))eachEntry;
 - (id<EKEnumerable> (^)(void (^)(id pair)))eachPair;
 
-- (id<EKEnumerable>)eachKey:(void (^)(id key))block;
+- (instancetype)eachKey:(void (^)(id key))block;
 - (id<EKEnumerable> (^)(void (^)(id key)))eachKey;
 
-- (id<EKEnumerable>)eachObject:(void (^)(id obj))block;
+- (instancetype)eachObject:(void (^)(id obj))block;
 - (id<EKEnumerable> (^)(void (^)(id obj)))eachObject;
 
 @end

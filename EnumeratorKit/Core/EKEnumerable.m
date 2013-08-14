@@ -19,7 +19,7 @@
 
 @implementation EKEnumerable
 
-- (id<EKEnumerable>)each:(void (^)(id))block
+- (instancetype)each:(void (^)(id))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
@@ -31,7 +31,7 @@
     };
 }
 
-- (id<EKEnumerable>)eachWithIndex:(void (^)(id, NSUInteger))block
+- (instancetype)eachWithIndex:(void (^)(id, NSUInteger))block
 {
     __block NSUInteger i = 0;
     [self each:^(id obj) {

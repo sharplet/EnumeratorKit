@@ -15,7 +15,7 @@
     [NSOrderedSet includeEKEnumerable];
 }
 
-- (id<EKEnumerable>)each:(void (^)(id))block
+- (instancetype)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         block(obj);

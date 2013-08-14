@@ -15,10 +15,10 @@
 @protocol EKEnumerable <NSObject>
 
 @required
-- (id<EKEnumerable>)each:(void (^)(id obj))block;
+- (instancetype)each:(void (^)(id obj))block;
 
 @optional
-- (id<EKEnumerable>)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
+- (instancetype)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
 
 - (NSArray *)asArray;
 - (NSArray *)take:(NSInteger)number;

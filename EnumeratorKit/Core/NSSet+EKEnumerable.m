@@ -15,7 +15,7 @@
     [NSSet includeEKEnumerable];
 }
 
-- (id<EKEnumerable>)each:(void (^)(id))block
+- (instancetype)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         block(obj);
