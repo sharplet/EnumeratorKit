@@ -12,7 +12,7 @@
 
 + (void)load
 {
-    [NSArray includeEKEnumerable];
+    [self includeEKEnumerable];
 }
 
 - (id)each:(void (^)(id))block

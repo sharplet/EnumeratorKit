@@ -12,7 +12,7 @@
 
 + (void)load
 {
-    [NSOrderedSet includeEKEnumerable];
+    [self includeEKEnumerable];
 }
 
 - (instancetype)each:(void (^)(id))block

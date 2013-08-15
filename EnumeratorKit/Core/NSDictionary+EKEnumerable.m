@@ -12,7 +12,7 @@
 
 + (void)load
 {
-    [NSDictionary includeEKEnumerable];
+    [self includeEKEnumerable];
 }
 
 - (instancetype)each:(void (^)(id))block
