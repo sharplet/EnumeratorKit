@@ -263,6 +263,20 @@ describe(@"-mapDictionary", ^{
 
     });
 
+    context(@"with a block that returns duplicate keys", ^{
+        NSDictionary *(^mapDictionaryBlock)(id) = ^NSDictionary *(id obj){
+            return @{@"duplicate": obj};
+        };
+
+        __block NSArray *numbers;
+        beforeEach(^{ numbers = @[@1, @2]; });
+
+        it(@"uses the last value added for the key", ^{
+            NSDictionary *result = [numbers mapDictionary:mapDictionaryBlock];
+            [[result[@"duplicate"] should] equal:@2];
+        });
+    });
+
 });
 
 describe(@"-select", ^{
