@@ -12,9 +12,35 @@
 
 #pragma mark EKEnumerable API
 
+/**
+ The `EKEnumerable` protocol and mixin provide a number of methods for
+ traversing, searching and sorting collection classes. To include the
+ `EKEnumerable` mixin, collection classes need to:
+
+ 1. Adopt the `EKEnumerable` protocol
+ 2. Implement `+load` and call `[self includeEKEnumerable]`
+ 3. Implement `-each:` to traverse the collection, applying the block
+    to each element.
+ */
 @protocol EKEnumerable <NSObject>
 
 @required
+
+/**
+ Collection classes must implement this method to traverse each element
+ in the collection, applying the block to each element.
+
+ Example:
+
+    NSArray *greetings = @[@"Hello", @"Hi"];
+    [numbers each:^(id greeting){
+        NSLog(@"%@, world", greeting);
+    }];
+
+ @param block A block that accepts a single object as a parameter.
+
+ @return Your implementation of this method should return `self`.
+ */
 - (instancetype)each:(void (^)(id obj))block;
 
 @optional
