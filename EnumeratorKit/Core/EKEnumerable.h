@@ -113,8 +113,26 @@
  `mapDictionary:` behaves just like `map:` except that it returns an
  `NSDictionary` instead of an `NSArray`.
 
+ Usage:
+
+    NSDictionary *apple = @{ @"id": @1, @"name": @"Apple", @"grows_on": @"tree" };
+    NSDictionary *grape = @{ @"id": @2, @"name": @"Grape", @"grows_on": @"vine" };
+
+    NSDictionary *fruits = [@[banana, apple] mapDictionary:^(id fruit){
+        return @{ fruit[@"name"]: fruit };
+    }];
+
+    fruits[@"Apple"][@"grows_on"]; // => @"tree"
+
+ **Note:** If the block returns a key that already exists in the
+ dictionary (i.e., if two elements return the same key while iterating),
+ the last value for that key will end up in the resulting dictionary.
+ New values for the same key will replace older values for that key.
+
  @param block A block that maps objects to entries. The dictionary returned
-     by this block must not contain more than a single entry.
+    by this block must not contain more than a single entry.
+
+ @return A dictionary containing all the entries returned by the block.
  */
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id obj))block;
 
