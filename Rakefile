@@ -41,4 +41,9 @@ namespace :docs do
 
     system 'appledoc', *options.flatten
   end
+
+  desc "Open the documentation in a web browser"
+  task :open do
+    system 'open', 'appledoc/html/index.html'
+  end
 end
