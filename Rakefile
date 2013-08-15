@@ -15,23 +15,30 @@ task :clean do
   system 'xctool clean'
 end
 
-desc "Generate appledocs"
-task :docs do
-  options = [
-    '--project-name', 'EnumeratorKit',
-    '--project-company', 'EnumeratorKit',
-    '--company-id', 'com.sharplet.EnumeratorKit',
-    '--output', 'appledoc',
-    '--logformat', 'xcode',
-    '--print-information-block-titles',
-    '--use-code-order',
-    '--create-html',
-    '--no-create-docset',
-    '--no-repeat-first-par',
-    '--no-warn-invalid-crossref'
-  ]
+desc "Synonym for docs:generate"
+task :docs => :'docs:generate'
 
-  options << '--' << Dir['**/*.h']
+namespace :docs do
+  desc "Generate documentation"
+  task :generate do
+    options = [
+      '--project-name', 'EnumeratorKit',
+      '--project-company', 'EnumeratorKit',
+      '--company-id', 'com.sharplet.EnumeratorKit',
+      '--output', 'appledoc',
+      '--logformat', 'xcode',
+      '--print-information-block-titles',
+      '--use-code-order',
+      '--create-html',
+      '--warn-undocumented-member',
+      '--no-create-docset',
+      '--no-repeat-first-par',
+      '--no-warn-invalid-crossref',
+      '--warn-missing-arg'
+    ]
 
-  system 'appledoc', *options.flatten
+    options << '--' << Dir['**/*.h']
+
+    system 'appledoc', *options.flatten
+  end
 end
