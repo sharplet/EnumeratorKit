@@ -127,7 +127,8 @@
  **Note:** If the block returns a key that already exists in the
  dictionary (i.e., if two elements return the same key while iterating),
  the last value for that key will end up in the resulting dictionary.
- New values for the same key will replace older values for that key.
+ Later values in the enumeration for the same key will replace earlier
+ values for that key.
 
  @param block A block that maps objects to entries. The dictionary returned
     by this block must not contain more than a single entry.
@@ -135,6 +136,33 @@
  @return A dictionary containing all the entries returned by the block.
  */
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id obj))block;
+
+/**
+ Takes the key returned by the block and "wraps" the element with it
+ as a key-value pair.
+
+ `wrap:` is a shorthand for this usage of `mapDictionary:`
+
+    [collection mapDictionary:^(id obj){
+        return @{ obj[@"key"]: obj };
+    }];
+
+ which becomes
+
+    [collection wrap:^(id obj){
+        return obj[@"key"];
+    }];
+
+ **Note:** Like `mapDictionary:`, if the block returns duplicate keys,
+ later values in the enumeration for the same key will replace earlier
+ values for that key.
+
+ @param block A block that returns a unique key for an object.
+
+ @return A dictionary with the block's results as keys, mapped to the
+    objects as values.
+ */
+- (NSDictionary *)wrap:(id<NSCopying> (^)(id obj))block;
 
 /**
  Applies the block to each item in the collection, using the result as

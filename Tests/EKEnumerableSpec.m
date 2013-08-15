@@ -279,6 +279,43 @@ describe(@"-mapDictionary", ^{
 
 });
 
+describe(@"-wrap:", ^{
+    __block NSDictionary *user1, *user2;
+    __block NSArray *users;
+
+    id<NSCopying> (^userToName)(id) = ^(id u){ return u[@"name"]; };
+    id<NSCopying> (^alwaysTheSameKey)(id) = ^(id obj){ return @"duplicate"; };
+
+    beforeEach(^{
+        user1 = @{@"name": @"sharplet", @"URL": @"https://github.com/sharplet"};
+        user2 = @{@"name": @"foo",      @"URL": @"http://bar.example.com/"};
+    });
+
+    context(@"with a single element", ^{
+        beforeEach(^{ users = @[user1]; });
+
+        it(@"wraps the element in the returned key", ^{
+            NSDictionary *usersByName = [users wrap:userToName];
+            [[usersByName[@"sharplet"] should] equal:user1];
+        });
+    });
+
+    context(@"with multiple elements", ^{
+        beforeEach(^{ users = @[user1, user2]; });
+
+        it(@"wraps all elements in their returned keys", ^{
+            NSDictionary *usersByName = [users wrap:userToName];
+            [[usersByName should] equal:@{@"sharplet": user1, @"foo": user2}];
+        });
+
+        it(@"returns the last value for a duplicate key", ^{
+            NSDictionary *usersByName = [users wrap:alwaysTheSameKey];
+            [[usersByName should] equal:@{@"duplicate": user2}];
+        });
+    });
+
+});
+
 describe(@"-select", ^{
 
     context(@"message style", ^{

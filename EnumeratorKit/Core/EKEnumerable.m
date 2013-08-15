@@ -115,6 +115,13 @@
     };
 }
 
+- (NSDictionary *)wrap:(id<NSCopying> (^)(id))block
+{
+    return [self mapDictionary:^NSDictionary *(id obj) {
+        return @{block(obj): obj};
+    }];
+}
+
 - (NSDictionary *)chunk:(id<NSCopying> (^)(id))block
 {
     NSMutableDictionary *chunks = [NSMutableDictionary new];
