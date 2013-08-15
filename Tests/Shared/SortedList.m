@@ -36,9 +36,10 @@
     return self;
 }
 
-- (id)each:(void (^)(id))block
+- (instancetype)each:(void (^)(id))block
 {
-    return [self.data each:block];
+    [self.data each:block];
+    return self;
 }
 
 @end
