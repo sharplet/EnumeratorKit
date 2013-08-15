@@ -37,7 +37,7 @@
         NSLog(@"%@, world", greeting);
     }];
 
- @param block A block that accepts a single object as a parameter.
+ @param block A block that accepts a single object.
 
  @return Your implementation of this method should return `self`.
  */
@@ -57,7 +57,7 @@
     }];
     // => @[@"0: peach", @"1: pear", @"2: plum"]
 
- @param block A block that accepts an `id` and an `NSUInteger`.
+ @param block A block that accepts an object and an `NSUInteger` index.
 
  @return This method returns `self` after the enumeration is complete.
  */
@@ -66,19 +66,46 @@
 - (NSArray *)asArray;
 - (NSArray *)take:(NSInteger)number;
 
+/**
+ Applies the block to each element in the collection, and collects
+ the return values in an array. If the block returns `nil`,
+ `[NSNull null]` will automatically be inserted into the array.
+
+ Usage:
+
+    Animal *dog = [Animal animalWithName:@"Spike"];
+    Animal *cat = [Animal animalWithName:@"Princess"];
+
+    [@[dog, cat] map:^(id pet){
+        return [pet name];
+    }];
+    // => @[@"Spike", @"Princess"];
+
+ @param block A block that accepts a single object and returns an object.
+
+ @return Returns a new array with the results of applying the block to
+    each element in the collection. The resulting array will always
+    have the same count as the receiver.
+ */
 - (NSArray *)map:(id (^)(id obj))block;
 
 /**
  Performs a `map:` with the block, returning a single flattened array
  as the result.
 
+ Usage:
+
      [@[@0, @1, @2] flattenMap:^(id i){
          return @[i, [i stringValue]];
      }];
      // => @[@0, @"0", @1, @"1", @2, @"2"]
 
- @param block An `EKMapping` block that takes a single object as its
-     argument and returns a new object.
+ @param block A block that accepts a single object and returns an
+    object. Returning an array will cause the *contents* of the array to
+    be flattened and added to the result array.
+
+ @return A flattened array with the results of applying a `map:` with
+    the block.
  */
 - (NSArray *)flattenMap:(id (^)(id obj))block;
 
