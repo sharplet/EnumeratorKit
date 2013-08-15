@@ -44,6 +44,23 @@
 - (instancetype)each:(void (^)(id obj))block;
 
 @optional
+
+/**
+ Iterate the block over each element in the collection, calling the
+ block with two arguments: the object and its index (starting at 0).
+
+ Usage:
+
+    NSMutableArray *array = [NSMutableArray array];
+    [@[@"peach", @"pear", @"plum"] eachWithIndex:^(id fruit, NSUInteger i){
+        [array addObject:[NSString stringWithFormat:@"%d: %@", i, fruit]];
+    }];
+    // => @[@"0: peach", @"1: pear", @"2: plum"]
+
+ @param block A block that accepts an `id` and an `NSUInteger`.
+
+ @return This method returns `self` after the enumeration is complete.
+ */
 - (instancetype)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
 
 - (NSArray *)asArray;
