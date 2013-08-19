@@ -19,16 +19,13 @@
 
 @implementation EKEnumerable
 
+
+#pragma mark - Traversal
+
 - (instancetype)each:(void (^)(id))block
 {
     NSAssert(NO, @"expected -each: to be implemented");
     return nil;
-}
-- (id<EKEnumerable> (^)(void (^)(id)))each
-{
-    return ^id<EKEnumerable>(void (^block)(id)) {
-        return [self each:block];
-    };
 }
 
 - (instancetype)eachWithIndex:(void (^)(id, NSUInteger))block
@@ -39,35 +36,9 @@
     }];
     return self;
 }
-- (id<EKEnumerable> (^)(void (^)(id, NSUInteger)))eachWithIndex
-{
-    return ^id<EKEnumerable>(void (^block)(id, NSUInteger)) {
-        return [self eachWithIndex:block];
-    };
-}
 
-- (NSArray *)asArray
-{
-    return [self take:-1];
-}
-- (NSArray *)take:(NSInteger)number
-{
-    NSMutableArray *result = [NSMutableArray array];
-    EKEnumerator *e = self.asEnumerator;
 
-    NSUInteger count = 0;
-    while (e.peek && (number < 0 || ++count <= number)) {
-        [result addObject:e.next];
-    }
-
-    return result;
-}
-- (NSArray * (^)(NSInteger))take
-{
-    return ^NSArray *(NSInteger number) {
-        return [self take:number];
-    };
-}
+#pragma mark Transformations
 
 - (NSArray *)map:(id (^)(id))block
 {
@@ -78,22 +49,10 @@
     }];
     return result;
 }
-- (NSArray *(^)(id (^)(id)))map
-{
-    return ^NSArray *(id (^block)(id)) {
-        return [self map:block];
-    };
-}
 
 - (NSArray *)flattenMap:(id (^)(id))block
 {
     return [[self map:block] flatten];
-}
-- (NSArray *(^)(id (^)(id)))flattenMap
-{
-    return ^NSArray *(id (^block)(id)){
-        return [self flattenMap:block];
-    };
 }
 
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id))block
@@ -106,13 +65,6 @@
         [dict addEntriesFromDictionary:entry];
     }];
     return [dict copy];
-}
-
-- (NSDictionary * (^)(NSDictionary *(^)(id)))mapDictionary
-{
-    return ^NSDictionary *(NSDictionary *(^block)(id)){
-        return [self mapDictionary:block];
-    };
 }
 
 - (NSDictionary *)wrap:(id<NSCopying> (^)(id))block
@@ -140,131 +92,11 @@
     return [[NSDictionary alloc] initWithDictionary:chunks copyItems:YES];
 }
 
-- (NSDictionary *(^)(id<NSCopying> (^)(id)))chunk
-{
-    return ^NSDictionary *(id<NSCopying> (^block)(id)){
-        return [self chunk:block];
-    };
-}
-
-- (NSArray *)select:(BOOL (^)(id))block
-{
-    NSMutableArray * result = [NSMutableArray array];
-    [self each:^(id obj) {
-        if (block(obj)) {
-            [result addObject:obj];
-        }
-    }];
-    return [result copy];
-}
-
-- (NSArray *(^)(BOOL (^)(id)))select
-{
-    return ^NSArray *(BOOL (^block)(id)) {
-        return [self select:block];
-    };
-}
-
-- (NSArray *)filter:(BOOL (^)(id))block
-{
-    return [self select:block];
-}
-- (NSArray * (^)(BOOL (^)(id)))filter
-{
-    return ^NSArray *(BOOL (^block)(id)) {
-        return [self filter:block];
-    };
-}
-
-- (NSArray *)reject:(BOOL (^)(id))block
-{
-    NSMutableArray * result = [NSMutableArray array];
-    [self each:^(id obj) {
-        if (!block(obj)) {
-            [result addObject:obj];
-        }
-    }];
-    return [result copy];
-}
-
-- (NSArray *(^)(BOOL (^)(id)))reject
-{
-    return ^NSArray *(BOOL (^block)(id)){
-        return [self reject:block];
-    };
-}
-
-- (NSArray *)sort
-{
-    return [self.asArray sortedArrayUsingSelector:@selector(compare:)];
-}
-- (NSArray *)sortWith:(NSComparator)comparator
-{
-    return [self.asArray sortedArrayUsingComparator:comparator];
-}
-- (NSArray *(^)(NSComparator))sortWith
-{
-    return ^NSArray *(NSComparator comparator) {
-        return [self sortWith:comparator];
-    };
-}
-
-- (NSArray *)sortBy:(id (^)(id))block
-{
-    return [[[self map:^(id i){
-        return @[block(i), i];
-    }] sort] map:^(id a) {
-        return a[1];
-    }];
-}
-- (NSArray *(^)(id (^)(id)))sortBy
-{
-    return ^NSArray *(id (^block)(id)) {
-        return [self sortBy:block];
-    };
-}
-
-- (id)find:(BOOL (^)(id))block
-{
-    id next;
-    EKEnumerator *e = self.asEnumerator;
-    while ((next = e.next)) {
-        if (block(next)) {
-            return next;
-        }
-    }
-    return nil;
-}
-- (id (^)(BOOL (^)(id)))find
-{
-    return ^id(BOOL (^block)(id)) {
-        return [self find:block];
-    };
-}
-
-- (id)inject:(SEL)binaryOperation
-{
-    return [self inject:nil withOperation:binaryOperation];
-}
-- (id)inject:(id)initial withOperation:(SEL)binaryOperation
-{
-    return [self reduce:initial withBlock:^id(id memo, id obj) {
-        SuppressPerformSelectorLeakWarning(
-            return [memo performSelector:binaryOperation withObject:obj];
-        );
-    }];
-}
-- (id (^)(id (^)(id memo, id obj)))inject
-{
-    return ^id(id (^block)(id,id)) {
-        return [self reduce:block];
-    };
-}
-
 - (id)reduce:(id (^)(id, id))block
 {
     return [self reduce:nil withBlock:block];
 }
+
 - (id)reduce:(id)initial withBlock:(id (^)(id, id))block
 {
     // if the initial can be mutable (e.g., @[] or @{}), get a mutable copy
@@ -278,6 +110,158 @@
     }];
     return memo;
 }
+
+- (id)inject:(SEL)binaryOperation
+{
+    return [self inject:nil withOperation:binaryOperation];
+}
+
+- (id)inject:(id)initial withOperation:(SEL)binaryOperation
+{
+    return [self reduce:initial withBlock:^id(id memo, id obj) {
+        SuppressPerformSelectorLeakWarning(
+                                           return [memo performSelector:binaryOperation withObject:obj];
+                                           );
+    }];
+}
+
+
+#pragma mark Searching and filtering
+
+- (NSArray *)select:(BOOL (^)(id))block
+{
+    NSMutableArray * result = [NSMutableArray array];
+    [self each:^(id obj) {
+        if (block(obj)) {
+            [result addObject:obj];
+        }
+    }];
+    return [result copy];
+}
+
+- (NSArray *)filter:(BOOL (^)(id))block
+{
+    return [self select:block];
+}
+
+- (NSArray *)reject:(BOOL (^)(id))block
+{
+    NSMutableArray * result = [NSMutableArray array];
+    [self each:^(id obj) {
+        if (!block(obj)) {
+            [result addObject:obj];
+        }
+    }];
+    return [result copy];
+}
+
+
+#pragma mark Sorting
+
+- (NSArray *)sort
+{
+    return [self.asArray sortedArrayUsingSelector:@selector(compare:)];
+}
+
+- (NSArray *)sortWith:(NSComparator)comparator
+{
+    return [self.asArray sortedArrayUsingComparator:comparator];
+}
+
+- (NSArray *)sortBy:(id (^)(id))block
+{
+    return [[[self map:^(id i){
+        return @[block(i), i];
+    }] sort] map:^(id a) {
+        return a[1];
+    }];
+}
+
+- (id)find:(BOOL (^)(id))block
+{
+    id next;
+    EKEnumerator *e = self.asEnumerator;
+    while ((next = e.next)) {
+        if (block(next)) {
+            return next;
+        }
+    }
+    return nil;
+}
+
+
+#pragma mark Other methods
+
+- (NSArray *)take:(NSInteger)number
+{
+    NSMutableArray *result = [NSMutableArray array];
+    EKEnumerator *e = self.asEnumerator;
+
+    NSUInteger count = 0;
+    while (e.peek && (number < 0 || ++count <= number)) {
+        [result addObject:e.next];
+    }
+
+    return result;
+}
+
+- (NSArray *)asArray
+{
+    return [self take:-1];
+}
+
+
+#pragma mark - Deprecated block property API
+
+- (id<EKEnumerable> (^)(void (^)(id)))each
+{
+    return ^id<EKEnumerable>(void (^block)(id)) {
+        return [self each:block];
+    };
+}
+
+- (id<EKEnumerable> (^)(void (^)(id, NSUInteger)))eachWithIndex
+{
+    return ^id<EKEnumerable>(void (^block)(id, NSUInteger)) {
+        return [self eachWithIndex:block];
+    };
+}
+
+- (NSArray *(^)(id (^)(id)))map
+{
+    return ^NSArray *(id (^block)(id)) {
+        return [self map:block];
+    };
+}
+
+- (NSArray *(^)(id (^)(id)))flattenMap
+{
+    return ^NSArray *(id (^block)(id)){
+        return [self flattenMap:block];
+    };
+}
+
+- (NSDictionary * (^)(NSDictionary *(^)(id)))mapDictionary
+{
+    return ^NSDictionary *(NSDictionary *(^block)(id)){
+        return [self mapDictionary:block];
+    };
+}
+
+- (NSDictionary *(^)(id<NSCopying> (^)(id)))chunk
+{
+    return ^NSDictionary *(id<NSCopying> (^block)(id)){
+        return [self chunk:block];
+    };
+}
+
+- (id (^)(id (^)(id memo, id obj)))inject
+{
+    return ^id(id (^block)(id,id)) {
+        return [self reduce:block];
+    };
+}
+
 - (id (^)(id, ...))reduce
 {
     return ^id<EKEnumerable>(id args, ...) {
@@ -308,10 +292,59 @@
     };
 }
 
+- (NSArray *(^)(BOOL (^)(id)))select
+{
+    return ^NSArray *(BOOL (^block)(id)) {
+        return [self select:block];
+    };
+}
+
+- (NSArray * (^)(BOOL (^)(id)))filter
+{
+    return ^NSArray *(BOOL (^block)(id)) {
+        return [self filter:block];
+    };
+}
+
+- (NSArray *(^)(BOOL (^)(id)))reject
+{
+    return ^NSArray *(BOOL (^block)(id)){
+        return [self reject:block];
+    };
+}
+
+- (NSArray *(^)(NSComparator))sortWith
+{
+    return ^NSArray *(NSComparator comparator) {
+        return [self sortWith:comparator];
+    };
+}
+
+- (NSArray *(^)(id (^)(id)))sortBy
+{
+    return ^NSArray *(id (^block)(id)) {
+        return [self sortBy:block];
+    };
+}
+
+- (id (^)(BOOL (^)(id)))find
+{
+    return ^id(BOOL (^block)(id)) {
+        return [self find:block];
+    };
+}
+
+- (NSArray * (^)(NSInteger))take
+{
+    return ^NSArray *(NSInteger number) {
+        return [self take:number];
+    };
+}
+
 @end
 
 
-#pragma mark -
+#pragma mark - EKEnumerable mixin
 
 @implementation NSObject (includeEKEnumerable)
 

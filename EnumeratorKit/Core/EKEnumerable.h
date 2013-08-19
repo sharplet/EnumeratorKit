@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <AvailabilityMacros.h>
 
-
-#pragma mark EKEnumerable API
-
 /**
  The `EKEnumerable` protocol and mixin provide a number of methods for
  traversing, searching and sorting collection classes. To include the
@@ -25,6 +22,9 @@
 @protocol EKEnumerable <NSObject>
 
 @required
+
+#pragma mark - Traversal
+/** @name Traversal */
 
 /**
  Collection classes must implement this method to traverse each element
@@ -63,8 +63,9 @@
  */
 - (instancetype)eachWithIndex:(void (^)(id obj, NSUInteger i))block;
 
-- (NSArray *)asArray;
-- (NSArray *)take:(NSInteger)number;
+
+#pragma mark Transformations
+/** @name Transformations */
 
 /**
  Applies the block to each element in the collection, and collects
@@ -184,26 +185,98 @@
  */
 - (NSDictionary *)chunk:(id<NSCopying> (^)(id obj))block;
 
-- (NSArray *)select:(BOOL (^)(id obj))block;
-
-- (NSArray *)filter:(BOOL (^)(id obj))block;
-
-- (NSArray *)reject:(BOOL (^)(id obj))block;
-
-- (NSArray *)sort;
-- (NSArray *)sortWith:(NSComparator)comparator;
-
-- (NSArray *)sortBy:(id (^)(id obj))block;
-
-- (id)find:(BOOL (^)(id obj))block;
-
-- (id)inject:(SEL)binaryOperation;
-- (id)inject:(id)initial withOperation:(SEL)binaryOperation;
-
+/** Accumulates a result by applying the block to successive pairs of elements. */
 - (id)reduce:(id (^)(id memo, id obj))block;
+
+/** Given an initial value, accumulates a result by applying the block to successive pairs of elements. */
 - (id)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
 
-#pragma mark Deprecated block property API
+/** Accumulates a result by "injecting" the operation between successive pairs of elements. */
+- (id)inject:(SEL)binaryOperation;
+
+/** Given an initial value, accumulates a result by "injecting" the operation between successive pairs of elements. */
+- (id)inject:(id)initial withOperation:(SEL)binaryOperation;
+
+
+#pragma mark Searching and filtering
+/** @name Searching and filtering */
+
+/**
+ Applies the block to each element in the collection and returns a new
+ collection with only the elements for which the block returns `YES`.
+
+ Usage:
+
+    - (NSArray *)finishedOperations
+    {
+        return [self.operations select:^(id op){
+            return [op isFinished];
+        }];
+    }
+
+ @param block A block that accepts an an object and returns `YES` if
+    the object should be kept, and `NO` if it should be removed.
+
+ @return A filtered array containing all the objects for which the
+    block returned `YES`.
+ */
+- (NSArray *)select:(BOOL (^)(id obj))block;
+
+/**
+ Alias for `select:`.
+ */
+- (NSArray *)filter:(BOOL (^)(id obj))block;
+
+/**
+ Like `select:`, but instead returns the elements for which the block
+ returns `NO`. Thus, if the block returns `YES`, the element is removed
+ from the collection.
+
+ Usage:
+
+    - (NSArray *)nonEmptyStrings
+    {
+        return [self.strings reject:^(id s){
+            return [s length] == 0;
+        }];
+    }
+
+ @param block A block that accepts an an object and returns `NO` if
+    the object should be kept, and `YES` if it should be removed.
+
+ @return A filtered array containing all the objects for which the
+    block returned `NO`.
+ */
+- (NSArray *)reject:(BOOL (^)(id obj))block;
+
+/** Find the first matching element in a collection. */
+- (id)find:(BOOL (^)(id obj))block;
+
+
+#pragma mark Sorting
+/** @name Sorting */
+
+/** Sorts the collection by sending `compare:` to successive pairs of elements. */
+- (NSArray *)sort;
+
+/** Sorts the collection using the given comparator. */
+- (NSArray *)sortWith:(NSComparator)comparator;
+
+/** Sort the collection, using the return values of the block as the sort key for comparison. */
+- (NSArray *)sortBy:(id (^)(id obj))block;
+
+
+#pragma mark Other methods
+/** @name Other methods */
+
+/** Take elements from a collection */
+- (NSArray *)take:(NSInteger)number;
+
+/** Get an array */
+- (NSArray *)asArray;
+
+
+#pragma mark - Deprecated block property API
 
 - (id<EKEnumerable> (^)(void (^)(id obj)))each DEPRECATED_ATTRIBUTE;
 - (id<EKEnumerable> (^)(void (^)(id obj, NSUInteger i)))eachWithIndex DEPRECATED_ATTRIBUTE;
