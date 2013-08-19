@@ -100,7 +100,7 @@
 - (id)reduce:(id)initial withBlock:(id (^)(id, id))block
 {
     // if the initial can be mutable (e.g., @[] or @{}), get a mutable copy
-    __block id memo = [initial respondsToSelector:@selector(mutableCopyWithZone:)] ? [initial mutableCopy] : initial;
+    __block id memo = [initial conformsToProtocol:@protocol(NSMutableCopying)] ? [initial mutableCopy] : initial;
 
     [self each:^(id obj) {
         if (!memo)
