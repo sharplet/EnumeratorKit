@@ -185,10 +185,87 @@
  */
 - (NSDictionary *)chunk:(id<NSCopying> (^)(id obj))block;
 
-/** Accumulates a result by applying the block to successive pairs of elements. */
+/**
+ Accumulates a result by applying the block to each element in turn.
+ Each time the block is executed, its return value becomes the new value
+ of the accumulator.
+
+ In this form of `reduce:`, as opposed to `reduce:withBlock:`, the first
+ element of the collection will become the initial value of the
+ accumulator, and every other element in the collection will be passed
+ to the block in turn.
+
+ For example, take an array of numbers for which we need to calculate
+ the maximum:
+
+    NSArray *numbers = @[@5, @1, @100, @13, @28, @123, @321, @10, @99, @4];
+
+    // at each step, returns the new maximum
+    [numbers reduce:^(id max, id num){
+        return [num integerValue] > [max integerValue] ? num : max;
+    }];
+    // => @321
+
+ 1. The first element, `@5`, becomes the first value of `max`
+ 2. The block is called with `max = @5` and `num = @1`. `max` is still
+    greater, so it is returned.
+ 3. The block is called with `max = @5` and `num = @100`. This time,
+    `num` is greater, and so the block returns `@100`.
+ 4. The block is called with `max = @100` and `num = @13`. It returns
+    `@100`.
+ 5. And so on, until the maximum value of `@321` is returned.
+
+ @param block A block that accepts an accumulator value, and each
+    successive object in the collection.
+
+ @return The result of the transformation.
+ */
 - (id)reduce:(id (^)(id memo, id obj))block;
 
-/** Given an initial value, accumulates a result by applying the block to successive pairs of elements. */
+/**
+ Accumulates a result by applying the block to each element in turn.
+ Each time the block is executed, its return value becomes the new value
+ of the accumulator. The final result may be a new collection or a
+ discrete object.
+
+ In a variation on the example in `reduce:`, instead of returning the
+ maximum value in the array, we can instead return an array showing
+ how the maximum value changed across the enumeration:
+
+    NSArray *numbers = @[@5, @1, @100, @13, @28, @123, @321, @10, @99, @4];
+
+    [numbers reduce:[numbers take:1] withBlock:^(id maximums, id num){
+        if ([num integerValue] > [[maximums lastObject] integerValue]) {
+            [maximums addObject:num];
+        }
+        return maximums;
+    }];
+    // => @[@5, @100, @123, @321]
+
+ 1. We use `[numbers take:1]` as the initial, which returns a new array
+    containing the first number (`@[@5]`). At each step, we test if the
+    number is greater than the last object in the array (the current
+    maximum).
+ 2. For the first and second iterations, `maximums` is unchanged, as the
+    max value hasn't increased yet.
+ 3. For `num = @100`, we have a new max value, so it is added to the
+    array.
+ 4. And so on, until the final array of maximum numbers is copied and
+    returned.
+
+ @param initial The initial accumulator value to be passed to the block.
+    If the object conforms to `NSMutableCopying`, a mutable copy of it
+    will be taken, to allow for the construction of new collections.
+    Passing `nil` causes the first element to become the initial value,
+    and thus is equivalent to calling `reduce:`.
+
+ @param block A block that accepts an accumulator value, and each
+    successive object in the collection.
+
+ @return The result of the transformation. This may be a new collection,
+    or a discrete object. If the result conforms to `NSCopying`, it is
+    copied first.
+ */
 - (id)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
 
 /** Accumulates a result by "injecting" the operation between successive pairs of elements. */
