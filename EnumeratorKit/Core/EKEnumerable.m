@@ -108,7 +108,8 @@
         else
             memo = block(memo, obj);
     }];
-    return memo;
+
+    return [memo conformsToProtocol:@protocol(NSCopying)] ? [memo copy] : memo;
 }
 
 - (id)inject:(SEL)binaryOperation
