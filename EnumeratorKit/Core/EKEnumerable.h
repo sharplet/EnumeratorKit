@@ -354,7 +354,25 @@
  */
 - (NSArray *)reject:(BOOL (^)(id obj))block;
 
-/** Find the first matching element in a collection. */
+/**
+ Find the first element in a collection for which the block returns `YES`.
+
+ Usage:
+
+    NSArray *numbers = @[@1, @3, @5, @6, @9];
+
+    // look for an even number
+    [numbers find:^BOOL(id obj) {
+        return [obj integerValue] % 2 == 0;
+    }];
+    // => @6
+
+ @param block A block that accepts each successive object and returns
+    a `BOOL` result.
+
+ @return Returns the first object for which the block returns `YES`, if
+    any. If no object is found, returns `nil`.
+ */
 - (id)find:(BOOL (^)(id obj))block;
 
 
