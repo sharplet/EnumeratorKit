@@ -294,8 +294,13 @@
  */
 - (id)inject:(SEL)binaryOperation;
 
-/** Given an initial value, accumulates a result by "injecting" the operation between successive pairs of elements. */
-- (id)inject:(id)initial withOperation:(SEL)binaryOperation;
+/**
+ Given an initial value, accumulates a result by "injecting" the
+ operation between successive pairs of elements.
+
+ @deprecated Use `inject:` or `reduce:` instead.
+ */
+- (id)inject:(id)initial withOperation:(SEL)binaryOperation DEPRECATED_ATTRIBUTE;
 
 
 #pragma mark Searching and filtering

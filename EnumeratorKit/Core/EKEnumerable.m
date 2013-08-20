@@ -114,15 +114,19 @@
 
 - (id)inject:(SEL)binaryOperation
 {
-    return [self inject:nil withOperation:binaryOperation];
+    return [self reduce:^id(id memo, id obj) {
+        SuppressPerformSelectorLeakWarning(
+            return [memo performSelector:binaryOperation withObject:obj];
+        );
+    }];
 }
 
 - (id)inject:(id)initial withOperation:(SEL)binaryOperation
 {
     return [self reduce:initial withBlock:^id(id memo, id obj) {
         SuppressPerformSelectorLeakWarning(
-                                           return [memo performSelector:binaryOperation withObject:obj];
-                                           );
+            return [memo performSelector:binaryOperation withObject:obj];
+        );
     }];
 }
 
