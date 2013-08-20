@@ -15,9 +15,36 @@
  `EKEnumerable` mixin, collection classes need to:
 
  1. Adopt the `EKEnumerable` protocol
+
  2. Implement `+load` and call `[self includeEKEnumerable]`
+
  3. Implement `-each:` to traverse the collection, applying the block
     to each element.
+
+ For example:
+
+    // MyCollection.h
+    @interface MyCollection : NSObject <EKEnumerable>
+
+    @end
+
+    // MyCollection.m
+    @implementation
+
+    + (void)load
+    {
+        [self includeEKEnumerable];
+    }
+
+    - (instancetype)each:(void (^)(id))block
+    {
+        for (id obj in self.data) {
+            block(obj);
+        }
+        return self;
+    }
+
+    @end
  */
 @protocol EKEnumerable <NSObject>
 
