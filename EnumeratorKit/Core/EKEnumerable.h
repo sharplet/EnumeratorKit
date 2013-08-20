@@ -268,7 +268,30 @@
  */
 - (id)reduce:(id)initial withBlock:(id (^)(id memo, id obj))block;
 
-/** Accumulates a result by "injecting" the operation between successive pairs of elements. */
+/**
+ Accumulates a result by "injecting" the operation between successive
+ pairs of elements.
+
+ Usage:
+
+    NSArray *letters = @[@"H", @"e", @"l", @"l", @"o"];
+
+    [letters inject:@selector(stringByAppendingString:)];
+    // => @"Hello"
+
+ This is equivalent to the following, using `reduce:`:
+
+    [letters reduce:^(id s, id letter){
+        return [s stringByAppendingString:letter];
+    }];
+    // => @"Hello"
+
+ @param binaryOperation A selector that takes a single parameter, and
+    is expected to return an instance of the same type as the receiver.
+
+ @return Returns the result of "injecting" the operation between each
+    element of the collection.
+ */
 - (id)inject:(SEL)binaryOperation;
 
 /** Given an initial value, accumulates a result by "injecting" the operation between successive pairs of elements. */

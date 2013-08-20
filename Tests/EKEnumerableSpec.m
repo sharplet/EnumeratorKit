@@ -619,6 +619,12 @@ describe(@"-inject", ^{
             [[ (id)[@[@2,@3] inject:@1 withOperation:@selector(add:)] should] equal:@6];
         });
 
+        it(@"can append strings", ^{
+            NSArray *letters = @[@"H", @"e", @"l", @"l", @"o"];
+            NSString *word = [letters inject:@selector(stringByAppendingString:)];
+            [[word should] equal:@"Hello"];
+        });
+
     });
 
     context(@"function style", ^{
