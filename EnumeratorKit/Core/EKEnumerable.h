@@ -213,6 +213,43 @@
 - (NSDictionary *)groupBy:(id<NSCopying> (^)(id obj))block;
 
 /**
+ Applies the block to each item in the collection, using the result as
+ the item's key. Returns an array of pairs of the form
+
+    @[ key, @[first match, second match] ]
+
+ This method behaves like `groupBy:`, except the original order of the
+ items is unchanged (this is particularly useful if the original collection
+ is sorted).
+
+ For example, with the array `@[@"foo", @"bar"]`, if we were to chunk by
+ each item's first character:
+
+    [@[@"foo", @"bar"] chunk:^(id string){
+        return [string substringToIndex:1];
+    }];
+    // => @[
+            @[@"f", @[@"foo"]],
+            @[@"b", @[@"bar"]]
+          ]
+
+ Every "chunk" of items that returns the same value from the block is
+ grouped together:
+
+    [@[@"foo", @"bar", @"baz"] chunk:^(id string){
+        return [string substringToIndex:1];
+    }];
+    // => @[
+            @[@"f", @[@"foo"]],
+            @[@"b", @[@"bar", @"baz"]]
+          ]
+
+ @param block A block whose return value will be used as a key to group
+    the item by.
+*/
+- (NSArray *)chunk:(id (^)(id obj))block;
+
+/**
  Accumulates a result by applying the block to each element in turn.
  Each time the block is executed, its return value becomes the new value
  of the accumulator.

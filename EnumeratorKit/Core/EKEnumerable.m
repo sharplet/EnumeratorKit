@@ -92,6 +92,37 @@
     return [[NSDictionary alloc] initWithDictionary:groups copyItems:YES];
 }
 
+- (NSArray *)chunk:(id (^)(id))block
+{
+    NSMutableArray *chunks = [NSMutableArray new];
+
+    void (^freeze)(NSMutableArray *, NSInteger) = ^(NSMutableArray *array, NSInteger idx){
+        if (idx != -1) {
+            chunks[idx] = [[NSArray alloc] initWithArray:array[idx] copyItems:YES];
+        }
+    };
+
+    __block NSInteger count = -1;
+
+    [self each:^(id obj) {
+        id result = block(obj);
+        id key = result ? result : [NSNull null];
+
+        if (count == -1 || ![chunks[count][0] isEqual:key]) {
+            freeze(chunks, count);
+            count++;
+            [chunks addObject:[NSMutableArray arrayWithObjects:key, [NSMutableArray arrayWithObject:obj], nil]];
+        }
+        else {
+            [chunks[count][1] addObject:obj];
+        }
+    }];
+
+    freeze(chunks, count);
+
+    return [chunks copy];
+}
+
 - (id)reduce:(id (^)(id, id))block
 {
     return [self reduce:nil withBlock:block];

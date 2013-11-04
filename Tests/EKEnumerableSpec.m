@@ -425,6 +425,38 @@ describe(@"-groupBy", ^{
 
 describe(@"-chunk", ^{
 
+    NSArray *strings = @[@"foo", @"bar", @"baz"];
+
+    id (^firstChar)(id) = ^id(id string) {
+        return [string substringToIndex:1];
+    };
+
+    it(@"returns the correct number of chunks", ^{
+        [[[strings chunk:firstChar] should] haveCountOf:2];
+    });
+
+    it(@"groups items by the return value of the block", ^{
+        NSArray *actualResult = [strings chunk:firstChar];
+        [[actualResult should] equal:@[
+            @[@"f", @[@"foo"]],
+            @[@"b", @[@"bar", @"baz"]]
+        ]];
+    });
+
+    it(@"doesn't join non-continous groups", ^{
+        NSArray *strings = @[@"baz", @"foo", @"bar"];
+        NSArray *actualResult = [strings chunk:firstChar];
+        [[actualResult should] equal:@[
+            @[@"b", @[@"baz"]],
+            @[@"f", @[@"foo"]],
+            @[@"b", @[@"bar"]]
+        ]];
+        [[actualResult shouldNot] equal:@[
+            @[@"b", @[@"baz", @"bar"]],
+            @[@"f", @[@"foo"]]
+        ]];
+    });
+
     context(@"function style", ^{
 
         it(@"groups items by the return value of the block", ^{
