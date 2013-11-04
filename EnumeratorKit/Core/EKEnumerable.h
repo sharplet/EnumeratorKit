@@ -210,7 +210,7 @@
  @param block A block whose return value will be used as a key to group
      the item by.
  */
-- (NSDictionary *)chunk:(id<NSCopying> (^)(id obj))block;
+- (NSDictionary *)groupBy:(id<NSCopying> (^)(id obj))block;
 
 /**
  Accumulates a result by applying the block to each element in turn.

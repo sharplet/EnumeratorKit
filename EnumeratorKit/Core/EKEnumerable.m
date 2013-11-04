@@ -74,22 +74,22 @@
     }];
 }
 
-- (NSDictionary *)chunk:(id<NSCopying> (^)(id))block
+- (NSDictionary *)groupBy:(id<NSCopying> (^)(id))block
 {
-    NSMutableDictionary *chunks = [NSMutableDictionary new];
+    NSMutableDictionary *groups = [NSMutableDictionary new];
     [self each:^(id obj) {
         id<NSCopying> result = block(obj);
         id<NSCopying> key = result ? result : [NSNull null];
 
-        if (!chunks[key]) {
-            chunks[key] = [NSMutableArray new];
+        if (!groups[key]) {
+            groups[key] = [NSMutableArray new];
         }
 
-        [chunks[key] addObject:obj];
+        [groups[key] addObject:obj];
     }];
 
     // ensure the chunked arrays are immutable
-    return [[NSDictionary alloc] initWithDictionary:chunks copyItems:YES];
+    return [[NSDictionary alloc] initWithDictionary:groups copyItems:YES];
 }
 
 - (id)reduce:(id (^)(id, id))block
@@ -256,7 +256,7 @@
 - (NSDictionary *(^)(id<NSCopying> (^)(id)))chunk
 {
     return ^NSDictionary *(id<NSCopying> (^block)(id)){
-        return [self chunk:block];
+        return [self groupBy:block];
     };
 }
 

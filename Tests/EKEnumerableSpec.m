@@ -394,7 +394,7 @@ describe(@"-reject", ^{
 
 });
 
-describe(@"-chunk", ^{
+describe(@"-groupBy", ^{
 
     context(@"message style", ^{
 
@@ -405,13 +405,13 @@ describe(@"-chunk", ^{
                 @YES: @[@4, @2, @6]
             };
 
-            [[[numbers chunk:^id<NSCopying>(id obj) {
+            [[[numbers groupBy:^id<NSCopying>(id obj) {
                 return @([obj integerValue] % 2 == 0); // @YES if even, otherwise @NO
             }] should] equal:expectedResult];
         });
 
         it(@"uses [NSNull null] as the key when the block returns nil", ^{
-            [[[@[@1, @2, @3] chunk:^id<NSCopying>(id obj) {
+            [[[@[@1, @2, @3] groupBy:^id<NSCopying>(id obj) {
                 return [obj isEqual:@1] ? @"1" : nil;
             }] should] equal:@{
                 @"1": @[@1],
@@ -420,6 +420,10 @@ describe(@"-chunk", ^{
         });
 
     });
+
+});
+
+describe(@"-chunk", ^{
 
     context(@"function style", ^{
 
