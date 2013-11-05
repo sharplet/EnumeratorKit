@@ -10,7 +10,12 @@
 
 @implementation NSSet (EKEnumerable)
 
-- (id<EKEnumerable>)each:(void (^)(id))block
++ (void)load
+{
+    [self includeEKEnumerable];
+}
+
+- (instancetype)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         block(obj);

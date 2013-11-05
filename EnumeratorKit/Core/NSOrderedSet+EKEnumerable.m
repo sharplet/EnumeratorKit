@@ -10,7 +10,12 @@
 
 @implementation NSOrderedSet (EKEnumerable)
 
-- (id<EKEnumerable>)each:(void (^)(id))block
++ (void)load
+{
+    [self includeEKEnumerable];
+}
+
+- (instancetype)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         block(obj);

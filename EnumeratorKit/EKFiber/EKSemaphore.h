@@ -40,12 +40,18 @@
 
 /**
  Creates and returns an `EKSemaphore` with the specified value.
+
+ @param value The count value of the semaphore, i.e., the number of
+    concurrent waits before the semaphore blocks.
  */
 + (instancetype)semaphoreWithValue:(NSUInteger)value;
 
 /**
  Designated initialiser. Create a new counting semaphore with the
  specified value.
+
+ @param value The count value of the semaphore, i.e., the number of
+    concurrent waits before the semaphore blocks.
  */
 - (instancetype)initWithValue:(NSUInteger)value;
 

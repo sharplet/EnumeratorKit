@@ -10,12 +10,17 @@
 
 @implementation NSDictionary (EKEnumerable)
 
-- (id<EKEnumerable>)each:(void (^)(id))block
++ (void)load
+{
+    [self includeEKEnumerable];
+}
+
+- (instancetype)each:(void (^)(id))block
 {
     return [self eachPair:block];
 }
 
-- (id<EKEnumerable>)eachPair:(void (^)(id))block
+- (instancetype)eachPair:(void (^)(id))block
 {
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         block(@[key, obj]);
@@ -29,7 +34,7 @@
     };
 }
 
-- (id<EKEnumerable>)eachEntry:(void (^)(id))block
+- (instancetype)eachEntry:(void (^)(id))block
 {
     return [self eachPair:block];
 }
@@ -40,7 +45,7 @@
     };
 }
 
-- (id<EKEnumerable>)eachKey:(void (^)(id))block
+- (instancetype)eachKey:(void (^)(id))block
 {
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         block(key);
@@ -54,7 +59,7 @@
     };
 }
 
-- (id<EKEnumerable>)eachObject:(void (^)(id))block
+- (instancetype)eachObject:(void (^)(id))block
 {
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         block(obj);

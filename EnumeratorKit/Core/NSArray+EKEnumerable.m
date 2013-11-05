@@ -10,6 +10,11 @@
 
 @implementation NSArray (EKEnumerable)
 
++ (void)load
+{
+    [self includeEKEnumerable];
+}
+
 - (id)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
