@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     collection classes.
   EOS
 
-  s.platform     = :ios
+  s.ios.deployment_target = '5.1.1'
   s.requires_arc = true
 
   s.homepage     = 'https://github.com/sharplet/EnumeratorKit'

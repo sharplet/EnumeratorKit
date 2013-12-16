@@ -28,20 +28,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A9FF98D3A6D41CFB23EE644"
-               BuildableName = "libPods-EnumeratorKitTests.a"
-               BlueprintName = "Pods-EnumeratorKitTests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B4765C7A52E246959F738AF5"
                BuildableName = "libPods-Specs.a"
                BlueprintName = "Pods-Specs"
@@ -60,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4AC073C7174AC561005FA8E5"
-               BuildableName = "EnumeratorKitTests.octest"
-               BlueprintName = "EnumeratorKitTests"
+               BlueprintIdentifier = "4AD13087185C0C3B003E7145"
+               BuildableName = "Specs.xctest"
+               BlueprintName = "Specs"
                ReferencedContainer = "container:EnumeratorKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
