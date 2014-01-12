@@ -166,7 +166,7 @@ static EKSerialOperationQueue *fibersQueue;
 
 - (BOOL)isAlive
 {
-    return !!self.block;
+    return (self.block != nil);
 }
 
 @end
