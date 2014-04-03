@@ -54,11 +54,4 @@
     return (result == 0);
 }
 
-#pragma mark Deallocation
-
-- (void)dealloc
-{
-    dispatch_release(_semaphore);
-}
-
 @end
