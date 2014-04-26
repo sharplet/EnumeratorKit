@@ -1,2 +1,2 @@
-includeFiles = ".gitignore"
+includeFiles = ".{gitignore,travis.yml}"
 excludeDirectories = "Build"
