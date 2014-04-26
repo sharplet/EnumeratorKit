@@ -557,28 +557,28 @@ describe(@"-find", ^{
 
 describe(@"-any", ^{
 
-	context(@"message style", ^{
+    context(@"message style", ^{
 		
-		it(@"stops the first time the block returns YES and returns YES", ^{
-			__block NSUInteger count = 0;
+        it(@"stops the first time the block returns YES and returns YES", ^{
+            __block NSUInteger count = 0;
             [[@([@[@1,@2,@3] any:^BOOL(id obj) {
                 count++;
                 return [obj integerValue] % 2 == 0;
             }]) should] equal:@YES];
             [[theValue(count) should] equal:theValue(2)];
-		});
-		
-		it(@"returns NO if block always returns NO", ^{
-			__block NSUInteger count = 0;
+        });
+
+        it(@"returns NO if block always returns NO", ^{
+            __block NSUInteger count = 0;
             [[@([@[@1,@2,@3] any:^BOOL(id obj) {
                 count++;
                 return [obj integerValue] > 3;
             }]) should] equal:@NO];
             [[theValue(count) should] equal:theValue(3)];
-		});
-		
-	});
-	
+        });
+
+    });
+
 });
 
 describe(@"-all", ^{
