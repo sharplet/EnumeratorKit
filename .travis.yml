@@ -1,4 +1,4 @@
 language: objective-c
-before_install: export LANG=en_AU.UTF-8
+env: LANG=en_AU.UTF-8
 install: gem install xcpretty
 script: rake build test
