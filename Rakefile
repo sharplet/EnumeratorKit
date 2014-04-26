@@ -1,18 +1,30 @@
-task :default => :build
+task :default => [:build]
+
+def xcpretty_sh(cmd)
+  unless %x(which xcpretty 2>/dev/null).empty?
+    cmd += ' | xcpretty'
+    cmd += ' -c' if $stdout.tty?
+    cmd += ' -t' if cmd.include? 'test'
+  end
+  sh cmd
+end
+
+xcodebuild_args = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit"
 
 desc "Build release configuration"
 task :build do
-  system 'xctool -configuration Release -sdk iphoneos6.1 build'
+  xcpretty_sh "xcodebuild #{xcodebuild_args}"
 end
 
 desc "Run unit tests"
 task :test do
-  system 'xctool -configuration Debug -sdk iphonesimulator6.1 test'
+  destination = "platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)"
+  xcpretty_sh "xcodebuild test -destination '#{destination}' #{xcodebuild_args}"
 end
 
 desc "Clean targets"
 task :clean do
-  system 'xctool clean'
+  rm_rf 'Build/'
 end
 
 desc "Synonym for docs:generate"
