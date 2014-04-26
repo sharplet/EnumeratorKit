@@ -1,5 +1,7 @@
 # EnumeratorKit — Ruby-style enumeration in Objective-C
 
+[![Build Status](https://travis-ci.org/sharplet/EnumeratorKit.svg?branch=master)](https://travis-ci.org/sharplet/EnumeratorKit)
+
 EnumeratorKit is a collection enumeration library modelled after Ruby's
 `Enumerable` module and `Enumerator` class.
 
