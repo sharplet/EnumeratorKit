@@ -225,6 +225,23 @@
     return nil;
 }
 
+- (BOOL)any:(BOOL (^)(id obj))block
+{
+    return [self find:block] != nil;
+}
+
+- (BOOL)all:(BOOL (^)(id obj))block
+{
+    id next;
+    EKEnumerator *e = self.asEnumerator;
+    while ((next = e.next)) {
+        if (!block(next)) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 #pragma mark Other methods
 
