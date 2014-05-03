@@ -439,6 +439,48 @@
  */
 - (id)find:(BOOL (^)(id obj))block;
 
+/**
+ Check if any value in a collection passes the block.
+
+ Usage:
+
+     NSArray *numbers = @[@1, @3, @5, @7, @9];
+
+    // look for an even number
+    [numbers any:^BOOL(id obj) {
+        return [obj integerValue] % 2 == 0;
+    }];
+    // => @NO
+
+ @param block A block that accepts each successive object and returns
+    a `BOOL` result.
+
+ @return Returns `YES` if an object is found for which the block returns `YES`.
+    If no object is found, returns `NO`.
+ */
+- (BOOL)any:(BOOL (^)(id obj))block;
+
+/**
+ Check if all values in a collection pass the block.
+
+ Usage:
+
+     NSArray *numbers = @[@1, @3, @5, @7, @9];
+
+    // Check if all numbers are odd
+    [numbers all:^BOOL(id obj) {
+        return [obj integerValue] % 2 != 0;
+    }];
+    // => @YES
+
+ @param block A block that accepts each successive object and returns
+    a `BOOL` result.
+
+ @return Returns `YES` if the block returns `YES` for all objects in the
+    collection. If the block returns `NO` for at least one object, returns `NO`.
+ */
+- (BOOL)all:(BOOL (^)(id obj))block;
+
 
 #pragma mark Sorting
 /** @name Sorting */
