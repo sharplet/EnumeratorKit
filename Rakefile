@@ -5,6 +5,7 @@ def xcpretty_sh(cmd)
     cmd += ' | xcpretty'
     cmd += ' -c' if $stdout.tty?
     cmd += ' -t' if cmd.include? 'test'
+    cmd += '; exit ${PIPESTATUS[0]}'
   end
   sh cmd
 end
