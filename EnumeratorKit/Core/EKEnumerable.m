@@ -60,7 +60,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [self each:^(id obj) {
         NSDictionary *entry = block(obj);
-        NSAssert([entry count] <= 1, @"Expected a dictionary with no more than 1 entry (%lu entries)", [entry count]);
+        NSAssert([entry count] <= 1, @"Expected a dictionary with no more than 1 entry (%lu entries)", (unsigned long)[entry count]);
 
         [dict addEntriesFromDictionary:entry];
     }];
