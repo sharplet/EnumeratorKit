@@ -60,7 +60,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [self each:^(id obj) {
         NSDictionary *entry = block(obj);
-        NSAssert([entry count] <= 1, @"Expected a dictionary with no more than 1 entry (%d entries)", [entry count]);
+        NSAssert([entry count] <= 1, @"Expected a dictionary with no more than 1 entry (%lu entries)", [entry count]);
 
         [dict addEntriesFromDictionary:entry];
     }];
@@ -250,7 +250,7 @@
     NSMutableArray *result = [NSMutableArray array];
     EKEnumerator *e = self.asEnumerator;
 
-    NSUInteger count = 0;
+    NSInteger count = 0;
     while (e.peek && (number < 0 || ++count <= number)) {
         [result addObject:e.next];
     }
@@ -406,7 +406,7 @@
     unsigned int methodCount;
     Method *methods = class_copyMethodList([EKEnumerable class], &methodCount);
 
-    for (int i = 0; i < methodCount; i++) {
+    for (unsigned i = 0; i < methodCount; i++) {
         SEL name = method_getName(methods[i]);
         IMP imp = method_getImplementation(methods[i]);
         const char *types = method_getTypeEncoding(methods[i]);
