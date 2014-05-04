@@ -1,3 +1,7 @@
+require 'rake/clean'
+CLEAN   << 'Build/Intermediates'
+CLOBBER << 'Build/Products'
+
 task :default => [:build]
 
 def xcpretty_sh(cmd)
@@ -10,22 +14,20 @@ def xcpretty_sh(cmd)
   sh cmd
 end
 
-xcodebuild_args = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit"
+project_args = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit"
 
 desc "Build release configuration"
 task :build do
-  xcpretty_sh "xcodebuild #{xcodebuild_args}"
+  xcpretty_sh "xcodebuild #{project_args}"
 end
+
+destination_32bit = "-destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)'"
+destination_64bit = "-destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)'"
 
 desc "Run unit tests"
 task :test do
-  destination = "platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)"
-  xcpretty_sh "xcodebuild test -destination '#{destination}' #{xcodebuild_args}"
-end
-
-desc "Clean targets"
-task :clean do
-  rm_rf 'Build/'
+  xcpretty_sh "xcodebuild test #{destination_32bit} #{project_args}"
+  xcpretty_sh "xcodebuild test #{destination_64bit} #{project_args}"
 end
 
 desc "Synonym for docs:generate"
