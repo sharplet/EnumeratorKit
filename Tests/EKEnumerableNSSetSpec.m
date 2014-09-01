@@ -10,28 +10,12 @@ describe(@"-each", ^{
         set = [NSSet setWithArray:@[@1,@2,@3]];
     });
 
-    context(@"message style", ^{
-
-        it(@"enumerates over key-value pairs", ^{
-            __block NSUInteger count = 0;
-            [set each:^(id obj) {
-                count++;
-            }];
-            [[theValue(count) should] equal:theValue(3)];
-        });
-
-    });
-
-    context(@"function style", ^{
-
-        it(@"enumerates over key-value pairs", ^{
-            __block NSUInteger count = 0;
-            set.each(^(id obj) {
-                count++;
-            });
-            [[theValue(count) should] equal:theValue(3)];
-        });
-
+    it(@"enumerates over key-value pairs", ^{
+        __block NSUInteger count = 0;
+        [set each:^(id obj) {
+            count++;
+        }];
+        [[theValue(count) should] equal:theValue(3)];
     });
 
 });

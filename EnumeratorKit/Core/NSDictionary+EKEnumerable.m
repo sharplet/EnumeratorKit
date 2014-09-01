@@ -27,22 +27,10 @@
     }];
     return self;
 }
-- (id<EKEnumerable> (^)(void (^)(id)))eachPair
-{
-    return ^id<EKEnumerable>(void (^block)(NSArray *)) {
-        return [self eachPair:block];
-    };
-}
 
 - (instancetype)eachEntry:(void (^)(id))block
 {
     return [self eachPair:block];
-}
-- (id<EKEnumerable> (^)(void (^)(id)))eachEntry
-{
-    return ^id<EKEnumerable>(void (^block)(NSArray *)) {
-        return [self eachEntry:block];
-    };
 }
 
 - (instancetype)eachKey:(void (^)(id))block
@@ -52,12 +40,6 @@
     }];
     return self;
 }
-- (id<EKEnumerable> (^)(void (^)(id obj)))eachKey
-{
-    return ^id<EKEnumerable>(void (^block)(id)) {
-        return [self eachKey:block];
-    };
-}
 
 - (instancetype)eachObject:(void (^)(id))block
 {
@@ -65,12 +47,6 @@
         block(obj);
     }];
     return self;
-}
-- (id<EKEnumerable> (^)(void (^)(id obj)))eachObject
-{
-    return ^id<EKEnumerable>(void (^block)(id)) {
-        return [self eachObject:block];
-    };
 }
 
 @end
