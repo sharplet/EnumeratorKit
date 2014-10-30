@@ -113,6 +113,20 @@ describe(@"-map", ^{
 
 });
 
+describe(@"-mapWithIndex", ^{
+
+    it(@"passes each index to the block and returns the mapped array", ^{
+        NSMutableArray *indices = [NSMutableArray new];
+        id strings = [@[@10,@11,@12] mapWithIndex:^id(id obj, NSUInteger i) {
+            [indices addObject:@(i)];
+            return [NSString stringWithFormat:@"%@", obj];
+        }];
+        [[strings should] equal:@[@"10", @"11", @"12"]];
+        [[indices should] equal:@[@0, @1, @2]];
+    });
+
+});
+
 describe(@"-flattenMap", ^{
 
     it(@"returns a new array with the flattened result of applying the block to each item in the array", ^{
