@@ -50,6 +50,16 @@
     return result;
 }
 
+- (NSArray *)mapWithIndex:(id (^)(id, NSUInteger))block
+{
+    NSMutableArray * result = [NSMutableArray new];
+    [self eachWithIndex:^(id obj, NSUInteger i) {
+        id mapped = block(obj, i);
+        [result addObject:mapped];
+    }];
+    return result;
+}
+
 - (NSArray *)flattenMap:(id (^)(id))block
 {
     return [[self map:block] flatten];

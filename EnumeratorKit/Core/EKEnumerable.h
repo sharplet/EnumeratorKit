@@ -118,6 +118,17 @@
 - (NSArray *)map:(id (^)(id obj))block;
 
 /**
+ A combination of `-map:` and `-eachWithIndex:`.
+
+ @param block A block that accepts an object and an `NSUInteger` index.
+
+ @return Returns a new array with the results of applying the block to
+    each element in the collection. The resulting array will always
+    have the same count as the receiver.
+ */
+- (NSArray *)mapWithIndex:(id (^)(id obj, NSUInteger i))block;
+
+/**
  Performs a `map:` with the block, returning a single flattened array
  as the result.
 
