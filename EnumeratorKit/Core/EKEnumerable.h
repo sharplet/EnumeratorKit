@@ -18,8 +18,8 @@
 
  2. Implement `+load` and call `[self includeEKEnumerable]`
 
- 3. Implement `-each:` to traverse the collection, applying the block
-    to each element.
+ 3. Implement the required `-each:` and `-initWithEnumerable:` methods in
+    the `EKEnumerable` protocol.
 
  For example:
 
@@ -34,6 +34,11 @@
     + (void)load
     {
         [self includeEKEnumerable];
+    }
+
+    - (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+    {
+        return [self initWithArray:[enumerable asArray]];
     }
 
     - (instancetype)each:(void (^)(id))block
@@ -53,6 +58,17 @@
 #pragma mark - Initialisation
 /** @name Initialisation **/
 
+/**
+ Called by `EnumeratorKit` to initialize a new intance of a collection
+ containing the transformed or filtered results after applying some operation.
+
+ For example, the default implementation of `-map:` calls this initializer and
+ passes in an enumerable containing the mapped values. Your implementation of
+ this method should use the values in the enumerable to initialize the new
+ instance.
+
+ @param enumerable An enumerable containing the values to initialize this instance.
+ */
 - (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable;
 
 #pragma mark - Traversal
