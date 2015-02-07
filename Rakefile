@@ -6,7 +6,9 @@ def xcpretty(cmd)
   sh "set -o pipefail; #{cmd} | xcpretty -c"
 end
 
-task :default => [:test]
+task default: %w[:test]
+
+task ci: %w[test]
 
 desc "Run all tests"
 task test: %w[test:iphone6 test:iphone5]
