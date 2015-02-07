@@ -67,4 +67,28 @@
     return self;
 }
 
+- (instancetype)map:(id (^)(id))block
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    [self eachPair:^(id pair) {
+        id mapped = block(pair);
+        dictionary[pair[0]] = mapped;
+    }];
+    return [dictionary copy];
+}
+
+- (instancetype)flattenMap:(id<EKEnumerable> (^)(id))block
+{
+    NSMutableDictionary *results = [NSMutableDictionary new];
+    [self eachPair:^(id pair) {
+        id result = block(pair) ?: [[self class] new];
+        NSAssert([result isKindOfClass:[self class]], @"The block passed to -flattenMap: must return an enumerable of the same type as the receiver.");
+        [result enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if (!results[key]) { results[key] = [NSMutableSet new]; }
+            [results[key] addObject:obj];
+        }];
+    }];
+    return [[NSDictionary alloc] initWithDictionary:results copyItems:YES];
+}
+
 @end

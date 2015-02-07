@@ -87,4 +87,39 @@ describe(@"-eachObject", ^{
 
 });
 
+describe(@"-map:", ^{
+
+    it(@"returns a new dictionary with the receivers values transformed by the block", ^{
+        NSDictionary *dictionary = @{@"a": @1, @"b": @2};
+        NSDictionary *doubled = [dictionary map:^(id pair) {
+            return @([pair[1] integerValue] * 2);
+        }];
+        [[doubled should] equal:@{@"a": @2, @"b": @4}];
+    });
+
+});
+
+describe(@"-flattenMap:", ^{
+
+    it(@"merges the contents of each resulting dictionary, giving the set of values for each key", ^{
+        NSDictionary *people = @{
+            @"person1": @{@"name": @"Steve von Sharp", @"age": @30},
+            @"person2": @{@"name": @"Jess Smith", @"age": @25},
+            @"person3": @{@"name": @"Tristan", @"age": @25},
+        };
+
+        NSDictionary *stats = [people flattenMap:^(id pair) {
+            NSDictionary *person = pair[1];
+            return @{
+                 @"number of names": @([person[@"name"] componentsSeparatedByString:@" "].count),
+                 @"age": person[@"age"],
+            };
+        }];
+
+        [[stats[@"number of names"] should] equal:[NSSet setWithArray:@[@1, @2, @3]]];
+        [[stats[@"age"] should] equal:[NSSet setWithArray:@[@25, @30]]];
+    });
+
+});
+
 SPEC_END
