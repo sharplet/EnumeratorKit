@@ -100,42 +100,34 @@
 /** @name Transformations */
 
 /**
- Applies the block to each element in the collection, and collects
- the return values in an array. If the block returns `nil`,
- `[NSNull null]` will automatically be inserted into the array.
+ Return a new enumerable with the results of applying `block` to each element
+ in the receiver. `nil` values are automatically boxed as `NSNull`.
 
  Usage:
 
     Animal *dog = [Animal animalWithName:@"Spike"];
     Animal *cat = [Animal animalWithName:@"Princess"];
 
-    [@[dog, cat] map:^(id pet){
-        return [pet name];
+    [@[dog, cat] map:^(Animal *pet){
+        return pet.name;
     }];
     // => @[@"Spike", @"Princess"];
 
  @param block A block that accepts a single object and returns an object.
-
- @return Returns a new array with the results of applying the block to
-    each element in the collection. The resulting array will always
-    have the same count as the receiver.
  */
-- (NSArray *)map:(id (^)(id obj))block;
+- (instancetype)map:(id (^)(id obj))block;
 
 /**
- A combination of `-map:` and `-eachWithIndex:`.
+ Map `block` over each element in the receiver, while passing the index of each element.
 
  @param block A block that accepts an object and an `NSUInteger` index.
-
- @return Returns a new array with the results of applying the block to
-    each element in the collection. The resulting array will always
-    have the same count as the receiver.
  */
-- (NSArray *)mapWithIndex:(id (^)(id obj, NSUInteger i))block;
+- (instancetype)mapWithIndex:(id (^)(id obj, NSUInteger i))block;
 
 /**
- Performs a `map:` with the block, returning a single flattened array
- as the result.
+ Maps `block` over the receiver, combining each enumerable into a single enumerable.
+ `nil` values are automatically converted into an empty enumerable by calling
+ calling `+new` on the receiver's class.
 
  Usage:
 
@@ -144,14 +136,9 @@
      }];
      // => @[@0, @"0", @1, @"1", @2, @"2"]
 
- @param block A block that accepts a single object and returns an
-    object. Returning an array will cause the *contents* of the array to
-    be flattened and added to the result array.
-
- @return A flattened array with the results of applying a `map:` with
-    the block.
+ @param block A block accepting a single object and returning an enumerable.
  */
-- (NSArray *)flattenMap:(id (^)(id obj))block;
+- (instancetype)flattenMap:(id<EKEnumerable> (^)(id obj))block;
 
 /**
  `mapDictionary:` behaves just like `map:` except that it returns an

@@ -48,29 +48,33 @@
 
 #pragma mark Transformations
 
-- (NSArray *)map:(id (^)(id))block
+- (instancetype)map:(id (^)(id))block
 {
-    NSMutableArray * result = [NSMutableArray array];
+    NSMutableArray *result = [NSMutableArray array];
     [self each:^(id obj) {
-        id mapped = block(obj);
-        [result addObject:(mapped ? mapped : [NSNull null])];
-    }];
-    return result;
-}
-
-- (NSArray *)mapWithIndex:(id (^)(id, NSUInteger))block
-{
-    NSMutableArray * result = [NSMutableArray new];
-    [self eachWithIndex:^(id obj, NSUInteger i) {
-        id mapped = block(obj, i);
+        id mapped = block(obj) ?: [NSNull null];
         [result addObject:mapped];
     }];
-    return result;
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
-- (NSArray *)flattenMap:(id (^)(id))block
+- (instancetype)mapWithIndex:(id (^)(id, NSUInteger))block
 {
-    return [[self map:block] flatten];
+    __block NSUInteger i = 0;
+    return [self map:^id(id obj) {
+        return block(obj, i++);
+    }];
+}
+
+- (instancetype)flattenMap:(id<EKEnumerable> (^)(id))block
+{
+    NSMutableArray *result = [NSMutableArray array];
+    [self each:^(id obj) {
+        id mapped = block(obj) ?: [[self class] new];
+        NSAssert([mapped isKindOfClass:[self class]], @"The block passed to -flattenMap: must return an enumerable of the same type as the receiver.");
+        [result addObjectsFromArray:[mapped asArray]];
+    }];
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id))block
