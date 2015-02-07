@@ -9,13 +9,13 @@ describe(@"-initWithObject", ^{
     it(@"returns an external -each: iterator for enumerable objects", ^{
         EKEnumerator *e = [EKEnumerator enumeratorWithObject:@[@1,@2,@3]];
         id result = [e take:3];
-        [[result should] equal:@[@1,@2,@3]];
+        [[[result asArray] should] equal:@[@1,@2,@3]];
     });
 
     it(@"returns an iterator that yields the object, when passed a regular object", ^{
         EKEnumerator *e = [EKEnumerator enumeratorWithObject:@999];
         id result = [e take:3];
-        [[result should] equal:@[@999]];
+        [[[result asArray] should] equal:@[@999]];
     });
 
 });
@@ -83,7 +83,7 @@ describe(@"infinite enumeration", ^{
         }];
 
         id result = [fib take:10];
-        [[result should] equal:@[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]];
+        [[[result asArray] should] equal:@[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]];
     });
 
 });

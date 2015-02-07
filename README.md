@@ -9,7 +9,7 @@ It allows you to work with collections of objects in a very compact,
 expressive way:
 
 ```objc
-#import <EnumeratorKit.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 
 NSArray *numbers = @[ @1, @2, @3 ];
 
@@ -30,14 +30,14 @@ higher-level operation:
 ```objc
 NSDictionary *examples = @{ @"Hello": @"world", @"foo": @"BAR" };
 
-[[[examples sortBy:^(id p){
+[[[examples sortBy:^(id pair){
     // sort entries by their keys, case insensitive
-    return [p[0] lowercaseString];
-}] map:^(id p){
+    return [pair[0] lowercaseString];
+}] map:^(id pair){
     // combine each key-value pair into a new string
-    return [NSString stringWithFormat:@"%@ %@", p[0], p[1]];
-}] select:^(id p){
-    return [p[1] hasSuffix:@"orld"];
+    return [NSString stringWithFormat:@"%@ %@", pair[0], pair[1]];
+}] select:^(id pair){
+    return [pair[1] hasSuffix:@"orld"];
 }];
 // => @[@"Hello world"];
 ```
@@ -56,15 +56,15 @@ number of advantages over `NSEnumerator`, for example:
 
 ```objc
 // you may have seen this in Ruby before
-EKEnumerator *fib = [EKEnumerator new:^(id<EKYielder> y){
+EKEnumerator *fib = [EKEnumerator new:^(id<EKYielder> yielder){
     int a = 1, b = 1;
     while (1) { // infinite loop (!)
-        [y yield:@(a)];
+        [yielder yield:@(a)];
         NSUInteger next = a + b;
         a = b; b = next;
     }
 }];
-[fib take:10]; // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
+[[fib take:10] asArray]; // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
 ```
 
 
@@ -81,7 +81,7 @@ pod 'EnumeratorKit', '~> 0.1.1'
 (And don't forget to `pod install`.) Then import the header:
 
 ```objc
-#import <EnumeratorKit.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 ```
 
 Now you're ready to go.
@@ -104,14 +104,15 @@ Now you're ready to go.
 The `EKEnumerable` class defines an API of methods that are all based on one operation:
 
 ```objc
-- (id<EKEnumerable)each:(void (^)(id obj))block;
+- (instancetype)each:(void (^)(id obj))block;
 ```
 
 Different collection classes implement their own version of `-each:`,
 to define the order their elements should be traversed. For example, on
 `NSArray`, `-each:` is defined to execute the block once for each item
-in turn. For `NSDictionary`, `-each:` constructs an array `@[key,
-value]` and passes it to the block once for each entry.
+in turn. For `NSDictionary`, `-each:` constructs a key-value pair as a
+two-element array `@[key, value]` and passes it to the block once for each
+entry.
 
 EnumeratorKit then uses the Objective-C runtime to "mix in" to another
 class all the methods defined in `EKEnumerable` (*a la* Ruby modules).
@@ -128,10 +129,9 @@ functionality just by implementing that method and mixing in
 
 ## Available methods
 
-Complete API documentation is coming! In the meantime, [the Kiwi
-tests][tests] provide a lot of useful examples. (If you're interested in
-reading more, I'd also recommend having a look at Ruby's [Enumerable
-docs][rb-enumerable].) Here's a whirlwhind tour of the supported
+[The Kiwi tests][tests] provide a lot of useful examples. (If you're
+interested in reading more, I'd also recommend having a look at Ruby's
+[Enumerable docs][rb-enumerable].) Here's a whirlwhind tour of the supported
 operations:
 
  - `-each` — perform the block once for each item in the collection
@@ -140,12 +140,12 @@ operations:
  - `-asArray` — get an array representation of any enumeration
  - `-take` — get the specified number of elements from the beginning
    of the enumeration
- - `-map` — create a new array with the results of applying the block
-   to each item in the collection
- - `-filter` — create a new array with all the elements for which the
+ - `-map` — apply the block to each item of the collection, returning a new
+   collection of transformed values
+ - `-select` — create a new enumerable with all the elements for which the
    block returns `YES`
  - `-find` — return the first element for which the block returns
-   `YES`, or `nil`
+   `YES`, otherwise `nil` if no matching element is found
  - `-any` — check if an element in the collection passes the block
  - `-all` — check if all elements in the collection pass the block
  - `-sort` — return a sorted array (items in the collection must
@@ -154,10 +154,9 @@ operations:
    `NSComparator`
  - `-sortBy` — use the result of applying the block to each element
    as sort keys for sorting the receiver
- - `-inject`/`-reduce` — compute the result of "injecting" the binary
-   operation or block between each item in the collection, e.g., to sum
-   a list of numbers, or to build a new collection in an accumulator
-   variable
+ - `-reduce` — traverse the enumerable, evaluating the block against each
+   element, and accumulating a new value at each step (for example, "reducing"
+   an array of numbers into a single number that represents sum)
 
 [tests]: https://github.com/sharplet/EnumeratorKit/tree/master/Tests
 [rb-enumerable]: http://ruby-doc.org/core-2.0/Enumerable.html "Enumerable | ruby-doc.org"
@@ -186,14 +185,19 @@ your own collection classes:
 }
 ```
 
-#### 3. Implement `-each:`
+#### 3. Implement `-each:`, and `-initWithEnumerable:`
 
 ```objc
 @implementation MyAwesomeCollection
 .
 .
 .
-- (id<EKEnumerable>)each:(void (^)(id))block
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+{
+    // traverse the enumerable, adding each item to your collection
+}
+
+- (instancetype)each:(void (^)(id))block
 {
     // hypothetical enumeration code
     for (int i; i < self.length; i++) {
@@ -211,22 +215,11 @@ your own collection classes:
 ```
 
 
-## To do
-
-The following features are planned:
-
- - Documentation!
- - OS X support
- - Lazy enumerator chains
- - Expansion of `EKEnumerable` with more features (requests welcome)
- - Update `EKFiber` to support the `-transfer` operation
-
-
 ## Contributing
 
-Wow! Pull requests are most welcome (especially for bugs). However in
-most cases it would be best to first open a new issue and start a
-discussion.
+I'd recommend opening an issue first before spending a lot of time working on
+a new feature. However if your change is relatively self contained, it's often
+easier for me to evaluate in the form of a pull request.
 
 
 ## Acknowledgements
@@ -237,7 +230,7 @@ functionality. Special thanks to:
 
  - ["Building Enumerable & Enumerator in Ruby" at Practicing
    Ruby][practicing-ruby]. This article heavily influenced the
-   implementation of `EKEnumerable` and `EKEnumerator`.
+   design of `EKEnumerable` and `EKEnumerator`.
  - [@alskipp][] for [his implementation of Fibers in
    MacRuby][macruby-fibers] — this really helped me tease out the
    race conditions in `EKFiber`!

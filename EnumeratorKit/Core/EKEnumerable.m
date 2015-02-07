@@ -19,6 +19,14 @@
 
 @implementation EKEnumerable
 
+#pragma mark - Initialization
+
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+{
+    NSAssert(NO, @"expected -initWithEnumerable: to be implemented");
+    return nil;
+}
+
 
 #pragma mark - Traversal
 
@@ -40,29 +48,33 @@
 
 #pragma mark Transformations
 
-- (NSArray *)map:(id (^)(id))block
+- (instancetype)map:(id (^)(id))block
 {
-    NSMutableArray * result = [NSMutableArray array];
+    NSMutableArray *result = [NSMutableArray array];
     [self each:^(id obj) {
-        id mapped = block(obj);
-        [result addObject:(mapped ? mapped : [NSNull null])];
-    }];
-    return result;
-}
-
-- (NSArray *)mapWithIndex:(id (^)(id, NSUInteger))block
-{
-    NSMutableArray * result = [NSMutableArray new];
-    [self eachWithIndex:^(id obj, NSUInteger i) {
-        id mapped = block(obj, i);
+        id mapped = block(obj) ?: [NSNull null];
         [result addObject:mapped];
     }];
-    return result;
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
-- (NSArray *)flattenMap:(id (^)(id))block
+- (instancetype)mapWithIndex:(id (^)(id, NSUInteger))block
 {
-    return [[self map:block] flatten];
+    __block NSUInteger i = 0;
+    return [self map:^id(id obj) {
+        return block(obj, i++);
+    }];
+}
+
+- (instancetype)flattenMap:(id<EKEnumerable> (^)(id))block
+{
+    NSMutableArray *result = [NSMutableArray array];
+    [self each:^(id obj) {
+        id mapped = block(obj) ?: [[self class] new];
+        NSAssert([mapped isKindOfClass:[self class]], @"The block passed to -flattenMap: must return an enumerable of the same type as the receiver.");
+        [result addObjectsFromArray:[mapped asArray]];
+    }];
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id))block
@@ -174,31 +186,27 @@
 
 #pragma mark Searching and filtering
 
-- (NSArray *)select:(BOOL (^)(id))block
+- (instancetype)select:(BOOL (^)(id))block
 {
-    NSMutableArray * result = [NSMutableArray array];
+    NSMutableArray *result = [NSMutableArray array];
     [self each:^(id obj) {
         if (block(obj)) {
             [result addObject:obj];
         }
     }];
-    return [result copy];
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
-- (NSArray *)filter:(BOOL (^)(id))block
+- (instancetype)filter:(BOOL (^)(id))block
 {
     return [self select:block];
 }
 
-- (NSArray *)reject:(BOOL (^)(id))block
+- (instancetype)reject:(BOOL (^)(id))block
 {
-    NSMutableArray * result = [NSMutableArray array];
-    [self each:^(id obj) {
-        if (!block(obj)) {
-            [result addObject:obj];
-        }
+    return [self select:^BOOL(id obj) {
+        return !block(obj);
     }];
-    return [result copy];
 }
 
 
@@ -255,7 +263,7 @@
 
 #pragma mark Other methods
 
-- (NSArray *)take:(NSInteger)number
+- (instancetype)take:(NSInteger)number
 {
     NSMutableArray *result = [NSMutableArray array];
     EKEnumerator *e = self.asEnumerator;
@@ -265,12 +273,12 @@
         [result addObject:e.next];
     }
 
-    return result;
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
 - (NSArray *)asArray
 {
-    return [self take:-1];
+    return [[NSArray alloc] initWithEnumerable:self];
 }
 
 @end

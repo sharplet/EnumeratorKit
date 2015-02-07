@@ -71,7 +71,7 @@ describe(@"-take", ^{
 
         (void)e.next;
         id result = [e take:2];
-        [[result should] equal:@[@1,@2]];
+        [[[result asArray] should] equal:@[@1,@2]];
     });
 
     it(@"returns the whole collection if passed a negative number", ^{
@@ -98,7 +98,7 @@ describe(@"-asArray", ^{
 
 describe(@"-map", ^{
 
-    it(@"returns an array with the mapped elements", ^{
+    it(@"returns an enumerable with the mapped elements", ^{
         id strings = [@[@1,@2,@3] map:^(id obj){
             return [NSString stringWithFormat:@"%@", obj];
         }];
@@ -115,7 +115,7 @@ describe(@"-map", ^{
 
 describe(@"-mapWithIndex", ^{
 
-    it(@"passes each index to the block and returns the mapped array", ^{
+    it(@"passes each index to the block and returns the new enumerable", ^{
         NSMutableArray *indices = [NSMutableArray new];
         id strings = [@[@10,@11,@12] mapWithIndex:^id(id obj, NSUInteger i) {
             [indices addObject:@(i)];
@@ -129,10 +129,16 @@ describe(@"-mapWithIndex", ^{
 
 describe(@"-flattenMap", ^{
 
-    it(@"returns a new array with the flattened result of applying the block to each item in the array", ^{
+    it(@"returns a new enumerable, flattening the enumerables returned by the block", ^{
         [[[@[@1, @2, @3, @4] flattenMap:^(id e){
             return @[e, @(-[e integerValue])];
         }] should] equal:@[@1, @(-1), @2, @(-2), @3, @(-3), @4, @(-4)]];
+    });
+
+    it(@"handles nil return values", ^{
+        [[[@[@1, @2] flattenMap:^id<EKEnumerable>(id obj) {
+            return nil;
+        }] should] equal:@[]];
     });
 
 });
@@ -148,12 +154,6 @@ describe(@"-mapDictionary", ^{
             @2: @"2",
             @3: @"3"
         }];
-    });
-
-    it(@"raises an exception if the dictionary has more than one entry", ^{
-        [[theBlock(^{
-            [@[@"foo"] mapDictionary:^(id i){ return @{@1: @"1", @2: @"2", @3: @"3"}; }];
-        }) should] raise];
     });
 
     it(@"skips entries that are nil or empty", ^{

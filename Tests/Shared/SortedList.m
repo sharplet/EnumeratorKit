@@ -19,16 +19,30 @@
     [self includeEKEnumerable];
 }
 
-- (id)init
+- (instancetype)initWithArray:(NSArray *)array
 {
+    NSParameterAssert(array != nil);
+
     if (self = [super init]) {
-        _data = [NSMutableArray array];
+        _data = [[array sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
     }
     return self;
 }
 
+- (id)init
+{
+    return [self initWithArray:@[]];
+}
+
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+{
+    return [self initWithArray:[enumerable asArray]];
+}
+
 - (instancetype)insert:(NSNumber *)object
 {
+    NSAssert([object respondsToSelector:@selector(compare:)], @"objects in sorted list must be comparable");
+
     [self.data addObject:object];
     [self.data sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
@@ -40,6 +54,26 @@
 {
     [self.data each:block];
     return self;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[SortedList class]]) {
+        return [self isEqualToSortedList:object];
+    }
+    else {
+        return NO;
+    }
+}
+
+- (BOOL)isEqualToSortedList:(SortedList *)sortedList
+{
+    return [self.data isEqualToArray:sortedList.data];
+}
+
+- (NSUInteger)hash
+{
+    return self.data.hash;
 }
 
 @end
