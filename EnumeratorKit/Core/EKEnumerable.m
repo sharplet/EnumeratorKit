@@ -186,31 +186,27 @@
 
 #pragma mark Searching and filtering
 
-- (NSArray *)select:(BOOL (^)(id))block
+- (instancetype)select:(BOOL (^)(id))block
 {
-    NSMutableArray * result = [NSMutableArray array];
+    NSMutableArray *result = [NSMutableArray array];
     [self each:^(id obj) {
         if (block(obj)) {
             [result addObject:obj];
         }
     }];
-    return [result copy];
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
-- (NSArray *)filter:(BOOL (^)(id))block
+- (instancetype)filter:(BOOL (^)(id))block
 {
     return [self select:block];
 }
 
-- (NSArray *)reject:(BOOL (^)(id))block
+- (instancetype)reject:(BOOL (^)(id))block
 {
-    NSMutableArray * result = [NSMutableArray array];
-    [self each:^(id obj) {
-        if (!block(obj)) {
-            [result addObject:obj];
-        }
+    return [self select:^BOOL(id obj) {
+        return !block(obj);
     }];
-    return [result copy];
 }
 
 

@@ -379,12 +379,12 @@
  @return A filtered array containing all the objects for which the
     block returned `YES`.
  */
-- (NSArray *)select:(BOOL (^)(id obj))block;
+- (instancetype)select:(BOOL (^)(id obj))block;
 
 /**
  Alias for `select:`.
  */
-- (NSArray *)filter:(BOOL (^)(id obj))block;
+- (instancetype)filter:(BOOL (^)(id obj))block;
 
 /**
  Like `select:`, but instead returns the elements for which the block
@@ -406,7 +406,7 @@
  @return A filtered array containing all the objects for which the
     block returned `NO`.
  */
-- (NSArray *)reject:(BOOL (^)(id obj))block;
+- (instancetype)reject:(BOOL (^)(id obj))block;
 
 /**
  Find the first element in a collection for which the block returns `YES`.
