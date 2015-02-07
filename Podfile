@@ -1,5 +1,5 @@
 platform :ios, '5.0'
 
-target 'Specs', :exclusive => true do
+target 'Tests-iOS' do
   pod 'Kiwi'
 end

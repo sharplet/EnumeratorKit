@@ -1,5 +1,5 @@
 #import <Kiwi.h>
-#import "NSSet+EKEnumerable.h"
+#import <EnumeratorKit/EnumeratorKit.h>
 
 SPEC_BEGIN(EKEnumerableNSSetSpec)
 

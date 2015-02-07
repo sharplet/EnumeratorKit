@@ -2,5 +2,5 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import "Pods-Specs-environment.h"
+#import "Pods-Tests-iOS-environment.h"
 #import <XCTest/XCTest.h>

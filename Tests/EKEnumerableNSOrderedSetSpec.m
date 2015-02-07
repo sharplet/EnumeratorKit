@@ -1,5 +1,5 @@
-#import <Kiwi.h>
-#import "NSOrderedSet+EKEnumerable.h"
+#import <Kiwi/Kiwi.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 
 SPEC_BEGIN(EKEnumerableNSOrderedSetSpec)
 

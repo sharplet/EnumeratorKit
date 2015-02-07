@@ -1,5 +1,5 @@
-#import <Kiwi.h>
-#import "NSArray+EKEnumerable.h"
+#import <Kiwi/Kiwi.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 
 @interface NSNumber (BinaryOperations)
 - (instancetype)add:(NSNumber *)number;

@@ -1,6 +1,6 @@
-#import <Kiwi.h>
+#import <Kiwi/Kiwi.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 #import "SortedList.h"
-#import "EKEnumerable.h"
 
 @interface EnumerableSubclass : SortedList
 @end

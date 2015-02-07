@@ -1,5 +1,5 @@
-#import <Kiwi.h>
-#import "EKEnumerator.h"
+#import <Kiwi/Kiwi.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 #import "SortedList.h"
 
 SPEC_BEGIN(EKEnumeratorSpec)
