@@ -122,4 +122,16 @@ describe(@"-flattenMap:", ^{
 
 });
 
+describe(@"-select:", ^{
+
+    it(@"returns a new dictionary with only matching entries", ^{
+        NSDictionary *dictionary = @{@"a": @1, @"b": @2};
+        NSDictionary *even = [dictionary select:^BOOL(id pair) {
+            return [pair[1] integerValue] % 2 == 0;
+        }];
+        [[even should] equal:@{@"b": @2}];
+    });
+
+});
+
 SPEC_END

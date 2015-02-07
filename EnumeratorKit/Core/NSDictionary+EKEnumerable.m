@@ -21,13 +21,22 @@
 
     id __block key;
     [enumerable each:^(id obj) {
-        if (key) {
+
+        // first, try to handle enumerables of key-value pairs (as in -eachPair:)
+        if (!key && [NSDictionary ek_isPair:obj]) {
+            [dictionary addEntriesFromDictionary:@{obj[0]: obj[1]}];
+        }
+
+        // otherwise, treat the enumerable as a sequence of keys alternating
+        // with values
+        else if (key) {
             dictionary[key] = obj;
             key = nil;
         }
         else {
             key = obj;
         }
+
     }];
 
     return [self initWithDictionary:dictionary];
@@ -89,6 +98,18 @@
         }];
     }];
     return [[NSDictionary alloc] initWithDictionary:results copyItems:YES];
+}
+
+#pragma mark Private
+
++ (BOOL)ek_isPair:(id)obj
+{
+    if ([obj isKindOfClass:[NSArray class]] && [obj count] == 2) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 @end
