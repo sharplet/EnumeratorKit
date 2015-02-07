@@ -17,7 +17,11 @@
 
 - (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
 {
-    return [self initWithArray:[enumerable asArray]];
+    NSMutableArray *array = [NSMutableArray new];
+    [enumerable each:^(id obj) {
+        [array addObject:obj];
+    }];
+    return [self initWithArray:array];
 }
 
 - (id)each:(void (^)(id))block

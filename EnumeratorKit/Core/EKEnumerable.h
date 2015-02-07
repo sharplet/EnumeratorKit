@@ -489,7 +489,7 @@
 /** @name Other methods */
 
 /** Take elements from a collection */
-- (NSArray *)take:(NSInteger)number;
+- (instancetype)take:(NSInteger)number;
 
 /** Get an array */
 - (NSArray *)asArray;

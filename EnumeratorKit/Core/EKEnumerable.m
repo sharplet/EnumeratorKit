@@ -263,7 +263,7 @@
 
 #pragma mark Other methods
 
-- (NSArray *)take:(NSInteger)number
+- (instancetype)take:(NSInteger)number
 {
     NSMutableArray *result = [NSMutableArray array];
     EKEnumerator *e = self.asEnumerator;
@@ -273,12 +273,12 @@
         [result addObject:e.next];
     }
 
-    return result;
+    return [[[self class] alloc] initWithEnumerable:result];
 }
 
 - (NSArray *)asArray
 {
-    return [self take:-1];
+    return [[NSArray alloc] initWithEnumerable:self];
 }
 
 @end

@@ -71,7 +71,7 @@ describe(@"-take", ^{
 
         (void)e.next;
         id result = [e take:2];
-        [[result should] equal:@[@1,@2]];
+        [[[result asArray] should] equal:@[@1,@2]];
     });
 
     it(@"returns the whole collection if passed a negative number", ^{
