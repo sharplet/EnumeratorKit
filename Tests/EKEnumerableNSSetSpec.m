@@ -30,4 +30,32 @@ describe(@"-each", ^{
 
 });
 
+describe(@"-map:", ^{
+
+    it(@"returns the set of mapped values", ^{
+        NSSet *set = [NSSet setWithArray:@[@"foo", @"bar", @"hello world"]];
+        NSSet *lengths = [set map:^(NSString *s){ return @(s.length); }];
+        [[lengths should] equal:[NSSet setWithArray:@[@3, @11]]];
+    });
+
+});
+
+describe(@"-flattenMap:", ^{
+
+    it(@"returns the union of the resulting sets", ^{
+        NSSet *(^charactersInString)(NSString *) = ^(NSString *s) {
+            NSMutableSet *characters = [NSMutableSet new];
+            for (NSUInteger i = 0; i < s.length; i++) {
+                [characters addObject:[s substringWithRange:NSMakeRange(i, 1)]];
+            }
+            return [characters copy];
+        };
+
+        NSSet *set = [NSSet setWithArray:@[@"foo", @"bar", @"hello world"]];
+        NSSet *alphabet = [set flattenMap:charactersInString];
+        [[alphabet should] equal:[NSSet setWithArray:@[@"f", @"o", @"b", @"a", @"r", @" ", @"h", @"e", @"l", @"w", @"d"]]];
+    });
+
+});
+
 SPEC_END
