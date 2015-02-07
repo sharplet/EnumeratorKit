@@ -141,8 +141,8 @@
 - (instancetype)flattenMap:(id<EKEnumerable> (^)(id obj))block;
 
 /**
- `mapDictionary:` behaves just like `map:` except that it returns an
- `NSDictionary` instead of an `NSArray`.
+ Transform an enumerable into an dictionary by transforming each element into
+ a dictionary entry.
 
  Usage:
 
@@ -163,8 +163,6 @@
 
  @param block A block that maps objects to entries. The dictionary returned
     by this block must not contain more than a single entry.
-
- @return A dictionary containing all the entries returned by the block.
  */
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id obj))block;
 
@@ -189,9 +187,6 @@
  values for that key.
 
  @param block A block that returns a unique key for an object.
-
- @return A dictionary with the block's results as keys, mapped to the
-    objects as values.
  */
 - (NSDictionary *)wrap:(id<NSCopying> (^)(id obj))block;
 
@@ -200,7 +195,7 @@
  the item's key. Returns a dictionary of arrays grouped by the set of
  keys returned by the block.
 
-     [@[@3, @1, @2] chunk:^(id num){
+     [@[@3, @1, @2] groupBy:^(id num){
          if ([num integerValue] % 2 == 0) {
              return @"even";
          }
