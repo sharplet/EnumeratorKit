@@ -27,6 +27,16 @@
     return self;
 }
 
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+{
+    if (self = [self init]) {
+        [enumerable each:^(id obj) {
+            [self insert:obj];
+        }];
+    }
+    return self;
+}
+
 - (instancetype)insert:(NSNumber *)object
 {
     [self.data addObject:object];

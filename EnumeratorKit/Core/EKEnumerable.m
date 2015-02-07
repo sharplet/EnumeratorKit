@@ -19,6 +19,14 @@
 
 @implementation EKEnumerable
 
+#pragma mark - Initialization
+
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+{
+    NSAssert(NO, @"expected -initWithEnumerable: to be implemented");
+    return nil;
+}
+
 
 #pragma mark - Traversal
 

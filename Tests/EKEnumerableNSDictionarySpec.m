@@ -3,6 +3,22 @@
 
 SPEC_BEGIN(EKEnumerableNSDictionarySpec)
 
+describe(@"-initWithEnumerable:", ^{
+
+    it(@"constructs a dictionary from alternating keys and values", ^{
+        NSArray *keysAndValues = @[@"foo", @3, @"foobar", @6];
+        NSDictionary *dictionary = [[NSDictionary alloc] initWithEnumerable:keysAndValues];
+        [[dictionary should] equal:@{@"foo": @3, @"foobar": @6}];
+    });
+
+    it(@"ignores a trailing key with no value", ^{
+        NSArray *keysAndValues = @[@"foo", @3, @"foobar"];
+        NSDictionary *dictionary = [[NSDictionary alloc] initWithEnumerable:keysAndValues];
+        [[dictionary should] equal:@{@"foo": @3}];
+    });
+
+});
+
 describe(@"-each", ^{
 
     it(@"enumerates over key-value pairs", ^{

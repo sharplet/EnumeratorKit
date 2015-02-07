@@ -35,6 +35,7 @@
 		4AD1308A185C0C3B003E7145 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD13089185C0C3B003E7145 /* XCTest.framework */; };
 		4AD1308B185C0C3B003E7145 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */; };
 		4AD3D59317534ACD0050CE35 /* NSObject+EKEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */; };
+		CE26A0971A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectAsEKEnumeratorSpec.m; sourceTree = "<group>"; };
 		8C2FE23C509349279B73E901 /* libPods-Specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BC90CACB134E8F800CCA89 /* Pods-Specs.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.xcconfig"; path = "Pods/Pods-Specs.xcconfig"; sourceTree = "<group>"; };
+		CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerableNSArraySpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */,
+				CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */,
 				4ACB2E071754184D009AC260 /* EKEnumerableNSDictionarySpec.m */,
 				4ACB2E0C175452EB009AC260 /* EKEnumerableNSSetSpec.m */,
 				4ACB2E11175457AF009AC260 /* EKEnumerableNSOrderedSetSpec.m */,
@@ -402,6 +405,7 @@
 				4A6A09FF185FA4A80053DAE2 /* EKEnumerableNSDictionarySpec.m in Sources */,
 				4A6A0A00185FA4A80053DAE2 /* EKEnumerableNSSetSpec.m in Sources */,
 				4A6A0A01185FA4A80053DAE2 /* EKEnumerableNSOrderedSetSpec.m in Sources */,
+				CE26A0971A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m in Sources */,
 				4A6A0A02185FA4A80053DAE2 /* EKEnumeratorSpec.m in Sources */,
 				4A6A0A03185FA4A80053DAE2 /* EKFiberSpec.m in Sources */,
 				4A6A0A04185FA4A80053DAE2 /* EKSemaphoreSpec.m in Sources */,

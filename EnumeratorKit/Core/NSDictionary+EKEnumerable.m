@@ -15,6 +15,24 @@
     [self includeEKEnumerable];
 }
 
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+
+    id __block key;
+    [enumerable each:^(id obj) {
+        if (key) {
+            dictionary[key] = obj;
+            key = nil;
+        }
+        else {
+            key = obj;
+        }
+    }];
+
+    return [self initWithDictionary:dictionary];
+}
+
 - (instancetype)each:(void (^)(id))block
 {
     return [self eachPair:block];

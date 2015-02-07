@@ -50,6 +50,11 @@
 
 @required
 
+#pragma mark - Initialisation
+/** @name Initialisation **/
+
+- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable;
+
 #pragma mark - Traversal
 /** @name Traversal */
 

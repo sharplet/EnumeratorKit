@@ -3,6 +3,16 @@
 
 SPEC_BEGIN(EKEnumerableNSSetSpec)
 
+describe(@"-initWithEnumerable:", ^{
+
+    it(@"constructs a set containing each enumerated value", ^{
+        NSArray *values = @[@1, @2, @3];
+        NSSet *set = [[NSSet alloc] initWithEnumerable:values];
+        [[set should] equal:[NSSet setWithArray:@[@1, @2, @3]]];
+    });
+
+});
+
 describe(@"-each", ^{
 
     __block NSSet *set;
