@@ -510,7 +510,6 @@
 /** Get an array */
 - (NSArray *)asArray;
 
-
 @end
 
 #pragma mark - EKEnumerable mixin

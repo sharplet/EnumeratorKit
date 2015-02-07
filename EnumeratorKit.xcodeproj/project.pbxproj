@@ -69,6 +69,12 @@
 		CE120A801A86218900737E24 /* NSObject+EKEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AD3D59117534ACD0050CE35 /* NSObject+EKEnumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE120A811A86218900737E24 /* NSOrderedSet+EKEnumerable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ACB2E0E17545532009AC260 /* NSOrderedSet+EKEnumerable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE120A821A86218900737E24 /* NSSet+EKEnumerable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ACB2E0917541B6E009AC260 /* NSSet+EKEnumerable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE120A881A86273700737E24 /* EKEnumerate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE120A861A86273700737E24 /* EKEnumerate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE120A891A86273700737E24 /* EKEnumerate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE120A861A86273700737E24 /* EKEnumerate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE120A8A1A86273700737E24 /* EKEnumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A871A86273700737E24 /* EKEnumerate.m */; };
+		CE120A8B1A86273700737E24 /* EKEnumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A871A86273700737E24 /* EKEnumerate.m */; };
+		CE120A8D1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
+		CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +145,9 @@
 		CE120A6D1A861CBE00737E24 /* Pods-Tests-iOS.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-iOS/Pods-Tests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CE120A6E1A861CBE00737E24 /* Pods-Tests-OSX.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 		CE120A6F1A861CBE00737E24 /* Pods-Tests-OSX.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX.release.xcconfig"; sourceTree = "<group>"; };
+		CE120A861A86273700737E24 /* EKEnumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKEnumerate.h; sourceTree = "<group>"; };
+		CE120A871A86273700737E24 /* EKEnumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerate.m; sourceTree = "<group>"; };
+		CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerateSpec.m; sourceTree = "<group>"; };
 		CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerableNSArraySpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +251,7 @@
 				4ACB2E11175457AF009AC260 /* EKEnumerableNSOrderedSetSpec.m */,
 				4ACB2E0C175452EB009AC260 /* EKEnumerableNSSetSpec.m */,
 				4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */,
+				CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */,
 				4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */,
 				4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */,
 				4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */,
@@ -271,6 +281,8 @@
 			children = (
 				4AB6FAD51740D97100DDBAD4 /* EKEnumerable.h */,
 				4AB6FAD61740D97100DDBAD4 /* EKEnumerable.m */,
+				CE120A861A86273700737E24 /* EKEnumerate.h */,
+				CE120A871A86273700737E24 /* EKEnumerate.m */,
 				4AB6FACF1740D56E00DDBAD4 /* EKEnumerator.h */,
 				4AB6FAD01740D56E00DDBAD4 /* EKEnumerator.m */,
 				4AC073DE174AC629005FA8E5 /* NSArray+EKEnumerable.h */,
@@ -329,6 +341,7 @@
 				CE120A071A8611A400737E24 /* NSArray+EKEnumerable.h in Headers */,
 				CE120A0B1A8611A400737E24 /* NSOrderedSet+EKEnumerable.h in Headers */,
 				CE120A0C1A8611A400737E24 /* NSObject+EKEnumerator.h in Headers */,
+				CE120A881A86273700737E24 /* EKEnumerate.h in Headers */,
 				CE120A0A1A8611A400737E24 /* NSSet+EKEnumerable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +357,7 @@
 				CE120A7B1A86218900737E24 /* EnumeratorKit.h in Headers */,
 				CE120A801A86218900737E24 /* NSObject+EKEnumerator.h in Headers */,
 				CE120A7E1A86218900737E24 /* NSArray+EKEnumerable.h in Headers */,
+				CE120A891A86273700737E24 /* EKEnumerate.h in Headers */,
 				CE120A811A86218900737E24 /* NSOrderedSet+EKEnumerable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +588,7 @@
 				CE120A111A8611C600737E24 /* EKEnumerator.m in Sources */,
 				CE120A121A8611C600737E24 /* NSArray+EKEnumerable.m in Sources */,
 				CE120A141A8611C600737E24 /* NSDictionary+EKEnumerable.m in Sources */,
+				CE120A8A1A86273700737E24 /* EKEnumerate.m in Sources */,
 				CE120A151A8611C600737E24 /* NSSet+EKEnumerable.m in Sources */,
 				CE120A161A8611C600737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A171A8611C600737E24 /* NSObject+EKEnumerator.m in Sources */,
@@ -588,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE120A341A8617F000737E24 /* EKEnumerableNSArraySpec.m in Sources */,
+				CE120A8D1A8627C700737E24 /* EKEnumerateSpec.m in Sources */,
 				CE120A351A8617F000737E24 /* EKEnumerableNSDictionarySpec.m in Sources */,
 				CE120A361A8617F000737E24 /* EKEnumerableNSOrderedSetSpec.m in Sources */,
 				CE120A371A8617F000737E24 /* EKEnumerableNSSetSpec.m in Sources */,
@@ -609,6 +625,7 @@
 				CE120A711A861D4700737E24 /* EKEnumerator.m in Sources */,
 				CE120A721A861D4700737E24 /* NSArray+EKEnumerable.m in Sources */,
 				CE120A741A861D4700737E24 /* NSDictionary+EKEnumerable.m in Sources */,
+				CE120A8B1A86273700737E24 /* EKEnumerate.m in Sources */,
 				CE120A751A861D4700737E24 /* NSObject+EKEnumerator.m in Sources */,
 				CE120A761A861D4700737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A771A861D4700737E24 /* NSSet+EKEnumerable.m in Sources */,
@@ -623,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE120A5F1A86193700737E24 /* EKEnumerableNSArraySpec.m in Sources */,
+				CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */,
 				CE120A601A86193700737E24 /* EKEnumerableNSDictionarySpec.m in Sources */,
 				CE120A611A86193700737E24 /* EKEnumerableNSOrderedSetSpec.m in Sources */,
 				CE120A621A86193700737E24 /* EKEnumerableNSSetSpec.m in Sources */,

@@ -18,9 +18,9 @@
 + (instancetype)enumeratorWithObject:(id)object;
 - (instancetype)initWithObject:(id)object;
 
-+ (instancetype)new:(void (^)(id<EKYielder> y))block;
-+ (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> y))block;
-- (instancetype)initWithBlock:(void (^)(id<EKYielder> y))block;
++ (instancetype)new:(void (^)(id<EKYielder> yielder))block;
++ (instancetype)enumeratorWithBlock:(void (^)(id<EKYielder> yielder))block;
+- (instancetype)initWithBlock:(void (^)(id<EKYielder> yielder))block;
 
 - (id)next;
 - (id)peek;
