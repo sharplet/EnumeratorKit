@@ -81,7 +81,7 @@
  Example:
 
     NSArray *greetings = @[@"Hello", @"Hi"];
-    [numbers each:^(id greeting){
+    [numbers each:^(NSString *greeting){
         NSLog(@"%@, world", greeting);
     }];
 
@@ -100,7 +100,7 @@
  Usage:
 
     NSMutableArray *array = [NSMutableArray array];
-    [@[@"peach", @"pear", @"plum"] eachWithIndex:^(id fruit, NSUInteger i){
+    [@[@"peach", @"pear", @"plum"] eachWithIndex:^(NSString *fruit, NSUInteger i){
         [array addObject:[NSString stringWithFormat:@"%d: %@", i, fruit]];
     }];
     // => @[@"0: peach", @"1: pear", @"2: plum"]
@@ -147,8 +147,8 @@
 
  Usage:
 
-     [@[@0, @1, @2] flattenMap:^(id i){
-         return @[i, [i stringValue]];
+     [@[@0, @1, @2] flattenMap:^(NSNumber *i){
+         return @[i, i.stringValue];
      }];
      // => @[@0, @"0", @1, @"1", @2, @"2"]
 
@@ -165,7 +165,7 @@
     NSDictionary *apple = @{ @"id": @1, @"name": @"Apple", @"grows_on": @"tree" };
     NSDictionary *grape = @{ @"id": @2, @"name": @"Grape", @"grows_on": @"vine" };
 
-    NSDictionary *fruits = [@[banana, apple] mapDictionary:^(id fruit){
+    NSDictionary *fruits = [@[banana, apple] mapDictionary:^(NSDictionary *fruit){
         return @{ fruit[@"name"]: fruit };
     }];
 
@@ -211,8 +211,8 @@
  the item's key. Returns a dictionary of arrays grouped by the set of
  keys returned by the block.
 
-     [@[@3, @1, @2] groupBy:^(id num){
-         if ([num integerValue] % 2 == 0) {
+     [@[@3, @1, @2] groupBy:^(NSNumber *num){
+         if (num.integerValue % 2 == 0) {
              return @"even";
          }
          else {
@@ -239,7 +239,7 @@
  For example, with the array `@[@"foo", @"bar"]`, if we were to chunk by
  each item's first character:
 
-    [@[@"foo", @"bar"] chunk:^(id string){
+    [@[@"foo", @"bar"] chunk:^(NSString *string){
         return [string substringToIndex:1];
     }];
     // => @[
@@ -250,7 +250,7 @@
  Every "chunk" of items that returns the same value from the block is
  grouped together:
 
-    [@[@"foo", @"bar", @"baz"] chunk:^(id string){
+    [@[@"foo", @"bar", @"baz"] chunk:^(NSString *string){
         return [string substringToIndex:1];
     }];
     // => @[
@@ -279,8 +279,8 @@
     NSArray *numbers = @[@5, @1, @100, @13, @28, @123, @321, @10, @99, @4];
 
     // at each step, returns the new maximum
-    [numbers reduce:^(id max, id num){
-        return [num integerValue] > [max integerValue] ? num : max;
+    [numbers reduce:^(NSNumber *max, NSNumber *num){
+        return num.integerValue > max.integerValue ? num : max;
     }];
     // => @321
 
@@ -312,8 +312,8 @@
 
     NSArray *numbers = @[@5, @1, @100, @13, @28, @123, @321, @10, @99, @4];
 
-    [numbers reduce:[numbers take:1] withBlock:^(id maximums, id num){
-        if ([num integerValue] > [[maximums lastObject] integerValue]) {
+    [numbers reduce:[numbers take:1] withBlock:^(NSArray *maximums, NSNumber *num){
+        if (num.integerValue > maximums.lastObject.integerValue) {
             [maximums addObject:num];
         }
         return maximums;
@@ -359,7 +359,7 @@
 
  This is equivalent to the following, using `reduce:`:
 
-    [letters reduce:^(id s, id letter){
+    [letters reduce:^(NSString *s, NSString *letter){
         return [s stringByAppendingString:letter];
     }];
     // => @"Hello"
@@ -384,8 +384,8 @@
 
     - (NSArray *)finishedOperations
     {
-        return [self.operations select:^(id op){
-            return [op isFinished];
+        return [self.operations select:^(NSOperation *op){
+            return op.isFinished;
         }];
     }
 
@@ -411,8 +411,8 @@
 
     - (NSArray *)nonEmptyStrings
     {
-        return [self.strings reject:^(id s){
-            return [s length] == 0;
+        return [self.strings reject:^(NSString *s){
+            return s.length == 0;
         }];
     }
 
@@ -432,8 +432,8 @@
     NSArray *numbers = @[@1, @3, @5, @6, @9];
 
     // look for an even number
-    [numbers find:^BOOL(id obj) {
-        return [obj integerValue] % 2 == 0;
+    [numbers find:^BOOL(NSNumber *number) {
+        return number.integerValue % 2 == 0;
     }];
     // => @6
 
@@ -453,8 +453,8 @@
      NSArray *numbers = @[@1, @3, @5, @7, @9];
 
     // look for an even number
-    [numbers any:^BOOL(id obj) {
-        return [obj integerValue] % 2 == 0;
+    [numbers any:^BOOL(NSNumber *number) {
+        return number.integerValue % 2 == 0;
     }];
     // => @NO
 
@@ -474,8 +474,8 @@
      NSArray *numbers = @[@1, @3, @5, @7, @9];
 
     // Check if all numbers are odd
-    [numbers all:^BOOL(id obj) {
-        return [obj integerValue] % 2 != 0;
+    [numbers all:^BOOL(NSNumber *obj) {
+        return obj.integerValue % 2 != 0;
     }];
     // => @YES
 
