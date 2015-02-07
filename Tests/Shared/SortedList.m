@@ -41,6 +41,8 @@
 
 - (instancetype)insert:(NSNumber *)object
 {
+    NSAssert([object respondsToSelector:@selector(compare:)], @"objects in sorted list must be comparable");
+
     [self.data addObject:object];
     [self.data sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
