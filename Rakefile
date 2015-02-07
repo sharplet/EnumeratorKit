@@ -8,7 +8,7 @@ end
 
 task default: %w[:test]
 
-task ci: %w[test]
+task ci: %w[test podspec:lint]
 
 desc "Run all tests"
 task test: %w[test:iphone6 test:iphone5]
@@ -22,6 +22,13 @@ namespace :test do
   desc "Test on iPhone 5"
   task :iphone5 do
     xcpretty "xcodebuild test #{XCODEBUILD_OPTS} #{IPHONE5}"
+  end
+end
+
+namespace :podspec do
+  desc "Validate the podspec"
+  task :lint do
+    sh "pod lib lint"
   end
 end
 
