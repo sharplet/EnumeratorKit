@@ -1,33 +1,31 @@
-require 'rake/clean'
-CLEAN   << 'Build/Intermediates'
-CLOBBER << 'Build/Products'
+XCODEBUILD_OPTS = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit -derivedDataPath DerivedData"
+IPHONE6 = "-destination 'platform=iOS Simulator,name=iPhone 6'"
+IPHONE5 = "-destination 'platform=iOS Simulator,name=iPhone 5'"
 
-task :default => [:build]
+def xcpretty(cmd)
+  sh "set -o pipefail; #{cmd} | xcpretty -c"
+end
 
-def xcpretty_sh(cmd)
-  unless %x(which xcpretty 2>/dev/null).empty?
-    cmd += ' | xcpretty'
-    cmd += ' -c' if $stdout.tty?
-    cmd += ' -t' if cmd.include? 'test'
-    cmd += '; exit ${PIPESTATUS[0]}'
+task :default => [:test]
+
+desc "Run all tests"
+task test: %w[test:iphone6 test:iphone5]
+
+namespace :test do
+  desc "Test on iPhone 6"
+  task :iphone6 do
+    xcpretty "xcodebuild test #{XCODEBUILD_OPTS} #{IPHONE6}"
   end
-  sh cmd
+
+  desc "Test on iPhone 5"
+  task :iphone5 do
+    xcpretty "xcodebuild test #{XCODEBUILD_OPTS} #{IPHONE5}"
+  end
 end
 
-project_args = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit"
-
-desc "Build release configuration"
-task :build do
-  xcpretty_sh "xcodebuild #{project_args}"
-end
-
-destination_32bit = "-destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)'"
-destination_64bit = "-destination 'platform=iOS Simulator,name=iPhone Retina (4-inch 64-bit)'"
-
-desc "Run unit tests"
-task :test do
-  xcpretty_sh "xcodebuild test #{destination_32bit} #{project_args}"
-  xcpretty_sh "xcodebuild test #{destination_64bit} #{project_args}"
+desc "Clean the default scheme"
+task :clean do
+  rm_rf "DerivedData"
 end
 
 desc "Synonym for docs:generate"

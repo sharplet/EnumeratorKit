@@ -28,7 +28,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "94F990706055419D885CEAD3"
+               BlueprintIdentifier = "B814FDF344A2485E9558971E"
                BuildableName = "libPods-Specs.a"
                BlueprintName = "Pods-Specs"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -40,7 +40,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -63,6 +63,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4AC073B9174AC561005FA8E5"
+            BuildableName = "libEnumeratorKit.a"
+            BlueprintName = "EnumeratorKit"
+            ReferencedContainer = "container:EnumeratorKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
