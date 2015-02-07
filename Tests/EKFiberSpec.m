@@ -1,4 +1,4 @@
-#import <Kiwi.h>
+#import <Kiwi/Kiwi.h>
 #import "EKFiber.h"
 
 SPEC_BEGIN(EKFiberSpec)

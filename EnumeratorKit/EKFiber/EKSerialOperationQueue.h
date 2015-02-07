@@ -6,6 +6,8 @@
 //
 //
 
+#import <Foundation/Foundation.h>
+
 @interface EKSerialOperationQueue : NSOperationQueue
 
 - (void)addOperationWithBlockAndWait:(void (^)(void))block;

@@ -1,5 +1,5 @@
 #import <Kiwi/Kiwi.h>
-#import "NSArray+EKEnumerable.h"
+#import <EnumeratorKit/EnumeratorKit.h>
 
 SPEC_BEGIN(EKEnumarbleNSArraySpec)
 

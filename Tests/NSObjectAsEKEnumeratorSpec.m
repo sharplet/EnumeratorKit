@@ -1,5 +1,5 @@
-#import <Kiwi.h>
-#import "NSObject+EKEnumerator.h"
+#import <Kiwi/Kiwi.h>
+#import <EnumeratorKit/EnumeratorKit.h>
 
 SPEC_BEGIN(NSObjectAsEKEnumeratorSpec)
 

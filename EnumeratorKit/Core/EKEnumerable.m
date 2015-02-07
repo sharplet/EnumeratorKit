@@ -7,7 +7,10 @@
 //
 
 #import <objc/runtime.h>
-#import "EnumeratorKit.h"
+#import "EKEnumerable.h"
+#import "EKEnumerator.h"
+#import "NSArray+EKEnumerable.h"
+#import "NSObject+EKEnumerator.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
         do { \

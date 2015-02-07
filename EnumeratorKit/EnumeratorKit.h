@@ -1,20 +1,22 @@
-//
-//  EnumeratorKit.h
-//
-//  Created by Adam Sharp on 13/05/13.
 //  Copyright (c) 2013 Adam Sharp. All rights reserved.
-//
 
+#import <Foundation/Foundation.h>
 
-/* EnumeratorKit core headers */
-#import "EKEnumerable.h"
-#import "EKEnumerator.h"
-#import "NSObject+EKEnumerator.h"
+#if !COCOAPODS
+//! Project version number for EnumeratorKit
+FOUNDATION_EXPORT double EnumeratorKit_VersionNumber;
 
+//! Project version string for EnumeratorKit
+FOUNDATION_EXPORT const unsigned char EnumeratorKit_VersionString[];
+#endif
 
-/* Foundation collection class additions */
-#import "NSArray+EKEnumerable.h"
-#import "NSArray+EKFlatten.h"
-#import "NSDictionary+EKEnumerable.h"
-#import "NSSet+EKEnumerable.h"
-#import "NSOrderedSet+EKEnumerable.h"
+// Core types
+#import <EnumeratorKit/EKEnumerable.h>
+#import <EnumeratorKit/EKEnumerator.h>
+
+// Foundation extensions
+#import <EnumeratorKit/NSArray+EKEnumerable.h>
+#import <EnumeratorKit/NSDictionary+EKEnumerable.h>
+#import <EnumeratorKit/NSObject+EKEnumerator.h>
+#import <EnumeratorKit/NSOrderedSet+EKEnumerable.h>
+#import <EnumeratorKit/NSSet+EKEnumerable.h>

@@ -1,4 +1,4 @@
-#import <Kiwi.h>
+#import <Kiwi/Kiwi.h>
 #import "EKSerialOperationQueue.h"
 
 SPEC_BEGIN(EKSerialOperationQueueSpec)
