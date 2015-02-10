@@ -46,6 +46,16 @@ EnumeratorKit implements this functionality for all of the core
 collection classes (and their mutable counterparts): `NSArray`,
 `NSDictionary`, `NSSet` and `NSOrderedSet`.
 
+Any collection conforming to `NSFastEnumeration` can also be conveniently
+wrapped using the `ek_enumerate` function:
+
+```objc
+[ek_enumerate(@[@1, @2, @3]) map:^(NSNumber *i) {
+    return @(i.integerValue * 2);
+}];
+// => @[@2, @4, @6]
+```
+
 EnumeratorKit also provides the `EKEnumerator` class, which has a
 number of advantages over `NSEnumerator`, for example:
 

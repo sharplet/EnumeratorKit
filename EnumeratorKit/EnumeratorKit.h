@@ -10,9 +10,10 @@ FOUNDATION_EXPORT double EnumeratorKit_VersionNumber;
 FOUNDATION_EXPORT const unsigned char EnumeratorKit_VersionString[];
 #endif
 
-// Core types
+// Core
 #import <EnumeratorKit/EKEnumerable.h>
 #import <EnumeratorKit/EKEnumerator.h>
+#import <EnumeratorKit/EKEnumerate.h>
 
 // Foundation extensions
 #import <EnumeratorKit/NSArray+EKEnumerable.h>
