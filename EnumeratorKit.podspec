@@ -28,11 +28,11 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |e|
-    e.source_files = 'EnumeratorKit/Core', 'EnumeratorKit/EnumeratorKit.h'
+    e.source_files = 'EnumeratorKit/Core'
     e.dependency 'EnumeratorKit/EKFiber'
   end
 
   s.subspec 'EKFiber' do |f|
-    f.source_files = 'EnumeratorKit/EKFiber', 'EnumeratorKit/EnumeratorKit.h'
+    f.source_files = 'EnumeratorKit/EKFiber'
   end
 end
