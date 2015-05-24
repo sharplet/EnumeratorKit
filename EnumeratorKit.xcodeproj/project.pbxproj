@@ -196,7 +196,9 @@
 				4AB6FA931740C5AE00DDBAD4 /* Products */,
 				D13CEB7E2206E8451134FA1B /* Pods */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		4AB6FA931740C5AE00DDBAD4 /* Products */ = {
 			isa = PBXGroup;
