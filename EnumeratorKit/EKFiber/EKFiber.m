@@ -101,18 +101,20 @@ static EKSerialOperationQueue *fibersQueue;
 {
     self.blockStarted = YES;
 
-    __unsafe_unretained EKFiber *weakSelf = self;
+    __weak EKFiber *weakSelf = self;
     NSBlockOperation *operation = [NSBlockOperation new];
     [operation addExecutionBlock:^{
+        EKFiber *self = weakSelf;
+
         if (!self.blockOperation.isCancelled) {
-            weakSelf.blockResult = weakSelf.block();
-            weakSelf.blockStarted = NO;
+            self.blockResult = self.block();
+            self.blockStarted = NO;
 
             // clean up
-            [EKFiber removeFiber:weakSelf];
-            weakSelf.block = nil;
+            [EKFiber removeFiber:self];
+            self.block = nil;
 
-            [weakSelf.yieldSemaphore signal];
+            [self.yieldSemaphore signal];
         }
     }];
 
