@@ -6,6 +6,8 @@
 //
 //
 
+#import <libkern/OSAtomic.h>
+
 #import "EKFiber.h"
 #import "EKSemaphore.h"
 #import "EKSerialOperationQueue.h"
@@ -13,7 +15,6 @@
 @interface EKFiber () <EKYielder>
 
 + (NSString *)register:(EKFiber *)fiber;
-+ (void)removeFiber:(EKFiber *)fiber;
 
 - (void)executeBlock;
 
@@ -32,31 +33,11 @@
 
 @implementation EKFiber
 
-static EKSerialOperationQueue *fibersQueue;
-
 + (NSString *)register:(EKFiber *)fiber
 {
-    // fibersQueue synchronises fiber creation and deletion
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        fibersQueue = [EKSerialOperationQueue new];
-    });
+    static int32_t counter = 0;
 
-    // register the new fiber
-    __block id label;
-    [fibersQueue addOperationWithBlockAndWait:^{
-        static unsigned int fiberCounter = 0;
-        label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
-    }];
-
-    return label;
-}
-
-+ (void)removeFiber:(EKFiber *)fiber
-{
-    [fibersQueue addOperationWithBlockAndWait:^{
-        [fiber.queue cancelAllOperations];
-    }];
+    return [NSString stringWithFormat:@"fiber.%d", OSAtomicIncrement32(&counter)];
 }
 
 + (instancetype)fiberWithBlock:(id (^)(id<EKYielder>))block
@@ -97,7 +78,7 @@ static EKSerialOperationQueue *fibersQueue;
             self.blockStarted = NO;
 
             // clean up
-            [EKFiber removeFiber:self];
+            [self destroy];
             self.block = nil;
 
             [self.yieldSemaphore signal];
@@ -132,7 +113,7 @@ static EKSerialOperationQueue *fibersQueue;
 
 - (void)destroy
 {
-    [EKFiber removeFiber:self];
+    [self.queue cancelAllOperations];
 }
 
 - (void)yield:(id)obj
