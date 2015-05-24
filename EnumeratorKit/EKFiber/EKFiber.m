@@ -10,14 +10,14 @@
 #import "EKSemaphore.h"
 #import "EKSerialOperationQueue.h"
 
-@interface EKFiber ()
+@interface EKFiber () <EKYielder>
 
 + (NSString *)register:(EKFiber *)fiber;
 + (void)removeFiber:(EKFiber *)fiber;
 
 - (void)executeBlock;
 
-@property (nonatomic, copy) id (^block)(void);
+@property (nonatomic, copy) id (^block)(id<EKYielder>);
 @property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
 @property (nonatomic, strong) NSString *label;
 
@@ -32,7 +32,6 @@
 
 @implementation EKFiber
 
-static NSMutableDictionary *fibers;
 static EKSerialOperationQueue *fibersQueue;
 
 + (NSString *)register:(EKFiber *)fiber
@@ -40,7 +39,6 @@ static EKSerialOperationQueue *fibersQueue;
     // fibersQueue synchronises fiber creation and deletion
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        fibers = [NSMutableDictionary new];
         fibersQueue = [EKSerialOperationQueue new];
     });
 
@@ -49,36 +47,24 @@ static EKSerialOperationQueue *fibersQueue;
     [fibersQueue addOperationWithBlockAndWait:^{
         static unsigned int fiberCounter = 0;
         label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
-        fibers[label] = fiber;
     }];
 
     return label;
-}
-
-+ (instancetype)current
-{
-    return fibers[[[NSOperationQueue currentQueue] name]];
 }
 
 + (void)removeFiber:(EKFiber *)fiber
 {
     [fibersQueue addOperationWithBlockAndWait:^{
         [fiber.queue cancelAllOperations];
-        [fibers removeObjectForKey:fiber.label];
     }];
 }
 
-+ (void)yield:(id)obj
-{
-    [[EKFiber current] yield:obj];
-}
-
-+ (instancetype)fiberWithBlock:(id (^)(void))block
++ (instancetype)fiberWithBlock:(id (^)(id<EKYielder>))block
 {
     return [[EKFiber alloc] initWithBlock:block];
 }
 
-- (instancetype)initWithBlock:(id (^)(void))block
+- (instancetype)initWithBlock:(id (^)(id<EKYielder>))block
 {
     if (self = [super init]) {
         // register with the global fiber list -- this synchronises
@@ -107,7 +93,7 @@ static EKSerialOperationQueue *fibersQueue;
         EKFiber *self = weakSelf;
 
         if (!self.blockOperation.isCancelled) {
-            self.blockResult = self.block();
+            self.blockResult = self.block(self);
             self.blockStarted = NO;
 
             // clean up

@@ -70,8 +70,8 @@
 
 - (id)each:(void (^)(id))block
 {
-    EKFiber *fiber = [EKFiber fiberWithBlock:^id{
-        self.block([EKFiber class]);
+    EKFiber *fiber = [EKFiber fiberWithBlock:^id(id<EKYielder> yielder){
+        self.block(yielder);
         return nil;
     }];
 
@@ -95,8 +95,8 @@
     // first time around, dispatch the iteration onto our fiber
     if (!self.fiber) {
         __unsafe_unretained EKEnumerator *weakSelf = self;
-        self.fiber = [EKFiber fiberWithBlock:^id{
-            weakSelf.block([EKFiber class]);
+        self.fiber = [EKFiber fiberWithBlock:^id(id<EKYielder> yielder){
+            weakSelf.block(yielder);
             return nil;
         }];
     }

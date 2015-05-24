@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EKYielder.h"
 
 @interface EKFiber : NSObject
 
-+ (instancetype)fiberWithBlock:(id (^)(void))block;
-- (instancetype)initWithBlock:(id (^)(void))block;
++ (instancetype)fiberWithBlock:(id (^)(id<EKYielder> yielder))block;
+- (instancetype)initWithBlock:(id (^)(id<EKYielder> yielder))block;
 
-+ (instancetype)current;
-+ (void)yield:(id)obj;
+- (void)yield:(id)obj;
 
 - (id)resume;
 - (void)destroy;
