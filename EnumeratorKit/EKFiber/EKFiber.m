@@ -6,26 +6,21 @@
 //
 //
 
-#import <libkern/OSAtomic.h>
-
 #import "EKFiber.h"
 #import "EKSemaphore.h"
 #import "EKSerialOperationQueue.h"
 
 @interface EKFiber () <EKYielder>
 
-+ (NSString *)register:(EKFiber *)fiber;
-
 - (void)executeBlock;
 
 @property (nonatomic, copy) id (^block)(id<EKYielder>);
-@property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
-@property (nonatomic, strong) NSString *label;
+@property (nonatomic, weak) NSBlockOperation *blockOperation;
 
 @property (nonatomic) BOOL blockStarted;
 @property (nonatomic) id blockResult;
 
-@property (nonatomic, strong) EKSerialOperationQueue *queue;
+@property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) EKSemaphore *resumeSemaphore;
 @property (nonatomic, strong) EKSemaphore *yieldSemaphore;
 
@@ -33,11 +28,14 @@
 
 @implementation EKFiber
 
-+ (NSString *)register:(EKFiber *)fiber
-{
-    static int32_t counter = 0;
-
-    return [NSString stringWithFormat:@"fiber.%d", OSAtomicIncrement32(&counter)];
++ (NSOperationQueue *)queue {
+    static NSOperationQueue *queue;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        queue = [NSOperationQueue new];
+        queue.name = @"com.sharplet.enumeratorkit.fiber";
+    });
+    return queue;
 }
 
 + (instancetype)fiberWithBlock:(id (^)(id<EKYielder>))block
@@ -48,16 +46,11 @@
 - (instancetype)initWithBlock:(id (^)(id<EKYielder>))block
 {
     if (self = [super init]) {
-        // register with the global fiber list -- this synchronises
-        // fiber creation
-        _label = [EKFiber register:self];
-
         _block = [block copy];
         _blockStarted = NO;
 
         // set up the fiber's queue and control semaphores
-        _queue = [EKSerialOperationQueue new];
-        _queue.name = self.label;
+        _queue = self.class.queue;
         _resumeSemaphore = [EKSemaphore new];
         _yieldSemaphore = [EKSemaphore new];
     }
@@ -113,7 +106,9 @@
 
 - (void)destroy
 {
-    [self.queue cancelAllOperations];
+    if (self.blockOperation) {
+        [self.blockOperation cancel];
+    }
 }
 
 - (void)yield:(id)obj

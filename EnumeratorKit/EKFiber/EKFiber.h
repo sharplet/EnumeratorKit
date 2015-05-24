@@ -20,6 +20,5 @@
 - (void)destroy;
 
 @property (nonatomic, readonly) BOOL isAlive;
-@property (nonatomic, readonly) NSString *label;
 
 @end
