@@ -11,6 +11,21 @@ task default: %w[test]
 
 task ci: %w[test podspec:lint]
 
+file "lib/libmill.a" do
+  sh "git submodule update --init"
+
+  prefix = Dir.pwd
+
+  chdir "External/libmill" do
+    sh "./autogen.sh &>/dev/null"
+    sh "./configure", "--prefix=#{prefix}"
+    sh "make install"
+  end
+end
+
+desc "Build libmill"
+task :libmill => "lib/libmill.a"
+
 desc "Run all tests"
 task test: %w[test:iphone6 test:iphone5 test:macosx]
 
@@ -41,6 +56,8 @@ end
 desc "Clean the default scheme"
 task :clean do
   rm_rf "DerivedData"
+  rm_rf "lib"
+  rm_rf "include"
 end
 
 desc "Synonym for docs:generate"
