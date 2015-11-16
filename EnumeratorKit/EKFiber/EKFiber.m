@@ -10,21 +10,17 @@
 #import "EKSemaphore.h"
 #import "EKSerialOperationQueue.h"
 
-@interface EKFiber ()
-
-+ (NSString *)register:(EKFiber *)fiber;
-+ (void)removeFiber:(EKFiber *)fiber;
+@interface EKFiber () <EKYielder>
 
 - (void)executeBlock;
 
-@property (nonatomic, copy) id (^block)(void);
-@property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
-@property (nonatomic, strong) NSString *label;
+@property (nonatomic, copy) id (^block)(id<EKYielder>);
+@property (nonatomic, weak) NSBlockOperation *blockOperation;
 
 @property (nonatomic) BOOL blockStarted;
 @property (nonatomic) id blockResult;
 
-@property (nonatomic, strong) EKSerialOperationQueue *queue;
+@property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) EKSemaphore *resumeSemaphore;
 @property (nonatomic, strong) EKSemaphore *yieldSemaphore;
 
@@ -32,65 +28,29 @@
 
 @implementation EKFiber
 
-static NSMutableDictionary *fibers;
-static EKSerialOperationQueue *fibersQueue;
-
-+ (NSString *)register:(EKFiber *)fiber
-{
-    // fibersQueue synchronises fiber creation and deletion
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        fibers = [NSMutableDictionary new];
-        fibersQueue = [EKSerialOperationQueue new];
++ (NSOperationQueue *)queue {
+    static NSOperationQueue *queue;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        queue = [NSOperationQueue new];
+        queue.name = @"com.sharplet.enumeratorkit.fiber";
     });
-
-    // register the new fiber
-    __block id label;
-    [fibersQueue addOperationWithBlockAndWait:^{
-        static unsigned int fiberCounter = 0;
-        label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
-        fibers[label] = fiber;
-    }];
-
-    return label;
+    return queue;
 }
 
-+ (instancetype)current
-{
-    return fibers[[[NSOperationQueue currentQueue] name]];
-}
-
-+ (void)removeFiber:(EKFiber *)fiber
-{
-    [fibersQueue addOperationWithBlockAndWait:^{
-        [fiber.queue cancelAllOperations];
-        [fibers removeObjectForKey:fiber.label];
-    }];
-}
-
-+ (void)yield:(id)obj
-{
-    [[EKFiber current] yield:obj];
-}
-
-+ (instancetype)fiberWithBlock:(id (^)(void))block
++ (instancetype)fiberWithBlock:(id (^)(id<EKYielder>))block
 {
     return [[EKFiber alloc] initWithBlock:block];
 }
 
-- (instancetype)initWithBlock:(id (^)(void))block
+- (instancetype)initWithBlock:(id (^)(id<EKYielder>))block
 {
     if (self = [super init]) {
-        // register with the global fiber list -- this synchronises
-        // fiber creation
-        _label = [EKFiber register:self];
-
         _block = [block copy];
         _blockStarted = NO;
 
         // set up the fiber's queue and control semaphores
-        _queue = [EKSerialOperationQueue new];
-        _queue.name = self.label;
+        _queue = self.class.queue;
         _resumeSemaphore = [EKSemaphore new];
         _yieldSemaphore = [EKSemaphore new];
     }
@@ -101,18 +61,20 @@ static EKSerialOperationQueue *fibersQueue;
 {
     self.blockStarted = YES;
 
-    __unsafe_unretained EKFiber *weakSelf = self;
+    __weak EKFiber *weakSelf = self;
     NSBlockOperation *operation = [NSBlockOperation new];
     [operation addExecutionBlock:^{
+        EKFiber *self = weakSelf;
+
         if (!self.blockOperation.isCancelled) {
-            weakSelf.blockResult = weakSelf.block();
-            weakSelf.blockStarted = NO;
+            self.blockResult = self.block(self);
+            self.blockStarted = NO;
 
             // clean up
-            [EKFiber removeFiber:weakSelf];
-            weakSelf.block = nil;
+            [self destroy];
+            self.block = nil;
 
-            [weakSelf.yieldSemaphore signal];
+            [self.yieldSemaphore signal];
         }
     }];
 
@@ -144,7 +106,9 @@ static EKSerialOperationQueue *fibersQueue;
 
 - (void)destroy
 {
-    [EKFiber removeFiber:self];
+    if (self.blockOperation) {
+        [self.blockOperation cancel];
+    }
 }
 
 - (void)yield:(id)obj

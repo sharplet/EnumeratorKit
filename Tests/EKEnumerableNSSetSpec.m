@@ -1,4 +1,4 @@
-#import <Kiwi.h>
+#import <Kiwi/Kiwi.h>
 #import <EnumeratorKit/EnumeratorKit.h>
 
 SPEC_BEGIN(EKEnumerableNSSetSpec)

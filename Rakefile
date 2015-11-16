@@ -1,4 +1,4 @@
-XCODEBUILD_OPTS = "-workspace EnumeratorKit.xcworkspace -derivedDataPath DerivedData"
+XCODEBUILD_OPTS = "-derivedDataPath DerivedData"
 IPHONE6 = "-scheme EnumeratorKit-iOS -destination 'platform=iOS Simulator,name=iPhone 6'"
 IPHONE5 = "-scheme EnumeratorKit-iOS -destination 'platform=iOS Simulator,name=iPhone 5'"
 MACOSX = "-scheme EnumeratorKit-OSX -destination 'generic/platform=OS X'"

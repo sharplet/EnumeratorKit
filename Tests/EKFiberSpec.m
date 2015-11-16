@@ -7,7 +7,7 @@ describe(@"-resume", ^{
 
     context(@"with no yield statements", ^{
         __block EKFiber *fiber;
-        id (^noYieldBlock)(void) = ^id{
+        id (^noYieldBlock)(id<EKYielder>) = ^id(id<EKYielder> yielder){
             return @"foo";
         };
 
@@ -29,8 +29,8 @@ describe(@"-resume", ^{
     context(@"with a single yield", ^{
 
         it(@"returns the yielded value, then the block return value", ^{
-            EKFiber *fiber = [EKFiber fiberWithBlock:^id{
-                [EKFiber yield:@1];
+            EKFiber *fiber = [EKFiber fiberWithBlock:^id(id<EKYielder> yielder){
+                [yielder yield:@1];
                 return @2;
             }];
 

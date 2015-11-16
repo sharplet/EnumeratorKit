@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EKEnumerable.h"
-
-@protocol EKYielder <NSObject>
-- (void)yield:(id)obj;
-@end
+#import "EKYielder.h"
 
 @interface EKEnumerator : NSObject <EKEnumerable>
 

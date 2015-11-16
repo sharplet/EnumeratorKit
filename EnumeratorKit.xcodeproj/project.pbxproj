@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4DE764BB34D6B7E4EBD2D7DC /* libPods-Tests-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7BB2F273F632369CA0AE79 /* libPods-Tests-OSX.a */; };
-		5736C16A21B89EC6F81F2615 /* libPods-Tests-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B97BDC1AD4BB18883D3307A /* libPods-Tests-iOS.a */; };
 		CE120A041A8611A400737E24 /* EnumeratorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC3BB79174B64EB00108331 /* EnumeratorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE120A051A8611A400737E24 /* EKEnumerable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB6FAD51740D97100DDBAD4 /* EKEnumerable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE120A061A8611A400737E24 /* EKEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB6FACF1740D56E00DDBAD4 /* EKEnumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,6 +73,12 @@
 		CE120A8B1A86273700737E24 /* EKEnumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A871A86273700737E24 /* EKEnumerate.m */; };
 		CE120A8D1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
 		CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
+		CE5D09681B11CB3400BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE5D096A1B11CB6E00BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE5D09711B11EB4800BE711A /* EKYielder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5D09701B11EB4800BE711A /* EKYielder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE5D09721B11EB4800BE711A /* EKYielder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5D09701B11EB4800BE711A /* EKYielder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE7CF25D1B11CA590035ED79 /* Kiwi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */; };
+		CE7CF25E1B11CA5F0035ED79 /* Kiwi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,10 +98,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CE5D09671B11CB2100BE711A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE5D09681B11CB3400BE711A /* Kiwi.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE5D09691B11CB6200BE711A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE5D096A1B11CB6E00BE711A /* Kiwi.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		0B97BDC1AD4BB18883D3307A /* libPods-Tests-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EnumeratorKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C7BB2F273F632369CA0AE79 /* libPods-Tests-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A20CDC6177C3169004E510D /* EKSerialOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EKSerialOperationQueue.h; sourceTree = "<group>"; };
 		4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSerialOperationQueue.m; sourceTree = "<group>"; };
 		4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSerialOperationQueueSpec.m; sourceTree = "<group>"; };
@@ -105,7 +131,6 @@
 		4A50613F177C453E0043C974 /* EKSemaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKSemaphore.h; sourceTree = "<group>"; };
 		4A506140177C453E0043C974 /* EKSemaphore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSemaphore.m; sourceTree = "<group>"; };
 		4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AB6FACF1740D56E00DDBAD4 /* EKEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EKEnumerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4AB6FAD01740D56E00DDBAD4 /* EKEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerator.m; sourceTree = "<group>"; };
 		4AB6FAD51740D97100DDBAD4 /* EKEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EKEnumerable.h; sourceTree = "<group>"; };
@@ -133,22 +158,19 @@
 		4AD3D59117534ACD0050CE35 /* NSObject+EKEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EKEnumerator.h"; sourceTree = "<group>"; };
 		4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EKEnumerator.m"; sourceTree = "<group>"; };
 		4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectAsEKEnumeratorSpec.m; sourceTree = "<group>"; };
-		8C2FE23C509349279B73E901 /* libPods-Specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E71286E75CAF4D8E9B0F592 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1209EB1A86106D00737E24 /* EnumeratorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnumeratorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE120A251A86170900737E24 /* Tests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE120A311A86179E00737E24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE120A321A8617C500737E24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE120A461A8618A100737E24 /* EnumeratorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnumeratorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE120A501A8618A100737E24 /* Tests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE120A6C1A861CBE00737E24 /* Pods-Tests-iOS.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-iOS/Pods-Tests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		CE120A6D1A861CBE00737E24 /* Pods-Tests-iOS.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-iOS/Pods-Tests-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		CE120A6E1A861CBE00737E24 /* Pods-Tests-OSX.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX.debug.xcconfig"; sourceTree = "<group>"; };
-		CE120A6F1A861CBE00737E24 /* Pods-Tests-OSX.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		CE120A861A86273700737E24 /* EKEnumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKEnumerate.h; sourceTree = "<group>"; };
 		CE120A871A86273700737E24 /* EKEnumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerate.m; sourceTree = "<group>"; };
 		CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerateSpec.m; sourceTree = "<group>"; };
 		CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerableNSArraySpec.m; sourceTree = "<group>"; };
+		CE5D09701B11EB4800BE711A /* EKYielder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKYielder.h; sourceTree = "<group>"; };
+		CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
+		CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE120A2B1A86170900737E24 /* EnumeratorKit.framework in Frameworks */,
-				5736C16A21B89EC6F81F2615 /* libPods-Tests-iOS.a in Frameworks */,
+				CE7CF25D1B11CA590035ED79 /* Kiwi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE120A511A8618A100737E24 /* EnumeratorKit.framework in Frameworks */,
-				4DE764BB34D6B7E4EBD2D7DC /* libPods-Tests-OSX.a in Frameworks */,
+				CE7CF25E1B11CA5F0035ED79 /* Kiwi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,9 +216,10 @@
 				4AC073CF174AC561005FA8E5 /* Tests */,
 				4AB6FA941740C5AE00DDBAD4 /* Frameworks */,
 				4AB6FA931740C5AE00DDBAD4 /* Products */,
-				D13CEB7E2206E8451134FA1B /* Pods */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		4AB6FA931740C5AE00DDBAD4 /* Products */ = {
 			isa = PBXGroup;
@@ -212,14 +235,9 @@
 		4AB6FA941740C5AE00DDBAD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE7CF2581B11CA300035ED79 /* Carthage */,
 				4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */,
-				4AB6FAB31740C5AE00DDBAD4 /* SenTestingKit.framework */,
 				4AD13089185C0C3B003E7145 /* XCTest.framework */,
-				226A8EF07A29465E938B2D19 /* libPods-EnumeratorKitTests.a */,
-				8C2FE23C509349279B73E901 /* libPods-Specs.a */,
-				0B97BDC1AD4BB18883D3307A /* libPods-Tests-iOS.a */,
-				9E71286E75CAF4D8E9B0F592 /* libPods-Tests.a */,
-				2C7BB2F273F632369CA0AE79 /* libPods-Tests-OSX.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,6 +303,7 @@
 				CE120A871A86273700737E24 /* EKEnumerate.m */,
 				4AB6FACF1740D56E00DDBAD4 /* EKEnumerator.h */,
 				4AB6FAD01740D56E00DDBAD4 /* EKEnumerator.m */,
+				CE5D09701B11EB4800BE711A /* EKYielder.h */,
 				4AC073DE174AC629005FA8E5 /* NSArray+EKEnumerable.h */,
 				4AC073DF174AC629005FA8E5 /* NSArray+EKEnumerable.m */,
 				4ACB2E041754161C009AC260 /* NSDictionary+EKEnumerable.h */,
@@ -316,15 +335,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D13CEB7E2206E8451134FA1B /* Pods */ = {
+		CE7CF2581B11CA300035ED79 /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
-				CE120A6C1A861CBE00737E24 /* Pods-Tests-iOS.debug.xcconfig */,
-				CE120A6D1A861CBE00737E24 /* Pods-Tests-iOS.release.xcconfig */,
-				CE120A6E1A861CBE00737E24 /* Pods-Tests-OSX.debug.xcconfig */,
-				CE120A6F1A861CBE00737E24 /* Pods-Tests-OSX.release.xcconfig */,
+				CE7CF2591B11CA4E0035ED79 /* iOS */,
+				CE7CF25B1B11CA4E0035ED79 /* Mac */,
 			);
-			name = Pods;
+			name = Carthage;
+			path = Carthage/Build;
+			sourceTree = "<group>";
+		};
+		CE7CF2591B11CA4E0035ED79 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		CE7CF25B1B11CA4E0035ED79 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */,
+			);
+			path = Mac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +371,7 @@
 				CE120A051A8611A400737E24 /* EKEnumerable.h in Headers */,
 				CE120A091A8611A400737E24 /* NSDictionary+EKEnumerable.h in Headers */,
 				CE120A061A8611A400737E24 /* EKEnumerator.h in Headers */,
+				CE5D09711B11EB4800BE711A /* EKYielder.h in Headers */,
 				CE120A041A8611A400737E24 /* EnumeratorKit.h in Headers */,
 				CE120A071A8611A400737E24 /* NSArray+EKEnumerable.h in Headers */,
 				CE120A0B1A8611A400737E24 /* NSOrderedSet+EKEnumerable.h in Headers */,
@@ -353,6 +388,7 @@
 				CE120A7C1A86218900737E24 /* EKEnumerable.h in Headers */,
 				CE120A7F1A86218900737E24 /* NSDictionary+EKEnumerable.h in Headers */,
 				CE120A821A86218900737E24 /* NSSet+EKEnumerable.h in Headers */,
+				CE5D09721B11EB4800BE711A /* EKYielder.h in Headers */,
 				CE120A7D1A86218900737E24 /* EKEnumerator.h in Headers */,
 				CE120A7B1A86218900737E24 /* EnumeratorKit.h in Headers */,
 				CE120A801A86218900737E24 /* NSObject+EKEnumerator.h in Headers */,
@@ -387,11 +423,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE120A2E1A86170900737E24 /* Build configuration list for PBXNativeTarget "Tests-iOS" */;
 			buildPhases = (
-				89901CDEBCB723930DD6C163 /* Check Pods Manifest.lock */,
 				CE120A211A86170900737E24 /* Sources */,
 				CE120A221A86170900737E24 /* Frameworks */,
 				CE120A231A86170900737E24 /* Resources */,
-				4765CBCB2537782ABB04934D /* Copy Pods Resources */,
+				CE5D09691B11CB6200BE711A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -426,11 +461,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE120A5C1A8618A100737E24 /* Build configuration list for PBXNativeTarget "Tests-OSX" */;
 			buildPhases = (
-				488D0E0EB4EEE0306BCA1ED8 /* Check Pods Manifest.lock */,
 				CE120A4C1A8618A100737E24 /* Sources */,
 				CE120A4D1A8618A100737E24 /* Frameworks */,
 				CE120A4E1A8618A100737E24 /* Resources */,
-				11A3F9107F72C816420DE8BD /* Copy Pods Resources */,
+				CE5D09671B11CB2100BE711A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -516,84 +550,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		11A3F9107F72C816420DE8BD /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4765CBCB2537782ABB04934D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-iOS/Pods-Tests-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		488D0E0EB4EEE0306BCA1ED8 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		89901CDEBCB723930DD6C163 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CEC1CC6C1BD8CC3D003ED3A4 /* Build libmill */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build libmill";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "rake libmill";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE1209E61A86106D00737E24 /* Sources */ = {
@@ -785,9 +741,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -824,9 +780,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -843,7 +799,6 @@
 		};
 		CE120A2F1A86170900737E24 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE120A6C1A861CBE00737E24 /* Pods-Tests-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -854,6 +809,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -874,7 +830,6 @@
 		};
 		CE120A301A86170900737E24 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE120A6D1A861CBE00737E24 /* Pods-Tests-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -886,6 +841,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -986,7 +942,6 @@
 		};
 		CE120A5D1A8618A100737E24 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE120A6E1A861CBE00737E24 /* Pods-Tests-OSX.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -998,6 +953,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1019,7 +975,6 @@
 		};
 		CE120A5E1A8618A100737E24 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE120A6F1A861CBE00737E24 /* Pods-Tests-OSX.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1033,6 +988,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
