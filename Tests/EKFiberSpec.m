@@ -45,7 +45,7 @@ describe(@"-resume", ^{
 
     context(@"performance", ^{
         it(@"can manage a high number of concurrent fibers", ^{
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10000; i++) {
                 EKFiber *fiber = [EKFiber fiberWithBlock:^(id<EKYielder> yielder) {
                     [yielder yield:@1];
                     [yielder yield:@2];
