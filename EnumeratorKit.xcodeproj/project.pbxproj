@@ -22,7 +22,6 @@
 		CE120A151A8611C600737E24 /* NSSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0A17541B6E009AC260 /* NSSet+EKEnumerable.m */; };
 		CE120A161A8611C600737E24 /* NSOrderedSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0F17545532009AC260 /* NSOrderedSet+EKEnumerable.m */; };
 		CE120A171A8611C600737E24 /* NSObject+EKEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */; };
-		CE120A181A8611C600737E24 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073E3174AC6FB005FA8E5 /* EKFiber.m */; };
 		CE120A191A8611C600737E24 /* EKSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A506140177C453E0043C974 /* EKSemaphore.m */; };
 		CE120A1A1A8611C600737E24 /* EKSerialOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */; };
 		CE120A2B1A86170900737E24 /* EnumeratorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1209EB1A86106D00737E24 /* EnumeratorKit.framework */; };
@@ -32,7 +31,6 @@
 		CE120A371A8617F000737E24 /* EKEnumerableNSSetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0C175452EB009AC260 /* EKEnumerableNSSetSpec.m */; };
 		CE120A381A8617F000737E24 /* EKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */; };
 		CE120A391A8617F000737E24 /* EKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */; };
-		CE120A3A1A8617F000737E24 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
 		CE120A3C1A8617F000737E24 /* EKSerialOperationQueueSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */; };
 		CE120A3E1A8617F000737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */; };
 		CE120A3F1A8617F000737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */; };
@@ -44,7 +42,6 @@
 		CE120A621A86193700737E24 /* EKEnumerableNSSetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0C175452EB009AC260 /* EKEnumerableNSSetSpec.m */; };
 		CE120A631A86193700737E24 /* EKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */; };
 		CE120A641A86193700737E24 /* EKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */; };
-		CE120A651A86193700737E24 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
 		CE120A671A86193700737E24 /* EKSerialOperationQueueSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */; };
 		CE120A691A86193700737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */; };
 		CE120A6A1A86193700737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */; };
@@ -56,7 +53,6 @@
 		CE120A751A861D4700737E24 /* NSObject+EKEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */; };
 		CE120A761A861D4700737E24 /* NSOrderedSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0F17545532009AC260 /* NSOrderedSet+EKEnumerable.m */; };
 		CE120A771A861D4700737E24 /* NSSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0A17541B6E009AC260 /* NSSet+EKEnumerable.m */; };
-		CE120A781A861D4700737E24 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073E3174AC6FB005FA8E5 /* EKFiber.m */; };
 		CE120A791A861D4700737E24 /* EKSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A506140177C453E0043C974 /* EKSemaphore.m */; };
 		CE120A7A1A861D4700737E24 /* EKSerialOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */; };
 		CE120A7B1A86218900737E24 /* EnumeratorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC3BB79174B64EB00108331 /* EnumeratorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,6 +69,9 @@
 		CE120A8B1A86273700737E24 /* EKEnumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A871A86273700737E24 /* EKEnumerate.m */; };
 		CE120A8D1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
 		CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
+		CE531BEF1BFAE3620098D352 /* EKFiber.h in Headers */ = {isa = PBXBuildFile; fileRef = CE531BED1BFAE3620098D352 /* EKFiber.h */; };
+		CE531BF01BFAE3620098D352 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = CE531BEE1BFAE3620098D352 /* EKFiber.m */; };
+		CE531BF31BFAE8EF0098D352 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
 		CE5D09681B11CB3400BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE5D096A1B11CB6E00BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE5D09711B11EB4800BE711A /* EKYielder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5D09701B11EB4800BE711A /* EKYielder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -137,8 +136,6 @@
 		4AB6FAD61740D97100DDBAD4 /* EKEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerable.m; sourceTree = "<group>"; };
 		4AC073DE174AC629005FA8E5 /* NSArray+EKEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSArray+EKEnumerable.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4AC073DF174AC629005FA8E5 /* NSArray+EKEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+EKEnumerable.m"; sourceTree = "<group>"; };
-		4AC073E2174AC6FB005FA8E5 /* EKFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EKFiber.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4AC073E3174AC6FB005FA8E5 /* EKFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKFiber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKFiberSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4AC3BB79174B64EB00108331 /* EnumeratorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumeratorKit.h; sourceTree = "<group>"; };
 		4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerableSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -168,6 +165,8 @@
 		CE120A871A86273700737E24 /* EKEnumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerate.m; sourceTree = "<group>"; };
 		CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerateSpec.m; sourceTree = "<group>"; };
 		CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerableNSArraySpec.m; sourceTree = "<group>"; };
+		CE531BED1BFAE3620098D352 /* EKFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKFiber.h; sourceTree = "<group>"; };
+		CE531BEE1BFAE3620098D352 /* EKFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKFiber.m; sourceTree = "<group>"; };
 		CE5D09701B11EB4800BE711A /* EKYielder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKYielder.h; sourceTree = "<group>"; };
 		CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
 		CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
@@ -284,12 +283,12 @@
 		4AC073E1174AC63B005FA8E5 /* EKFiber */ = {
 			isa = PBXGroup;
 			children = (
-				4AC073E2174AC6FB005FA8E5 /* EKFiber.h */,
-				4AC073E3174AC6FB005FA8E5 /* EKFiber.m */,
 				4A50613F177C453E0043C974 /* EKSemaphore.h */,
 				4A506140177C453E0043C974 /* EKSemaphore.m */,
 				4A20CDC6177C3169004E510D /* EKSerialOperationQueue.h */,
 				4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */,
+				CE531BED1BFAE3620098D352 /* EKFiber.h */,
+				CE531BEE1BFAE3620098D352 /* EKFiber.m */,
 			);
 			path = EKFiber;
 			sourceTree = "<group>";
@@ -386,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE120A7C1A86218900737E24 /* EKEnumerable.h in Headers */,
+				CE531BEF1BFAE3620098D352 /* EKFiber.h in Headers */,
 				CE120A7F1A86218900737E24 /* NSDictionary+EKEnumerable.h in Headers */,
 				CE120A821A86218900737E24 /* NSSet+EKEnumerable.h in Headers */,
 				CE5D09721B11EB4800BE711A /* EKYielder.h in Headers */,
@@ -442,7 +442,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE120A591A8618A100737E24 /* Build configuration list for PBXNativeTarget "EnumeratorKit-OSX" */;
 			buildPhases = (
-				CEC1CC6C1BD8CC3D003ED3A4 /* Build libmill */,
 				CE120A411A8618A100737E24 /* Sources */,
 				CE120A421A8618A100737E24 /* Frameworks */,
 				CE120A431A8618A100737E24 /* Headers */,
@@ -564,7 +563,6 @@
 				CE120A151A8611C600737E24 /* NSSet+EKEnumerable.m in Sources */,
 				CE120A161A8611C600737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A171A8611C600737E24 /* NSObject+EKEnumerator.m in Sources */,
-				CE120A181A8611C600737E24 /* EKFiber.m in Sources */,
 				CE120A191A8611C600737E24 /* EKSemaphore.m in Sources */,
 				CE120A1A1A8611C600737E24 /* EKSerialOperationQueue.m in Sources */,
 			);
@@ -581,7 +579,6 @@
 				CE120A371A8617F000737E24 /* EKEnumerableNSSetSpec.m in Sources */,
 				CE120A381A8617F000737E24 /* EKEnumerableSpec.m in Sources */,
 				CE120A391A8617F000737E24 /* EKEnumeratorSpec.m in Sources */,
-				CE120A3A1A8617F000737E24 /* EKFiberSpec.m in Sources */,
 				CE120A3C1A8617F000737E24 /* EKSerialOperationQueueSpec.m in Sources */,
 				CE120A3E1A8617F000737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */,
 				CE120A3F1A8617F000737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */,
@@ -601,7 +598,7 @@
 				CE120A751A861D4700737E24 /* NSObject+EKEnumerator.m in Sources */,
 				CE120A761A861D4700737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A771A861D4700737E24 /* NSSet+EKEnumerable.m in Sources */,
-				CE120A781A861D4700737E24 /* EKFiber.m in Sources */,
+				CE531BF01BFAE3620098D352 /* EKFiber.m in Sources */,
 				CE120A791A861D4700737E24 /* EKSemaphore.m in Sources */,
 				CE120A7A1A861D4700737E24 /* EKSerialOperationQueue.m in Sources */,
 			);
@@ -611,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE531BF31BFAE8EF0098D352 /* EKFiberSpec.m in Sources */,
 				CE120A5F1A86193700737E24 /* EKEnumerableNSArraySpec.m in Sources */,
 				CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */,
 				CE120A601A86193700737E24 /* EKEnumerableNSDictionarySpec.m in Sources */,
@@ -618,7 +616,6 @@
 				CE120A621A86193700737E24 /* EKEnumerableNSSetSpec.m in Sources */,
 				CE120A631A86193700737E24 /* EKEnumerableSpec.m in Sources */,
 				CE120A641A86193700737E24 /* EKEnumeratorSpec.m in Sources */,
-				CE120A651A86193700737E24 /* EKFiberSpec.m in Sources */,
 				CE120A671A86193700737E24 /* EKSerialOperationQueueSpec.m in Sources */,
 				CE120A691A86193700737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */,
 				CE120A6A1A86193700737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */,

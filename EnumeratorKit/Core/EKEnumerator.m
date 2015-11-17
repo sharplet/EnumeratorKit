@@ -70,13 +70,10 @@
 
 - (id)each:(void (^)(id))block
 {
-    EKFiber *fiber = [EKFiber fiberWithBlock:^id(id<EKYielder> yielder){
-        self.block(yielder);
-        return nil;
-    }];
+    EKFiber *fiber = [EKFiber fiberWithBlock:self.block];
 
     id next;
-    while ((next = fiber.resume)) {
+    while ((next = [fiber resume])) {
         block(next);
     }
     return self;
@@ -94,11 +91,7 @@
 {
     // first time around, dispatch the iteration onto our fiber
     if (!self.fiber) {
-        __unsafe_unretained EKEnumerator *weakSelf = self;
-        self.fiber = [EKFiber fiberWithBlock:^id(id<EKYielder> yielder){
-            weakSelf.block(yielder);
-            return nil;
-        }];
+        self.fiber = [EKFiber fiberWithBlock:self.block];
     }
 
     id next;
@@ -106,7 +99,7 @@
         // if we haven't peeked already, resume the iteration and get
         // the next value
         if (!self.lastPeek) {
-            self.lastPeek = self.fiber.resume;
+            self.lastPeek = [self.fiber resume];
         }
 
         // keep returning the peeked value
@@ -123,7 +116,7 @@
         }
         else {
             // get the next value
-            next = self.fiber.resume;
+            next = [self.fiber resume];
         }
     }
     return next;
@@ -133,14 +126,8 @@
 {
     // delete the fiber -- the iteration will be restarted next
     // time -next is called
-    [self.fiber destroy];
     self.fiber = nil;
     return self;
-}
-
-- (void)dealloc
-{
-    [self.fiber destroy];
 }
 
 @end
