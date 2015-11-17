@@ -40,6 +40,19 @@ describe(@"-resume", ^{
 
     });
 
+    context(@"performance", ^{
+        it(@"can manage a high number of concurrent fibers", ^{
+            for (int i = 0; i < 100; i++) {
+                EKFiber *fiber = [EKFiber fiberWithBlock:^id(id<EKYielder> yielder) {
+                    [yielder yield:@1];
+                    [yielder yield:@2];
+                    return nil;
+                }];
+                [[[fiber resume] should] equal:@1];
+            }
+        });
+    });
+
 });
 
 SPEC_END
