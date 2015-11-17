@@ -1,7 +1,7 @@
 XCODEBUILD_OPTS = "-derivedDataPath DerivedData"
-IPHONE6 = "-scheme EnumeratorKit-iOS -destination 'platform=iOS Simulator,name=iPhone 6'"
-IPHONE5 = "-scheme EnumeratorKit-iOS -destination 'platform=iOS Simulator,name=iPhone 5'"
-MACOSX = "-scheme EnumeratorKit-OSX -destination 'generic/platform=OS X'"
+IPHONE6 = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit-iOS -destination 'platform=iOS Simulator,name=iPhone 6'"
+IPHONE5 = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit-iOS -destination 'platform=iOS Simulator,name=iPhone 5'"
+MACOSX = "-workspace EnumeratorKit.xcworkspace -scheme EnumeratorKit-OSX -destination 'generic/platform=OS X'"
 
 def xcpretty(cmd)
   sh "set -o pipefail; #{cmd} | xcpretty -c"
