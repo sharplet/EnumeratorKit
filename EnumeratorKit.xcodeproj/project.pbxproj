@@ -72,6 +72,9 @@
 		CE531BEF1BFAE3620098D352 /* EKFiber.h in Headers */ = {isa = PBXBuildFile; fileRef = CE531BED1BFAE3620098D352 /* EKFiber.h */; };
 		CE531BF01BFAE3620098D352 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = CE531BEE1BFAE3620098D352 /* EKFiber.m */; };
 		CE531BF31BFAE8EF0098D352 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
+		CE531C541BFB10200098D352 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = CE531BEE1BFAE3620098D352 /* EKFiber.m */; };
+		CE531C781BFB12930098D352 /* libmill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE531C771BFB12930098D352 /* libmill.a */; };
+		CE531C7A1BFB13A40098D352 /* libmill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE531C791BFB13A40098D352 /* libmill.a */; };
 		CE5D09681B11CB3400BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE5D096A1B11CB6E00BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE5D09711B11EB4800BE711A /* EKYielder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5D09701B11EB4800BE711A /* EKYielder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -167,6 +170,8 @@
 		CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerableNSArraySpec.m; sourceTree = "<group>"; };
 		CE531BED1BFAE3620098D352 /* EKFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKFiber.h; sourceTree = "<group>"; };
 		CE531BEE1BFAE3620098D352 /* EKFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKFiber.m; sourceTree = "<group>"; };
+		CE531C771BFB12930098D352 /* libmill.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmill.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE531C791BFB13A40098D352 /* libmill.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmill.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5D09701B11EB4800BE711A /* EKYielder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKYielder.h; sourceTree = "<group>"; };
 		CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
 		CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE531C7A1BFB13A40098D352 /* libmill.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE531C781BFB12930098D352 /* libmill.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +241,8 @@
 		4AB6FA941740C5AE00DDBAD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE531C791BFB13A40098D352 /* libmill.a */,
+				CE531C771BFB12930098D352 /* libmill.a */,
 				CE7CF2581B11CA300035ED79 /* Carthage */,
 				4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */,
 				4AD13089185C0C3B003E7145 /* XCTest.framework */,
@@ -560,6 +569,7 @@
 				CE120A121A8611C600737E24 /* NSArray+EKEnumerable.m in Sources */,
 				CE120A141A8611C600737E24 /* NSDictionary+EKEnumerable.m in Sources */,
 				CE120A8A1A86273700737E24 /* EKEnumerate.m in Sources */,
+				CE531C541BFB10200098D352 /* EKFiber.m in Sources */,
 				CE120A151A8611C600737E24 /* NSSet+EKEnumerable.m in Sources */,
 				CE120A161A8611C600737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A171A8611C600737E24 /* NSObject+EKEnumerator.m in Sources */,
@@ -667,7 +677,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/include",
+					"$(CONFIGURATION_BUILD_DIR)/include/libmill",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -700,7 +710,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/include",
+					"$(CONFIGURATION_BUILD_DIR)/include/libmill",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -742,10 +752,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lmill",
-				);
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -781,10 +787,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lmill",
-				);
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -883,10 +885,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lmill",
-				);
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -924,10 +922,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lmill",
-				);
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
