@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EnumeratorKit.h"
+#import <EnumeratorKit/EnumeratorKit.h>
 
 @interface SortedList : NSObject <EKEnumerable>
 
