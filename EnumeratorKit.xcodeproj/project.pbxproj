@@ -744,7 +744,6 @@
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
@@ -779,7 +778,6 @@
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = mh_dylib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
