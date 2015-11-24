@@ -74,7 +74,7 @@ EKEnumerator *fib = [EKEnumerator new:^(id<EKYielder> yielder){
         a = b; b = next;
     }
 }];
-[[fib take:10] asArray]; // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
+[fib take:10]; // => @[ @1, @1, @2, @3, @5, @8, @13, @21, @34, @55 ]
 ```
 
 
@@ -114,7 +114,7 @@ Now you're ready to go.
 The `EKEnumerable` class defines an API of methods that are all based on one operation:
 
 ```objc
-- (instancetype)each:(void (^)(id obj))block;
+- (id<EKEnumerable)each:(void (^)(id obj))block;
 ```
 
 Different collection classes implement their own version of `-each:`,
@@ -150,9 +150,9 @@ operations:
  - `-asArray` — get an array representation of any enumeration
  - `-take` — get the specified number of elements from the beginning
    of the enumeration
- - `-map` — apply the block to each item of the collection, returning a new
-   collection of transformed values
- - `-select` — create a new enumerable with all the elements for which the
+ - `-map` — create a new array with the results of applying the block
+   to each item in the collection
+ - `-filter` — create a new array with all the elements for which the
    block returns `YES`
  - `-find` — return the first element for which the block returns
    `YES`, otherwise `nil` if no matching element is found
@@ -195,19 +195,14 @@ your own collection classes:
 }
 ```
 
-#### 3. Implement `-each:`, and `-initWithEnumerable:`
+#### 3. Implement `-each:`
 
 ```objc
 @implementation MyAwesomeCollection
 .
 .
 .
-- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
-{
-    // traverse the enumerable, adding each item to your collection
-}
-
-- (instancetype)each:(void (^)(id))block
+- (id<EKEnumerable>)each:(void (^)(id))block
 {
     // hypothetical enumeration code
     for (int i; i < self.length; i++) {

@@ -15,11 +15,6 @@
     [self includeEKEnumerable];
 }
 
-- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
-{
-    return [self initWithArray:[enumerable asArray]];
-}
-
 - (instancetype)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {

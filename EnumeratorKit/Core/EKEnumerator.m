@@ -47,11 +47,6 @@
     return self;
 }
 
-- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
-{
-    return [self initWithObject:enumerable];
-}
-
 + (instancetype)new:(void (^)(id<EKYielder>))block
 {
     return [[self alloc] initWithBlock:block];

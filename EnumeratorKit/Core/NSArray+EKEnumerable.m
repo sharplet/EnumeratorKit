@@ -15,15 +15,6 @@
     [self includeEKEnumerable];
 }
 
-- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
-{
-    NSMutableArray *array = [NSMutableArray new];
-    [enumerable each:^(id obj) {
-        [array addObject:obj];
-    }];
-    return [self initWithArray:array];
-}
-
 - (id)each:(void (^)(id))block
 {
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

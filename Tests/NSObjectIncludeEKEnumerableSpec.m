@@ -6,9 +6,9 @@
 @end
 
 @implementation EnumerableSubclass
-- (instancetype)map:(id (^)(id))block
+- (id<EKEnumerable>)map:(id (^)(id))block
 {
-    return [[[self class] alloc] initWithEnumerable:@[ @"specific implementation" ]];
+    return @[ @"specific implementation" ];
 }
 @end
 
@@ -25,7 +25,7 @@ describe(@"NSObject+IncludeEKEnumerable", ^{
                 id result = [list map:^id(id obj) {
                     return [NSString stringWithFormat:@"%@", obj];
                 }];
-                [[result should] equal:[[SortedList alloc] initWithArray:@[ @"1", @"2" ]]];
+                [[result should] equal:@[ @"1", @"2" ]];
             });
 
         });
@@ -37,7 +37,7 @@ describe(@"NSObject+IncludeEKEnumerable", ^{
                 id result = [list map:^id(id obj) {
                     return [NSString stringWithFormat:@"%@", obj];
                 }];
-                [[result should] equal:[[EnumerableSubclass alloc] initWithArray:@[ @"specific implementation" ]]];
+                [[result should] equal:@[ @"specific implementation" ]];
             });
 
         });

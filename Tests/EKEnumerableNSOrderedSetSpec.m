@@ -3,16 +3,6 @@
 
 SPEC_BEGIN(EKEnumerableNSOrderedSetSpec)
 
-describe(@"-initWithEnumerable:", ^{
-
-    it(@"constructs an ordered set respecting the order of the enumerable", ^{
-        NSArray *array = @[@2, @1, @3];
-        NSOrderedSet *orderedSet = [[NSOrderedSet alloc] initWithEnumerable:array];
-        [[orderedSet should] equal:[NSOrderedSet orderedSetWithArray:@[@2, @1, @3]]];
-    });
-
-});
-
 describe(@"-each", ^{
 
     __block NSOrderedSet *set;

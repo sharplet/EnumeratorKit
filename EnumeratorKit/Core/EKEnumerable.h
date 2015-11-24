@@ -18,8 +18,8 @@
 
  2. Implement `+load` and call `[self includeEKEnumerable]`
 
- 3. Implement the required `-each:` and `-initWithEnumerable:` methods in
-    the `EKEnumerable` protocol.
+ 3. Implement `-each:` to traverse the collection, applying the block
+    to each element.
 
  For example:
 
@@ -36,11 +36,6 @@
         [self includeEKEnumerable];
     }
 
-    - (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable
-    {
-        return [self initWithArray:[enumerable asArray]];
-    }
-
     - (instancetype)each:(void (^)(id))block
     {
         for (id obj in self.data) {
@@ -54,22 +49,6 @@
 @protocol EKEnumerable <NSObject>
 
 @required
-
-#pragma mark - Initialisation
-/** @name Initialisation **/
-
-/**
- Called by `EnumeratorKit` to initialize a new intance of a collection
- containing the transformed or filtered results after applying some operation.
-
- For example, the default implementation of `-map:` calls this initializer and
- passes in an enumerable containing the mapped values. Your implementation of
- this method should use the values in the enumerable to initialize the new
- instance.
-
- @param enumerable An enumerable containing the values to initialize this instance.
- */
-- (instancetype)initWithEnumerable:(id<EKEnumerable>)enumerable;
 
 #pragma mark - Traversal
 /** @name Traversal */
@@ -116,8 +95,9 @@
 /** @name Transformations */
 
 /**
- Return a new enumerable with the results of applying `block` to each element
- in the receiver. `nil` values are automatically boxed as `NSNull`.
+ Applies the block to each element in the collection, and collects
+ the return values in an array. If the block returns `nil`,
+ `[NSNull null]` will automatically be inserted into the array.
 
  Usage:
 
@@ -130,20 +110,27 @@
     // => @[@"Spike", @"Princess"];
 
  @param block A block that accepts a single object and returns an object.
+
+ @return Returns a new array with the results of applying the block to
+    each element in the collection. The resulting array will always
+    have the same count as the receiver.
  */
-- (instancetype)map:(id (^)(id obj))block;
+- (NSArray *)map:(id (^)(id obj))block;
 
 /**
- Map `block` over each element in the receiver, while passing the index of each element.
+ A combination of `-map:` and `-eachWithIndex:`.
 
  @param block A block that accepts an object and an `NSUInteger` index.
+
+ @return Returns a new array with the results of applying the block to
+    each element in the collection. The resulting array will always
+    have the same count as the receiver.
  */
-- (instancetype)mapWithIndex:(id (^)(id obj, NSUInteger i))block;
+- (NSArray *)mapWithIndex:(id (^)(id obj, NSUInteger i))block;
 
 /**
- Maps `block` over the receiver, combining each enumerable into a single enumerable.
- `nil` values are automatically converted into an empty enumerable by calling
- calling `+new` on the receiver's class.
+ Performs a `map:` with the block, returning a single flattened array
+ as the result.
 
  Usage:
 
@@ -152,9 +139,14 @@
      }];
      // => @[@0, @"0", @1, @"1", @2, @"2"]
 
- @param block A block accepting a single object and returning an enumerable.
+ @param block A block that accepts a single object and returns an
+    object. Returning an array will cause the *contents* of the array to
+    be flattened and added to the result array.
+
+ @return A flattened array with the results of applying a `map:` with
+    the block.
  */
-- (instancetype)flattenMap:(id<EKEnumerable> (^)(id obj))block;
+- (NSArray *)flattenMap:(NSArray *(^)(id obj))block;
 
 /**
  Transform an enumerable into an dictionary by transforming each element into
@@ -179,6 +171,8 @@
 
  @param block A block that maps objects to entries. The dictionary returned
     by this block must not contain more than a single entry.
+
+ @return A dictionary containing all the entries returned by the block.
  */
 - (NSDictionary *)mapDictionary:(NSDictionary *(^)(id obj))block;
 
@@ -203,6 +197,9 @@
  values for that key.
 
  @param block A block that returns a unique key for an object.
+
+ @return A dictionary with the block's results as keys, mapped to the
+    objects as values.
  */
 - (NSDictionary *)wrap:(id<NSCopying> (^)(id obj))block;
 
@@ -395,12 +392,12 @@
  @return A filtered array containing all the objects for which the
     block returned `YES`.
  */
-- (instancetype)select:(BOOL (^)(id obj))block;
+- (NSArray *)select:(BOOL (^)(id obj))block;
 
 /**
  Alias for `select:`.
  */
-- (instancetype)filter:(BOOL (^)(id obj))block;
+- (NSArray *)filter:(BOOL (^)(id obj))block;
 
 /**
  Like `select:`, but instead returns the elements for which the block
@@ -422,7 +419,7 @@
  @return A filtered array containing all the objects for which the
     block returned `NO`.
  */
-- (instancetype)reject:(BOOL (^)(id obj))block;
+- (NSArray *)reject:(BOOL (^)(id obj))block;
 
 /**
  Find the first element in a collection for which the block returns `YES`.
@@ -505,7 +502,7 @@
 /** @name Other methods */
 
 /** Take elements from a collection */
-- (instancetype)take:(NSInteger)number;
+- (NSArray *)take:(NSInteger)number;
 
 /** Get an array */
 - (NSArray *)asArray;

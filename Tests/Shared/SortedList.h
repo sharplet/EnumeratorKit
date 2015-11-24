@@ -11,8 +11,6 @@
 
 @interface SortedList : NSObject <EKEnumerable>
 
-- (instancetype)initWithArray:(NSArray *)array;
-
 - (instancetype)insert:(NSNumber *)object;
 
 @end
