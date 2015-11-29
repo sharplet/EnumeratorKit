@@ -37,5 +37,15 @@ Pod::Spec.new do |s|
 
   s.subspec 'EKFiber' do |f|
     f.source_files = 'EnumeratorKit/EKFiber'
+    f.preserve_paths = 'libmill/**/*'
+    f.libraries = 'mill'
+    f.xcconfig = {
+      'HEADER_SEARCH_PATHS[sdk=iphoneos*]' => '$(inherited) $(PROJECT_DIR)/EnumeratorKit/libmill/Release-iphoneos/include/libmill',
+      'HEADER_SEARCH_PATHS[sdk=iphonesimulator*]' => '$(inherited) $(PROJECT_DIR)/EnumeratorKit/libmill/Release-iphonesimulator/include/libmill',
+      'HEADER_SEARCH_PATHS[sdk=macosx*]' => '$(inherited) $(PROJECT_DIR)/EnumeratorKit/libmill/Release/include/libmill',
+      'LIBRARY_SEARCH_PATHS[sdk=iphoneos*]' => '$(inherited) $(PROJECT_DIR)/EnumeratorKit/libmill/Release-iphoneos',
+      'LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]' => '$(inherited) $(PROJECT_DIR)/EnumeratorKit/libmill/Release-iphonesimulator',
+      'LIBRARY_SEARCH_PATHS[sdk=macosx*]' => '$(inherited) $(PROJECT_DIR)/EnumeratorKit/libmill/Release',
+    }
   end
 end
