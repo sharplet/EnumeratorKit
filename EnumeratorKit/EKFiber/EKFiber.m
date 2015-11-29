@@ -2,171 +2,109 @@
 //  EKFiber.m
 //  EnumeratorKit
 //
-//  Created by Adam Sharp on 17/05/13.
-//
+//  Created by Adam Sharp on 17/11/2015.
+//  Copyright © 2015 Adam Sharp. All rights reserved.
 //
 
 #import "EKFiber.h"
-#import "EKSemaphore.h"
-#import "EKSerialOperationQueue.h"
 
-@interface EKFiber ()
+#import <libmill.h>
+#undef end
 
-+ (NSString *)register:(EKFiber *)fiber;
-+ (void)removeFiber:(EKFiber *)fiber;
+static void *kWait = &kWait;
 
-- (void)executeBlock;
+@interface EKFiber (async)
+- (void)async_execute;
+@end
 
-@property (nonatomic, copy) id (^block)(void);
-@property (nonatomic, unsafe_unretained) NSBlockOperation *blockOperation;
-@property (nonatomic, strong) NSString *label;
-
-@property (nonatomic) BOOL blockStarted;
-@property (nonatomic) id blockResult;
-
-@property (nonatomic, strong) EKSerialOperationQueue *queue;
-@property (nonatomic, strong) EKSemaphore *resumeSemaphore;
-@property (nonatomic, strong) EKSemaphore *yieldSemaphore;
-
+@interface EKFiber () <EKYielder>
+@property (nonatomic, assign) chan ch;
+@property (nonatomic, assign) chan wait;
+@property (nonatomic, copy) void (^block)(id<EKYielder>);
 @end
 
 @implementation EKFiber
 
-static NSMutableDictionary *fibers;
-static EKSerialOperationQueue *fibersQueue;
-
-+ (NSString *)register:(EKFiber *)fiber
++ (instancetype)fiberWithBlock:(void (^)(id<EKYielder>))block
 {
-    // fibersQueue synchronises fiber creation and deletion
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        fibers = [NSMutableDictionary new];
-        fibersQueue = [EKSerialOperationQueue new];
-    });
-
-    // register the new fiber
-    __block id label;
-    [fibersQueue addOperationWithBlockAndWait:^{
-        static unsigned int fiberCounter = 0;
-        label = [NSString stringWithFormat:@"fiber.%d", fiberCounter++];
-        fibers[label] = fiber;
-    }];
-
-    return label;
+    return [[self alloc] initWithBlock:block];
 }
 
-+ (instancetype)current
-{
-    return fibers[[[NSOperationQueue currentQueue] name]];
-}
-
-+ (void)removeFiber:(EKFiber *)fiber
-{
-    [fibersQueue addOperationWithBlockAndWait:^{
-        [fiber.queue cancelAllOperations];
-        [fibers removeObjectForKey:fiber.label];
-    }];
-}
-
-+ (void)yield:(id)obj
-{
-    [[EKFiber current] yield:obj];
-}
-
-+ (instancetype)fiberWithBlock:(id (^)(void))block
-{
-    return [[EKFiber alloc] initWithBlock:block];
-}
-
-- (instancetype)initWithBlock:(id (^)(void))block
+- (instancetype)initWithBlock:(void (^)(id<EKYielder>))block
 {
     if (self = [super init]) {
-        // register with the global fiber list -- this synchronises
-        // fiber creation
-        _label = [EKFiber register:self];
-
         _block = [block copy];
-        _blockStarted = NO;
+        _ch = chmake(id, 1);
+        _wait = chmake(void *, 1);
 
-        // set up the fiber's queue and control semaphores
-        _queue = [EKSerialOperationQueue new];
-        _queue.name = self.label;
-        _resumeSemaphore = [EKSemaphore new];
-        _yieldSemaphore = [EKSemaphore new];
+        [self async_execute];
     }
     return self;
 }
 
-- (void)executeBlock
+- (void)execute
 {
-    self.blockStarted = YES;
-
-    __unsafe_unretained EKFiber *weakSelf = self;
-    NSBlockOperation *operation = [NSBlockOperation new];
-    [operation addExecutionBlock:^{
-        if (!self.blockOperation.isCancelled) {
-            weakSelf.blockResult = weakSelf.block();
-            weakSelf.blockStarted = NO;
-
-            // clean up
-            [EKFiber removeFiber:weakSelf];
-            weakSelf.block = nil;
-
-            [weakSelf.yieldSemaphore signal];
-        }
-    }];
-
-    self.blockOperation = operation;
-    [self.queue addOperation:self.blockOperation];
+    chr(_wait, void *);
+    _block((id)self);
+    chdone(_ch, id, nil);
 }
 
 - (id)resume
 {
-    // if we are ever resumed and we don't have a block, the fiber is
-    // dead, so raise an exception
-    if (!self.isAlive) {
-        [NSException raise:@"EKFiberException" format:@"dead fiber called"];
-    }
-    else {
-        // if the block has started, resume it, otherwise start executing it
-        if (self.blockStarted) {
-            [self.resumeSemaphore signal]; // fiber queue resumes
-        }
-        else {
-            [self executeBlock];
-        }
-    }
-
-    // wait until the fiber finishes or yields and return the result
-    [self.yieldSemaphore wait];
-    return self.blockResult;
-}
-
-- (void)destroy
-{
-    [EKFiber removeFiber:self];
+    chs(_wait, void *, kWait);
+    return chr(_ch, __unsafe_unretained id);
 }
 
 - (void)yield:(id)obj
 {
-    self.blockResult = obj;
-    [self.yieldSemaphore signal];
+    chs(_ch, id, obj);
+    chr(_wait, void *);
+}
 
-    // wait until -resume is called, only as long as the fiber hasn't
-    // been cancelled
-    while (!self.blockOperation.isCancelled) {
+- (void)dealloc
+{
+    chdone(_wait, void *, NULL);
+    chclose(_wait);
+    chclose(_ch);
+}
 
-        // if the semaphore is signalled, break out of the loop so that
-        // execution continues
-        if ([self.resumeSemaphore waitForTimeInterval:0.02]) {
-            break;
-        }
+#pragma mark Async dispatch
+
+static BOOL IsAsyncSelector(SEL aSelector) {
+    return [NSStringFromSelector(aSelector) hasPrefix:@"async_"];
+}
+
+static SEL SelectorFromAsyncSelector(SEL aSelector) {
+    return NSSelectorFromString([NSStringFromSelector(aSelector) stringByReplacingOccurrencesOfString:@"async_" withString:@""]);
+}
+
+static coroutine void invoke(id self, NSInvocation *anInvocation)
+{
+    [anInvocation invoke];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    if (IsAsyncSelector(aSelector)) {
+        return [super respondsToSelector:SelectorFromAsyncSelector(aSelector)];
+    } else {
+        return [super respondsToSelector:aSelector];
     }
 }
 
-- (BOOL)isAlive
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-    return !!self.block;
+    if (IsAsyncSelector(aSelector)) {
+        return [super methodSignatureForSelector:SelectorFromAsyncSelector(aSelector)];
+    } else {
+        return [super methodSignatureForSelector:aSelector];
+    }
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation
+{
+    anInvocation.selector = SelectorFromAsyncSelector(anInvocation.selector);
+    go(invoke(self, anInvocation));
 }
 
 @end

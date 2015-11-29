@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE1209EA1A86106D00737E24"
-               BuildableName = "EnumeratorKit.framework"
-               BlueprintName = "EnumeratorKit-iOS"
-               ReferencedContainer = "container:EnumeratorKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE120A241A86170900737E24"
-               BuildableName = "Tests-iOS.xctest"
-               BlueprintName = "Tests-iOS"
-               ReferencedContainer = "container:EnumeratorKit.xcodeproj">
+               BlueprintIdentifier = "CE531BFC1BFB0C1B0098D352"
+               BuildableName = "libmill.a"
+               BlueprintName = "libmill-iOS"
+               ReferencedContainer = "container:libmill.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE120A241A86170900737E24"
-               BuildableName = "Tests-iOS.xctest"
-               BlueprintName = "Tests-iOS"
-               ReferencedContainer = "container:EnumeratorKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE1209EA1A86106D00737E24"
-            BuildableName = "EnumeratorKit.framework"
-            BlueprintName = "EnumeratorKit-iOS"
-            ReferencedContainer = "container:EnumeratorKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -78,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE1209EA1A86106D00737E24"
-            BuildableName = "EnumeratorKit.framework"
-            BlueprintName = "EnumeratorKit-iOS"
-            ReferencedContainer = "container:EnumeratorKit.xcodeproj">
+            BlueprintIdentifier = "CE531BFC1BFB0C1B0098D352"
+            BuildableName = "libmill.a"
+            BlueprintName = "libmill-iOS"
+            ReferencedContainer = "container:libmill.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE1209EA1A86106D00737E24"
-            BuildableName = "EnumeratorKit.framework"
-            BlueprintName = "EnumeratorKit-iOS"
-            ReferencedContainer = "container:EnumeratorKit.xcodeproj">
+            BlueprintIdentifier = "CE531BFC1BFB0C1B0098D352"
+            BuildableName = "libmill.a"
+            BlueprintName = "libmill-iOS"
+            ReferencedContainer = "container:libmill.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

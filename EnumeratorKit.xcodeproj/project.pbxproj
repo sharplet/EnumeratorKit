@@ -22,9 +22,6 @@
 		CE120A151A8611C600737E24 /* NSSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0A17541B6E009AC260 /* NSSet+EKEnumerable.m */; };
 		CE120A161A8611C600737E24 /* NSOrderedSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0F17545532009AC260 /* NSOrderedSet+EKEnumerable.m */; };
 		CE120A171A8611C600737E24 /* NSObject+EKEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */; };
-		CE120A181A8611C600737E24 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073E3174AC6FB005FA8E5 /* EKFiber.m */; };
-		CE120A191A8611C600737E24 /* EKSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A506140177C453E0043C974 /* EKSemaphore.m */; };
-		CE120A1A1A8611C600737E24 /* EKSerialOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */; };
 		CE120A2B1A86170900737E24 /* EnumeratorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1209EB1A86106D00737E24 /* EnumeratorKit.framework */; };
 		CE120A341A8617F000737E24 /* EKEnumerableNSArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */; };
 		CE120A351A8617F000737E24 /* EKEnumerableNSDictionarySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E071754184D009AC260 /* EKEnumerableNSDictionarySpec.m */; };
@@ -32,8 +29,6 @@
 		CE120A371A8617F000737E24 /* EKEnumerableNSSetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0C175452EB009AC260 /* EKEnumerableNSSetSpec.m */; };
 		CE120A381A8617F000737E24 /* EKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */; };
 		CE120A391A8617F000737E24 /* EKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */; };
-		CE120A3A1A8617F000737E24 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
-		CE120A3C1A8617F000737E24 /* EKSerialOperationQueueSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */; };
 		CE120A3E1A8617F000737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */; };
 		CE120A3F1A8617F000737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */; };
 		CE120A401A8617F000737E24 /* SortedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E251755F42F009AC260 /* SortedList.m */; };
@@ -44,8 +39,6 @@
 		CE120A621A86193700737E24 /* EKEnumerableNSSetSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0C175452EB009AC260 /* EKEnumerableNSSetSpec.m */; };
 		CE120A631A86193700737E24 /* EKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */; };
 		CE120A641A86193700737E24 /* EKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */; };
-		CE120A651A86193700737E24 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
-		CE120A671A86193700737E24 /* EKSerialOperationQueueSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */; };
 		CE120A691A86193700737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */; };
 		CE120A6A1A86193700737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */; };
 		CE120A6B1A86193700737E24 /* SortedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E251755F42F009AC260 /* SortedList.m */; };
@@ -56,9 +49,6 @@
 		CE120A751A861D4700737E24 /* NSObject+EKEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3D59217534ACD0050CE35 /* NSObject+EKEnumerator.m */; };
 		CE120A761A861D4700737E24 /* NSOrderedSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0F17545532009AC260 /* NSOrderedSet+EKEnumerable.m */; };
 		CE120A771A861D4700737E24 /* NSSet+EKEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACB2E0A17541B6E009AC260 /* NSSet+EKEnumerable.m */; };
-		CE120A781A861D4700737E24 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073E3174AC6FB005FA8E5 /* EKFiber.m */; };
-		CE120A791A861D4700737E24 /* EKSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A506140177C453E0043C974 /* EKSemaphore.m */; };
-		CE120A7A1A861D4700737E24 /* EKSerialOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */; };
 		CE120A7B1A86218900737E24 /* EnumeratorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC3BB79174B64EB00108331 /* EnumeratorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE120A7C1A86218900737E24 /* EKEnumerable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB6FAD51740D97100DDBAD4 /* EKEnumerable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE120A7D1A86218900737E24 /* EKEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB6FACF1740D56E00DDBAD4 /* EKEnumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,10 +63,17 @@
 		CE120A8B1A86273700737E24 /* EKEnumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A871A86273700737E24 /* EKEnumerate.m */; };
 		CE120A8D1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
 		CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */; };
+		CE531BEF1BFAE3620098D352 /* EKFiber.h in Headers */ = {isa = PBXBuildFile; fileRef = CE531BED1BFAE3620098D352 /* EKFiber.h */; };
+		CE531BF01BFAE3620098D352 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = CE531BEE1BFAE3620098D352 /* EKFiber.m */; };
+		CE531BF31BFAE8EF0098D352 /* EKFiberSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */; };
+		CE531C541BFB10200098D352 /* EKFiber.m in Sources */ = {isa = PBXBuildFile; fileRef = CE531BEE1BFAE3620098D352 /* EKFiber.m */; };
+		CE531C781BFB12930098D352 /* libmill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE531C771BFB12930098D352 /* libmill.a */; };
+		CE531C7A1BFB13A40098D352 /* libmill.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE531C791BFB13A40098D352 /* libmill.a */; };
 		CE5D09681B11CB3400BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE5D096A1B11CB6E00BE711A /* Kiwi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE7CF25D1B11CA590035ED79 /* Kiwi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */; };
 		CE7CF25E1B11CA5F0035ED79 /* Kiwi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */; };
+		CEB4AD621C0BA41600A249D6 /* EKYielder.h in Headers */ = {isa = PBXBuildFile; fileRef = CEB4AD611C0BA41600A249D6 /* EKYielder.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,12 +119,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4A20CDC6177C3169004E510D /* EKSerialOperationQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EKSerialOperationQueue.h; sourceTree = "<group>"; };
-		4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSerialOperationQueue.m; sourceTree = "<group>"; };
-		4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSerialOperationQueueSpec.m; sourceTree = "<group>"; };
 		4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectIncludeEKEnumerableSpec.m; sourceTree = "<group>"; };
-		4A50613F177C453E0043C974 /* EKSemaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKSemaphore.h; sourceTree = "<group>"; };
-		4A506140177C453E0043C974 /* EKSemaphore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKSemaphore.m; sourceTree = "<group>"; };
 		4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AB6FACF1740D56E00DDBAD4 /* EKEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EKEnumerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4AB6FAD01740D56E00DDBAD4 /* EKEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerator.m; sourceTree = "<group>"; };
@@ -135,8 +127,6 @@
 		4AB6FAD61740D97100DDBAD4 /* EKEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerable.m; sourceTree = "<group>"; };
 		4AC073DE174AC629005FA8E5 /* NSArray+EKEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSArray+EKEnumerable.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4AC073DF174AC629005FA8E5 /* NSArray+EKEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+EKEnumerable.m"; sourceTree = "<group>"; };
-		4AC073E2174AC6FB005FA8E5 /* EKFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EKFiber.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4AC073E3174AC6FB005FA8E5 /* EKFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKFiber.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKFiberSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4AC3BB79174B64EB00108331 /* EnumeratorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumeratorKit.h; sourceTree = "<group>"; };
 		4AC3BB7A174B6D9100108331 /* EKEnumerableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EKEnumerableSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -166,8 +156,13 @@
 		CE120A871A86273700737E24 /* EKEnumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerate.m; sourceTree = "<group>"; };
 		CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerateSpec.m; sourceTree = "<group>"; };
 		CE26A0961A85B1BA000A4F1B /* EKEnumerableNSArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKEnumerableNSArraySpec.m; sourceTree = "<group>"; };
+		CE531BED1BFAE3620098D352 /* EKFiber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKFiber.h; sourceTree = "<group>"; };
+		CE531BEE1BFAE3620098D352 /* EKFiber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKFiber.m; sourceTree = "<group>"; };
+		CE531C771BFB12930098D352 /* libmill.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmill.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE531C791BFB13A40098D352 /* libmill.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmill.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7CF25A1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
 		CE7CF25C1B11CA4E0035ED79 /* Kiwi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kiwi.framework; sourceTree = "<group>"; };
+		CEB4AD611C0BA41600A249D6 /* EKYielder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKYielder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE531C7A1BFB13A40098D352 /* libmill.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE531C781BFB12930098D352 /* libmill.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +229,8 @@
 		4AB6FA941740C5AE00DDBAD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE531C791BFB13A40098D352 /* libmill.a */,
+				CE531C771BFB12930098D352 /* libmill.a */,
 				CE7CF2581B11CA300035ED79 /* Carthage */,
 				4AB6FA971740C5AE00DDBAD4 /* Foundation.framework */,
 				4AD13089185C0C3B003E7145 /* XCTest.framework */,
@@ -269,7 +268,6 @@
 				CE120A8C1A8627C700737E24 /* EKEnumerateSpec.m */,
 				4AD3D58F175348CD0050CE35 /* EKEnumeratorSpec.m */,
 				4AC073F9174AC90E005FA8E5 /* EKFiberSpec.m */,
-				4A20CDC9177C3297004E510D /* EKSerialOperationQueueSpec.m */,
 				4AD3D59417534E8A0050CE35 /* NSObjectAsEKEnumeratorSpec.m */,
 				4A37C9A917507AB1004A052E /* NSObjectIncludeEKEnumerableSpec.m */,
 				4ACB2E231755F403009AC260 /* Shared */,
@@ -281,12 +279,9 @@
 		4AC073E1174AC63B005FA8E5 /* EKFiber */ = {
 			isa = PBXGroup;
 			children = (
-				4AC073E2174AC6FB005FA8E5 /* EKFiber.h */,
-				4AC073E3174AC6FB005FA8E5 /* EKFiber.m */,
-				4A50613F177C453E0043C974 /* EKSemaphore.h */,
-				4A506140177C453E0043C974 /* EKSemaphore.m */,
-				4A20CDC6177C3169004E510D /* EKSerialOperationQueue.h */,
-				4A20CDC7177C31D1004E510D /* EKSerialOperationQueue.m */,
+				CE531BED1BFAE3620098D352 /* EKFiber.h */,
+				CE531BEE1BFAE3620098D352 /* EKFiber.m */,
+				CEB4AD611C0BA41600A249D6 /* EKYielder.h */,
 			);
 			path = EKFiber;
 			sourceTree = "<group>";
@@ -367,6 +362,7 @@
 				CE120A051A8611A400737E24 /* EKEnumerable.h in Headers */,
 				CE120A091A8611A400737E24 /* NSDictionary+EKEnumerable.h in Headers */,
 				CE120A061A8611A400737E24 /* EKEnumerator.h in Headers */,
+				CEB4AD621C0BA41600A249D6 /* EKYielder.h in Headers */,
 				CE120A041A8611A400737E24 /* EnumeratorKit.h in Headers */,
 				CE120A071A8611A400737E24 /* NSArray+EKEnumerable.h in Headers */,
 				CE120A0B1A8611A400737E24 /* NSOrderedSet+EKEnumerable.h in Headers */,
@@ -381,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE120A7C1A86218900737E24 /* EKEnumerable.h in Headers */,
+				CE531BEF1BFAE3620098D352 /* EKFiber.h in Headers */,
 				CE120A7F1A86218900737E24 /* NSDictionary+EKEnumerable.h in Headers */,
 				CE120A821A86218900737E24 /* NSSet+EKEnumerable.h in Headers */,
 				CE120A7D1A86218900737E24 /* EKEnumerator.h in Headers */,
@@ -476,7 +473,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Adam Sharp";
 				TargetAttributes = {
 					CE1209EA1A86106D00737E24 = {
@@ -554,12 +551,10 @@
 				CE120A121A8611C600737E24 /* NSArray+EKEnumerable.m in Sources */,
 				CE120A141A8611C600737E24 /* NSDictionary+EKEnumerable.m in Sources */,
 				CE120A8A1A86273700737E24 /* EKEnumerate.m in Sources */,
+				CE531C541BFB10200098D352 /* EKFiber.m in Sources */,
 				CE120A151A8611C600737E24 /* NSSet+EKEnumerable.m in Sources */,
 				CE120A161A8611C600737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A171A8611C600737E24 /* NSObject+EKEnumerator.m in Sources */,
-				CE120A181A8611C600737E24 /* EKFiber.m in Sources */,
-				CE120A191A8611C600737E24 /* EKSemaphore.m in Sources */,
-				CE120A1A1A8611C600737E24 /* EKSerialOperationQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,8 +569,6 @@
 				CE120A371A8617F000737E24 /* EKEnumerableNSSetSpec.m in Sources */,
 				CE120A381A8617F000737E24 /* EKEnumerableSpec.m in Sources */,
 				CE120A391A8617F000737E24 /* EKEnumeratorSpec.m in Sources */,
-				CE120A3A1A8617F000737E24 /* EKFiberSpec.m in Sources */,
-				CE120A3C1A8617F000737E24 /* EKSerialOperationQueueSpec.m in Sources */,
 				CE120A3E1A8617F000737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */,
 				CE120A3F1A8617F000737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */,
 				CE120A401A8617F000737E24 /* SortedList.m in Sources */,
@@ -594,9 +587,7 @@
 				CE120A751A861D4700737E24 /* NSObject+EKEnumerator.m in Sources */,
 				CE120A761A861D4700737E24 /* NSOrderedSet+EKEnumerable.m in Sources */,
 				CE120A771A861D4700737E24 /* NSSet+EKEnumerable.m in Sources */,
-				CE120A781A861D4700737E24 /* EKFiber.m in Sources */,
-				CE120A791A861D4700737E24 /* EKSemaphore.m in Sources */,
-				CE120A7A1A861D4700737E24 /* EKSerialOperationQueue.m in Sources */,
+				CE531BF01BFAE3620098D352 /* EKFiber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE531BF31BFAE8EF0098D352 /* EKFiberSpec.m in Sources */,
 				CE120A5F1A86193700737E24 /* EKEnumerableNSArraySpec.m in Sources */,
 				CE120A8E1A8627C700737E24 /* EKEnumerateSpec.m in Sources */,
 				CE120A601A86193700737E24 /* EKEnumerableNSDictionarySpec.m in Sources */,
@@ -611,8 +603,6 @@
 				CE120A621A86193700737E24 /* EKEnumerableNSSetSpec.m in Sources */,
 				CE120A631A86193700737E24 /* EKEnumerableSpec.m in Sources */,
 				CE120A641A86193700737E24 /* EKEnumeratorSpec.m in Sources */,
-				CE120A651A86193700737E24 /* EKFiberSpec.m in Sources */,
-				CE120A671A86193700737E24 /* EKSerialOperationQueueSpec.m in Sources */,
 				CE120A691A86193700737E24 /* NSObjectAsEKEnumeratorSpec.m in Sources */,
 				CE120A6A1A86193700737E24 /* NSObjectIncludeEKEnumerableSpec.m in Sources */,
 				CE120A6B1A86193700737E24 /* SortedList.m in Sources */,
@@ -650,6 +640,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				EK_PRODUCT_NAME = EnumeratorKit;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -661,7 +652,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(CONFIGURATION_BUILD_DIR)/include/libmill",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -686,7 +682,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(CONFIGURATION_BUILD_DIR)/include/libmill",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -718,9 +719,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -752,9 +753,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -774,7 +775,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
@@ -791,6 +791,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -806,7 +807,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
@@ -819,6 +819,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -851,8 +852,8 @@
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -888,8 +889,8 @@
 				INFOPLIST_FILE = EnumeratorKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(EK_PRODUCT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -927,6 +928,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -958,6 +960,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sharplet.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
