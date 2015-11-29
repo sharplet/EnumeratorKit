@@ -23,6 +23,9 @@ Pod::Spec.new do |s|
   s.author       = { 'Adam Sharp' => 'adsharp@me.com' }
   s.source       = { :git => 'https://github.com/sharplet/EnumeratorKit.git', :tag => "#{s.version}" }
 
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
+
   s.source_files = 'EnumeratorKit/EnumeratorKit.h'
 
   s.default_subspec = 'Core'
