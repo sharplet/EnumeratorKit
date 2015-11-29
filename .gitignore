@@ -1,4 +1,5 @@
 xcuserdata/
 DerivedData/
+build/
 appledoc/
 *.xccheckout

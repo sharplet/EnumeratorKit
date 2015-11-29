@@ -11,20 +11,25 @@ task default: %w[test]
 
 task ci: %w[test podspec:lint]
 
-file "lib/libmill.a" do
-  sh "git submodule update --init"
+namespace :libmill do
+  desc "Build libmill for all supported platforms"
+  task all: %w[libmill:iphoneos libmill:iphonesimulator libmill:macosx]
 
-  prefix = Dir.pwd
+  desc "Build libmill for iOS"
+  task :iphoneos do
+    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-iOS -sdk iphoneos -configuration Release SYMROOT='#{ENV["PWD"]}/build'"
+  end
 
-  chdir "External/libmill" do
-    sh "./autogen.sh &>/dev/null"
-    sh "./configure", "--prefix=#{prefix}"
-    sh "make install"
+  desc "Build libmill for iOS Simulator"
+  task :iphonesimulator do
+    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-iOS -sdk iphonesimulator -configuration Release SYMROOT='#{ENV["PWD"]}/build'"
+  end
+
+  desc "Build libmill for Mac OS X"
+  task :macosx do
+    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-OSX -configuration Release SYMROOT='#{ENV["PWD"]}/build'"
   end
 end
-
-desc "Build libmill"
-task :libmill => "lib/libmill.a"
 
 desc "Run all tests"
 task test: %w[test:iphone6 test:iphone5 test:macosx]
@@ -56,8 +61,7 @@ end
 desc "Clean the default scheme"
 task :clean do
   rm_rf "DerivedData"
-  rm_rf "lib"
-  rm_rf "include"
+  rm_rf "build"
 end
 
 desc "Synonym for docs:generate"
