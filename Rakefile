@@ -17,17 +17,17 @@ namespace :libmill do
 
   desc "Build libmill for iOS"
   task :iphoneos do
-    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-iOS -sdk iphoneos -configuration Release SYMROOT='#{ENV["PWD"]}/build'"
+    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-iOS -sdk iphoneos -destination generic/platform=iOS -configuration Release SYMROOT='#{ENV["PWD"]}/libmill'"
   end
 
   desc "Build libmill for iOS Simulator"
   task :iphonesimulator do
-    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-iOS -sdk iphonesimulator -configuration Release SYMROOT='#{ENV["PWD"]}/build'"
+    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-iOS -sdk iphonesimulator -configuration Release SYMROOT='#{ENV["PWD"]}/libmill'"
   end
 
   desc "Build libmill for Mac OS X"
   task :macosx do
-    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-OSX -configuration Release SYMROOT='#{ENV["PWD"]}/build'"
+    sh "xcodebuild -project External/libmill.xcodeproj -scheme libmill-OSX -configuration Release SYMROOT='#{ENV["PWD"]}/libmill'"
   end
 end
 
